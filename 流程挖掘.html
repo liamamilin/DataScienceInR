@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 流程挖掘 | Data Science in R</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 流程挖掘 | Data Science in R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 流程挖掘 | Data Science in R" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="无监督学习与自然语言.html"/>
+<link rel="next" href="可解释机器学习与因果推断.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science In R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#r语言与数据科学"><i class="fa fa-check"></i><b>1.1</b> R语言与数据科学</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#作者其他书籍"><i class="fa fa-check"></i><b>1.2</b> 作者其他书籍</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html"><i class="fa fa-check"></i><b>2</b> R语言与数据科学</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学简介"><i class="fa fa-check"></i><b>2.1</b> 数据科学简介</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的关键元素"><i class="fa fa-check"></i><b>2.1.1</b> 数据科学的关键元素：</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的应用领域"><i class="fa fa-check"></i><b>2.1.2</b> 数据科学的应用领域：</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学工具和编程语言"><i class="fa fa-check"></i><b>2.1.3</b> 数据科学工具和编程语言：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言的重要性"><i class="fa fa-check"></i><b>2.2</b> R语言的重要性</a></li>
+<li class="chapter" data-level="2.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r和rstudio的安装"><i class="fa fa-check"></i><b>2.3</b> R和RStudio的安装</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤一安装r语言"><i class="fa fa-check"></i><b>2.3.1</b> 步骤一：安装R语言</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤二安装rstudio"><i class="fa fa-check"></i><b>2.3.2</b> 步骤二：安装RStudio</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤三配置rstudio"><i class="fa fa-check"></i><b>2.3.3</b> 步骤三：配置RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包管理"><i class="fa fa-check"></i><b>2.4</b> 包管理</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#安装r包"><i class="fa fa-check"></i><b>2.4.1</b> 安装R包：</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#加载r包"><i class="fa fa-check"></i><b>2.4.2</b> 加载R包：</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#查看已安装的包"><i class="fa fa-check"></i><b>2.4.3</b> 查看已安装的包：</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#更新r包"><i class="fa fa-check"></i><b>2.4.4</b> 更新R包：</a></li>
+<li class="chapter" data-level="2.4.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#移除r包"><i class="fa fa-check"></i><b>2.4.5</b> 移除R包：</a></li>
+<li class="chapter" data-level="2.4.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包的搜索路径"><i class="fa fa-check"></i><b>2.4.6</b> 包的搜索路径：</a></li>
+<li class="chapter" data-level="2.4.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#版本控制"><i class="fa fa-check"></i><b>2.4.7</b> 版本控制：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言基本语法"><i class="fa fa-check"></i><b>2.5</b> R语言基本语法</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#变量与数据类型"><i class="fa fa-check"></i><b>2.5.1</b> 变量与数据类型</a></li>
+<li class="chapter" data-level="2.5.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据结构"><i class="fa fa-check"></i><b>2.5.2</b> 数据结构</a></li>
+<li class="chapter" data-level="2.5.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#控制结构"><i class="fa fa-check"></i><b>2.5.3</b> 控制结构</a></li>
+<li class="chapter" data-level="2.5.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#子集选取"><i class="fa fa-check"></i><b>2.5.4</b> 子集选取</a></li>
+<li class="chapter" data-level="2.5.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言面向对象系统"><i class="fa fa-check"></i><b>2.5.5</b> R语言面向对象系统</a></li>
+<li class="chapter" data-level="2.5.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#防御式编程和异常处理"><i class="fa fa-check"></i><b>2.5.6</b> 防御式编程和异常处理</a></li>
+<li class="chapter" data-level="2.5.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#函数式编程"><i class="fa fa-check"></i><b>2.5.7</b> 函数式编程</a></li>
+<li class="chapter" data-level="2.5.8" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#泛函"><i class="fa fa-check"></i><b>2.5.8</b> 泛函</a></li>
+<li class="chapter" data-level="2.5.9" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言函数运算符"><i class="fa fa-check"></i><b>2.5.9</b> R语言函数运算符</a></li>
+<li class="chapter" data-level="2.5.10" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言非标准计算"><i class="fa fa-check"></i><b>2.5.10</b> R语言非标准计算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r包开发"><i class="fa fa-check"></i><b>2.6</b> R包开发</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html"><i class="fa fa-check"></i><b>3</b> R 语言数据分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导入和导出"><i class="fa fa-check"></i><b>3.1</b> 数据导入和导出</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据读取"><i class="fa fa-check"></i><b>3.1.1</b> 数据读取</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导出"><i class="fa fa-check"></i><b>3.1.2</b> 数据导出</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据处理"><i class="fa fa-check"></i><b>3.2</b> R 语言数据处理</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#缺失值处理"><i class="fa fa-check"></i><b>3.2.1</b> 缺失值处理</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r异常值处理"><i class="fa fa-check"></i><b>3.2.2</b> R异常值处理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r探索性数据分析"><i class="fa fa-check"></i><b>3.3</b> R探索性数据分析</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#autoeda"><i class="fa fa-check"></i><b>3.3.1</b> AutoEDA</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据可视化"><i class="fa fa-check"></i><b>3.3.2</b> R 语言数据可视化</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r语言统计推断"><i class="fa fa-check"></i><b>3.4</b> R语言统计推断</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#方差分析"><i class="fa fa-check"></i><b>3.4.1</b> 方差分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#非参数检验"><i class="fa fa-check"></i><b>3.4.2</b> 非参数检验</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#回归"><i class="fa fa-check"></i><b>3.4.3</b> 回归</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#生存分析"><i class="fa fa-check"></i><b>3.4.4</b> 生存分析</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#多重比较校正"><i class="fa fa-check"></i><b>3.4.5</b> 多重比较校正</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#功效分析"><i class="fa fa-check"></i><b>3.4.6</b> 功效分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-常用包总结.html"><a href="r-常用包总结.html"><i class="fa fa-check"></i><b>4</b> R 常用包总结</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#dplyr-包"><i class="fa fa-check"></i><b>4.1</b> dplyr 包</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数"><i class="fa fa-check"></i><b>4.1.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#案例"><i class="fa fa-check"></i><b>4.1.2</b> 案例</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#tidyr-包"><i class="fa fa-check"></i><b>4.2</b> tidyr 包</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-1"><i class="fa fa-check"></i><b>4.2.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.2.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子"><i class="fa fa-check"></i><b>4.2.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="r-常用包总结.html"><a href="r-常用包总结.html#stringr"><i class="fa fa-check"></i><b>4.3</b> stringr</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-2"><i class="fa fa-check"></i><b>4.3.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子-1"><i class="fa fa-check"></i><b>4.3.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r-常用包总结.html"><a href="r-常用包总结.html#lubridate"><i class="fa fa-check"></i><b>4.4</b> lubridate</a></li>
+<li class="chapter" data-level="4.5" data-path="r-常用包总结.html"><a href="r-常用包总结.html#purrr"><i class="fa fa-check"></i><b>4.5</b> purrr</a></li>
+<li class="chapter" data-level="4.6" data-path="r-常用包总结.html"><a href="r-常用包总结.html#forcats"><i class="fa fa-check"></i><b>4.6</b> forcats</a></li>
+<li class="chapter" data-level="4.7" data-path="r-常用包总结.html"><a href="r-常用包总结.html#httr"><i class="fa fa-check"></i><b>4.7</b> httr</a></li>
+<li class="chapter" data-level="4.8" data-path="r-常用包总结.html"><a href="r-常用包总结.html#rlang"><i class="fa fa-check"></i><b>4.8</b> rlang</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="监督学习.html"><a href="监督学习.html"><i class="fa fa-check"></i><b>5</b> 监督学习</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="监督学习.html"><a href="监督学习.html#决策树"><i class="fa fa-check"></i><b>5.1</b> 决策树</a></li>
+<li class="chapter" data-level="5.2" data-path="监督学习.html"><a href="监督学习.html#随机森林"><i class="fa fa-check"></i><b>5.2</b> 随机森林</a></li>
+<li class="chapter" data-level="5.3" data-path="监督学习.html"><a href="监督学习.html#xgboost"><i class="fa fa-check"></i><b>5.3</b> Xgboost</a></li>
+<li class="chapter" data-level="5.4" data-path="监督学习.html"><a href="监督学习.html#特征选择"><i class="fa fa-check"></i><b>5.4</b> 特征选择</a></li>
+<li class="chapter" data-level="5.5" data-path="监督学习.html"><a href="监督学习.html#深度学习"><i class="fa fa-check"></i><b>5.5</b> 深度学习</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html"><i class="fa fa-check"></i><b>6</b> 无监督学习与自然语言</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#k-均值聚类"><i class="fa fa-check"></i><b>6.1</b> K 均值聚类</a></li>
+<li class="chapter" data-level="6.2" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#层次聚类"><i class="fa fa-check"></i><b>6.2</b> 层次聚类</a></li>
+<li class="chapter" data-level="6.3" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#dbscan"><i class="fa fa-check"></i><b>6.3</b> DBSCAN</a></li>
+<li class="chapter" data-level="6.4" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#自然语言处理"><i class="fa fa-check"></i><b>6.4</b> 自然语言处理</a></li>
+<li class="chapter" data-level="6.5" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#时间序列"><i class="fa fa-check"></i><b>6.5</b> 时间序列</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="流程挖掘.html"><a href="流程挖掘.html"><i class="fa fa-check"></i><b>7</b> 流程挖掘</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="流程挖掘.html"><a href="流程挖掘.html#流程发现"><i class="fa fa-check"></i><b>7.1</b> 流程发现</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html"><i class="fa fa-check"></i><b>8</b> 可解释机器学习与因果推断</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#可解释机器学习"><i class="fa fa-check"></i><b>8.1</b> 可解释机器学习</a></li>
+<li class="chapter" data-level="8.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断"><i class="fa fa-check"></i><b>8.2</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断起源"><i class="fa fa-check"></i><b>8.2.1</b> 因果推断起源</a></li>
+<li class="chapter" data-level="8.2.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断介绍"><i class="fa fa-check"></i><b>8.2.2</b> 因果推断介绍</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="流程挖掘" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> 流程挖掘<a href="流程挖掘.html#流程挖掘" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>程挖掘是数据科学和业务过程管理领域的重要分支，它旨在从组织的数据中自动发现、分析和改进业务流程。以下是对流程挖掘领域的总结：</p>
+<ol style="list-style-type: decimal">
+<li>流程挖掘的核心概念：</li>
+</ol>
+<ul>
+<li><p>流程：流程是一系列按照特定规则和次序执行的活动或事件。</p></li>
+<li><p>事件日志：事件日志是组织内活动的记录，通常包含时间戳、活动名称、执行者等信息。</p></li>
+<li><p>流程模型：流程模型是对组织流程的图形表示，包括流程图、Petri网、流程树等。</p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>流程挖掘的主要任务：</li>
+</ol>
+<ul>
+<li><p>流程发现：从事件日志中自动发现组织的流程模型。</p></li>
+<li><p>流程验证：验证已存在的流程模型是否与实际情况一致。</p></li>
+<li><p>流程改进：基于挖掘的结果，识别潜在问题并改进业务流程。</p></li>
+<li><p>流程预测：根据历史数据预测未来流程的执行路径。</p></li>
+<li><p>流程监控：实时监控流程执行，检测异常并采取行动。</p></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>流程挖掘的方法和技术：</li>
+</ol>
+<ul>
+<li><p>过程发现算法：包括基于概率的方法、基于规则的方法和基于模型的方法。</p></li>
+<li><p>流程模型表示：使用流程图、Petri网、BPMN（业务流程建模与标记符标准）等表示方法。</p></li>
+<li><p>事件日志处理：清洗、预处理和特征工程。</p></li>
+<li><p>流程验证工具：用于验证流程模型的工具，如ProM、Disco、RapidMiner等。</p></li>
+<li><p>机器学习和数据挖掘：使用机器学习算法进行预测和分类任务。</p></li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>应用领域：</li>
+</ol>
+<ul>
+<li><p>业务流程管理：优化和改进组织内的业务流程。</p></li>
+<li><p>医疗保健：用于医院流程管理和患者治疗路径优化。</p></li>
+<li><p>制造业：监控和改进生产流程。</p></li>
+<li><p>金融：用于欺诈检测和风险管理。</p></li>
+<li><p>物流：提高供应链的效率和可见性。</p></li>
+<li><p>电信：分析客户服务流程。</p></li>
+<li><p>公共管理：政府和公共服务的流程优化。</p></li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>流程挖掘的挑战：</li>
+</ol>
+<ul>
+<li><p>数据质量：事件日志的质量对流程挖掘的结果有重大影响。</p></li>
+<li><p>多样性：不同组织和行业的流程差异很大，需要多样性的方法。</p></li>
+<li><p>可解释性：解释和理解挖掘结果的困难性。</p></li>
+<li><p>实时性：对于某些应用，需要实时流程挖掘和监控。</p></li>
+<li><p>隐私和安全：处理敏感数据需要考虑隐私和安全问题。</p></li>
+</ul>
+<p>流程挖掘是一个跨学科的领域，它结合了数据科学、业务过程管理和计算机科学的知识，旨在提高组织的效率、效益和质量</p>
+<div id="流程发现" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> 流程发现<a href="流程挖掘.html#流程发现" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>流程发现是通过分析事件日志数据来自动推断和可视化组织内的业务流程。</p>
+<p>流程发现的步骤：</p>
+<ol style="list-style-type: decimal">
+<li><p>准备事件日志数据：首先，你需要准备包含事件数据的事件日志。事件数据通常包括时间戳、活动名称、执行者等信息。</p></li>
+<li><p>数据清洗和预处理：对事件日志数据进行清洗和预处理，包括处理缺失数据、处理重复数据、过滤不必要的信息等。</p></li>
+<li><p>导入R包：使用R中的相关包来进行流程发现。常用的包包括bupaR、processmapR、eventdataR等。</p></li>
+<li><p>创建事件数据对象：将事件日志数据转换为适合流程发现的事件数据对象。你可以使用R包提供的函数来完成这个步骤。</p></li>
+<li><p>选择流程发现算法：选择适合的流程发现算法，例如基于概率的方法、基于规则的方法或基于模型的方法。</p></li>
+<li><p>执行流程发现：使用所选的算法对事件数据对象执行流程发现。</p></li>
+<li><p>可视化流程模型：使用可视化工具来呈现已发现的流程模型，如流程图、Petri网、流程树等。</p></li>
+<li><p>分析和解释结果：分析已发现的流程模型，理解流程中的模式、趋势和异常。</p></li>
+<li><p>改进业务流程：根据分析的结果，提出改进业务流程的建议。</p></li>
+</ol>
+<p>一个简单的例子, 首先创建因果图</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="流程挖掘.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(heuristicsmineR)</span>
+<span id="cb1-2"><a href="流程挖掘.html#cb1-2" tabindex="-1"></a> <span class="fu">library</span>(eventdataR)</span>
+<span id="cb1-3"><a href="流程挖掘.html#cb1-3" tabindex="-1"></a><span class="fu">data</span>(patients)</span>
+<span id="cb1-4"><a href="流程挖掘.html#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="流程挖掘.html#cb1-5" tabindex="-1"></a><span class="co"># Dependency graph / matrix</span></span>
+<span id="cb1-6"><a href="流程挖掘.html#cb1-6" tabindex="-1"></a><span class="fu">dependency_matrix</span>(patients)</span></code></pre></div>
+<pre><code>##                        consequent
+## antecedent              Blood test Check-out Discuss Results       End
+##   Blood test             0.0000000 0.0000000       0.0000000 0.0000000
+##   Check-out              0.0000000 0.0000000       0.0000000 0.9979716
+##   Discuss Results        0.0000000 0.9979716       0.0000000 0.0000000
+##   End                    0.0000000 0.0000000       0.0000000 0.0000000
+##   MRI SCAN               0.0000000 0.0000000       0.9957806 0.0000000
+##   Registration           0.0000000 0.0000000       0.0000000 0.0000000
+##   Start                  0.0000000 0.0000000       0.0000000 0.0000000
+##   Triage and Assessment  0.9957983 0.0000000       0.0000000 0.0000000
+##   X-Ray                  0.0000000 0.0000000       0.9961538 0.0000000
+##                        consequent
+## antecedent               MRI SCAN Registration Start Triage and Assessment
+##   Blood test            0.9957806     0.000000     0              0.000000
+##   Check-out             0.0000000     0.000000     0              0.000000
+##   Discuss Results       0.0000000     0.000000     0              0.000000
+##   End                   0.0000000     0.000000     0              0.000000
+##   MRI SCAN              0.0000000     0.000000     0              0.000000
+##   Registration          0.0000000     0.000000     0              0.998004
+##   Start                 0.0000000     0.998004     0              0.000000
+##   Triage and Assessment 0.0000000     0.000000     0              0.000000
+##   X-Ray                 0.0000000     0.000000     0              0.000000
+##                        consequent
+## antecedent                  X-Ray
+##   Blood test            0.0000000
+##   Check-out             0.0000000
+##   Discuss Results       0.0000000
+##   End                   0.0000000
+##   MRI SCAN              0.0000000
+##   Registration          0.0000000
+##   Start                 0.0000000
+##   Triage and Assessment 0.9961832
+##   X-Ray                 0.0000000
+## attr(,&quot;class&quot;)
+## [1] &quot;dependency_matrix&quot; &quot;matrix&quot;            &quot;array&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="流程挖掘.html#cb3-1" tabindex="-1"></a><span class="co"># Causal graph / Heuristics net</span></span>
+<span id="cb3-2"><a href="流程挖掘.html#cb3-2" tabindex="-1"></a><span class="fu">causal_net</span>(L_heur_1)</span></code></pre></div>
+<pre><code>## Nodes
+## # A tibble: 7 × 12
+##   act   from_id     n n_distinct_cases bindings_input bindings_output label  
+##   &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt;            &lt;dbl&gt; &lt;list&gt;         &lt;list&gt;          &lt;chr&gt;  
+## 1 End         1    40               40 &lt;list [1]&gt;     &lt;list [0]&gt;      &quot;End&quot;  
+## 2 Start       2    40               40 &lt;list [0]&gt;     &lt;list [1]&gt;      &quot;Start&quot;
+## 3 a           3    40               40 &lt;list [1]&gt;     &lt;list [4]&gt;      &quot;a\n40&quot;
+## 4 b           4    21               21 &lt;list [1]&gt;     &lt;list [1]&gt;      &quot;b\n21&quot;
+## 5 c           5    21               21 &lt;list [1]&gt;     &lt;list [1]&gt;      &quot;c\n21&quot;
+## 6 d           6    17               13 &lt;list [1]&gt;     &lt;list [1]&gt;      &quot;d\n17&quot;
+## 7 e           7    40               40 &lt;list [4]&gt;     &lt;list [1]&gt;      &quot;e\n40&quot;
+## # ℹ 5 more variables: color_level &lt;dbl&gt;, shape &lt;chr&gt;, fontcolor &lt;chr&gt;,
+## #   color &lt;chr&gt;, tooltip &lt;chr&gt;
+## Edges
+## # A tibble: 8 × 8
+##   antecedent consequent   dep from_id to_id     n label penwidth
+##   &lt;chr&gt;      &lt;chr&gt;      &lt;dbl&gt;   &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
+## 1 Start      a          0.976       2     3    40 40         5  
+## 2 a          b          0.917       3     4    21 21         3.1
+## 3 a          c          0.917       3     5    21 21         3.1
+## 4 a          d          0.929       3     6    13 13         2.3
+## 5 b          e          0.917       4     7    21 21         3.1
+## 6 c          e          0.917       5     7    21 21         3.1
+## 7 d          e          0.929       6     7    17 17         2.7
+## 8 e          End        0.976       7     1    40 40         5</code></pre>
+<p>创建petri 网络</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="流程挖掘.html#cb5-1" tabindex="-1"></a><span class="co"># Convert to Petri net</span></span>
+<span id="cb5-2"><a href="流程挖掘.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(petrinetR)</span>
+<span id="cb5-3"><a href="流程挖掘.html#cb5-3" tabindex="-1"></a>cn <span class="ot">&lt;-</span> <span class="fu">causal_net</span>(L_heur_1, <span class="at">threshold =</span> .<span class="dv">7</span>)</span>
+<span id="cb5-4"><a href="流程挖掘.html#cb5-4" tabindex="-1"></a>pn <span class="ot">&lt;-</span> <span class="fu">as.petrinet</span>(cn)</span>
+<span id="cb5-5"><a href="流程挖掘.html#cb5-5" tabindex="-1"></a><span class="fu">render_PN</span>(pn)</span></code></pre></div>
+<div class="grViz html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1cabfa8ccc4792e81ea8" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1cabfa8ccc4792e81ea8">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       rankdir = \"LR\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"p_gw_7_1\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"p_gw_2_3\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"p_gw_3_4\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"p_gw_3_5\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"p_gw_3_6\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"p_gw_3_7\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"p_gw_4_7\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"8\" [label = \"p_gw_5_7\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"9\" [label = \"p_gw_6_6\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"10\" [label = \"p_gw_6_7\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"11\" [label = \"p_in_1\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"12\" [label = \"p_in_3\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"13\" [label = \"p_in_4\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"14\" [label = \"p_in_5\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"15\" [label = \"p_in_6\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"16\" [label = \"p_in_7\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"17\" [label = \"p_out_2\", color = \"red\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"18\" [label = \"p_out_3\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"19\" [label = \"p_out_4\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"20\" [label = \"p_out_5\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"21\" [label = \"p_out_6\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"22\" [label = \"p_out_7\", color = \"blue\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"23\" [label = \"a\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"24\" [label = \"b\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"25\" [label = \"c\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"26\" [label = \"d\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"27\" [label = \"e\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"28\" [label = \"inv_1\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"29\" [label = \"inv_2\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"30\" [label = \"inv_3\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"31\" [label = \"inv_4\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"32\" [label = \"inv_5\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"33\" [label = \"inv_6\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"34\" [label = \"inv_7\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"35\" [label = \"inv_8\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"36\" [label = \"inv_9\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"37\" [label = \"inv_10\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"38\" [label = \"inv_11\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"39\" [label = \"inv_12\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"40\" [label = \"inv_13\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"41\" [label = \"inv_14\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"42\" [label = \"inv_15\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"43\" [label = \"inv_16\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"44\" [label = \"inv_17\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"45\" [label = \"inv_18\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"46\" [label = \"inv_19\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"47\" [label = \"inv_20\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"48\" [label = \"inv_21\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"49\" [label = \"inv_22\", color = \"blue\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"12\"->\"23\" \n  \"13\"->\"24\" \n  \"14\"->\"25\" \n  \"15\"->\"26\" \n  \"16\"->\"27\" \n  \"23\"->\"18\" \n  \"24\"->\"19\" \n  \"25\"->\"20\" \n  \"26\"->\"21\" \n  \"27\"->\"22\" \n  \"1\"->\"28\" \n  \"28\"->\"11\" \n  \"29\"->\"2\" \n  \"17\"->\"29\" \n  \"2\"->\"30\" \n  \"30\"->\"12\" \n  \"31\"->\"3\" \n  \"18\"->\"31\" \n  \"32\"->\"3\" \n  \"18\"->\"32\" \n  \"32\"->\"4\" \n  \"33\"->\"4\" \n  \"18\"->\"33\" \n  \"34\"->\"5\" \n  \"18\"->\"34\" \n  \"35\"->\"6\" \n  \"18\"->\"35\" \n  \"3\"->\"36\" \n  \"36\"->\"13\" \n  \"37\"->\"7\" \n  \"19\"->\"37\" \n  \"4\"->\"38\" \n  \"38\"->\"14\" \n  \"39\"->\"8\" \n  \"20\"->\"39\" \n  \"5\"->\"40\" \n  \"40\"->\"15\" \n  \"9\"->\"41\" \n  \"41\"->\"15\" \n  \"42\"->\"9\" \n  \"21\"->\"42\" \n  \"43\"->\"10\" \n  \"21\"->\"43\" \n  \"6\"->\"44\" \n  \"44\"->\"16\" \n  \"7\"->\"45\" \n  \"45\"->\"16\" \n  \"7\"->\"46\" \n  \"46\"->\"16\" \n  \"8\"->\"46\" \n  \"8\"->\"47\" \n  \"47\"->\"16\" \n  \"10\"->\"48\" \n  \"48\"->\"16\" \n  \"49\"->\"1\" \n  \"22\"->\"49\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>更多的内容请参考:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://rpubs.com/liam/Bupartutorial" class="uri">https://rpubs.com/liam/Bupartutorial</a> 囊括了 日志数据准备,数据处理,数据可视化等内容</li>
+<li><a href="https://rpubs.com/liam/bupaRExtensions" class="uri">https://rpubs.com/liam/bupaRExtensions</a> 归纳了分析的角度</li>
+<li><a href="https://rpubs.com/liam/PackagesAboutProcessMining" class="uri">https://rpubs.com/liam/PackagesAboutProcessMining</a> 总结了流程挖掘的一些包</li>
+<li><a href="https://github.com/liamamilin/ppmr" class="uri">https://github.com/liamamilin/ppmr</a> 自己写的关于流程预测的一个R包</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="无监督学习与自然语言.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="可解释机器学习与因果推断.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-share.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

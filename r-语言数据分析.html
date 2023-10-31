@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 R 语言数据分析 | Data Science in R</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 R 语言数据分析 | Data Science in R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 R 语言数据分析 | Data Science in R" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r语言与数据科学-1.html"/>
+<link rel="next" href="r-常用包总结.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science In R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#r语言与数据科学"><i class="fa fa-check"></i><b>1.1</b> R语言与数据科学</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#作者其他书籍"><i class="fa fa-check"></i><b>1.2</b> 作者其他书籍</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html"><i class="fa fa-check"></i><b>2</b> R语言与数据科学</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学简介"><i class="fa fa-check"></i><b>2.1</b> 数据科学简介</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的关键元素"><i class="fa fa-check"></i><b>2.1.1</b> 数据科学的关键元素：</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的应用领域"><i class="fa fa-check"></i><b>2.1.2</b> 数据科学的应用领域：</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学工具和编程语言"><i class="fa fa-check"></i><b>2.1.3</b> 数据科学工具和编程语言：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言的重要性"><i class="fa fa-check"></i><b>2.2</b> R语言的重要性</a></li>
+<li class="chapter" data-level="2.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r和rstudio的安装"><i class="fa fa-check"></i><b>2.3</b> R和RStudio的安装</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤一安装r语言"><i class="fa fa-check"></i><b>2.3.1</b> 步骤一：安装R语言</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤二安装rstudio"><i class="fa fa-check"></i><b>2.3.2</b> 步骤二：安装RStudio</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤三配置rstudio"><i class="fa fa-check"></i><b>2.3.3</b> 步骤三：配置RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包管理"><i class="fa fa-check"></i><b>2.4</b> 包管理</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#安装r包"><i class="fa fa-check"></i><b>2.4.1</b> 安装R包：</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#加载r包"><i class="fa fa-check"></i><b>2.4.2</b> 加载R包：</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#查看已安装的包"><i class="fa fa-check"></i><b>2.4.3</b> 查看已安装的包：</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#更新r包"><i class="fa fa-check"></i><b>2.4.4</b> 更新R包：</a></li>
+<li class="chapter" data-level="2.4.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#移除r包"><i class="fa fa-check"></i><b>2.4.5</b> 移除R包：</a></li>
+<li class="chapter" data-level="2.4.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包的搜索路径"><i class="fa fa-check"></i><b>2.4.6</b> 包的搜索路径：</a></li>
+<li class="chapter" data-level="2.4.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#版本控制"><i class="fa fa-check"></i><b>2.4.7</b> 版本控制：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言基本语法"><i class="fa fa-check"></i><b>2.5</b> R语言基本语法</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#变量与数据类型"><i class="fa fa-check"></i><b>2.5.1</b> 变量与数据类型</a></li>
+<li class="chapter" data-level="2.5.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据结构"><i class="fa fa-check"></i><b>2.5.2</b> 数据结构</a></li>
+<li class="chapter" data-level="2.5.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#控制结构"><i class="fa fa-check"></i><b>2.5.3</b> 控制结构</a></li>
+<li class="chapter" data-level="2.5.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#子集选取"><i class="fa fa-check"></i><b>2.5.4</b> 子集选取</a></li>
+<li class="chapter" data-level="2.5.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言面向对象系统"><i class="fa fa-check"></i><b>2.5.5</b> R语言面向对象系统</a></li>
+<li class="chapter" data-level="2.5.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#防御式编程和异常处理"><i class="fa fa-check"></i><b>2.5.6</b> 防御式编程和异常处理</a></li>
+<li class="chapter" data-level="2.5.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#函数式编程"><i class="fa fa-check"></i><b>2.5.7</b> 函数式编程</a></li>
+<li class="chapter" data-level="2.5.8" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#泛函"><i class="fa fa-check"></i><b>2.5.8</b> 泛函</a></li>
+<li class="chapter" data-level="2.5.9" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言函数运算符"><i class="fa fa-check"></i><b>2.5.9</b> R语言函数运算符</a></li>
+<li class="chapter" data-level="2.5.10" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言非标准计算"><i class="fa fa-check"></i><b>2.5.10</b> R语言非标准计算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r包开发"><i class="fa fa-check"></i><b>2.6</b> R包开发</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html"><i class="fa fa-check"></i><b>3</b> R 语言数据分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导入和导出"><i class="fa fa-check"></i><b>3.1</b> 数据导入和导出</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据读取"><i class="fa fa-check"></i><b>3.1.1</b> 数据读取</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导出"><i class="fa fa-check"></i><b>3.1.2</b> 数据导出</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据处理"><i class="fa fa-check"></i><b>3.2</b> R 语言数据处理</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#缺失值处理"><i class="fa fa-check"></i><b>3.2.1</b> 缺失值处理</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r异常值处理"><i class="fa fa-check"></i><b>3.2.2</b> R异常值处理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r探索性数据分析"><i class="fa fa-check"></i><b>3.3</b> R探索性数据分析</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#autoeda"><i class="fa fa-check"></i><b>3.3.1</b> AutoEDA</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据可视化"><i class="fa fa-check"></i><b>3.3.2</b> R 语言数据可视化</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r语言统计推断"><i class="fa fa-check"></i><b>3.4</b> R语言统计推断</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#方差分析"><i class="fa fa-check"></i><b>3.4.1</b> 方差分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#非参数检验"><i class="fa fa-check"></i><b>3.4.2</b> 非参数检验</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#回归"><i class="fa fa-check"></i><b>3.4.3</b> 回归</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#生存分析"><i class="fa fa-check"></i><b>3.4.4</b> 生存分析</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#多重比较校正"><i class="fa fa-check"></i><b>3.4.5</b> 多重比较校正</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#功效分析"><i class="fa fa-check"></i><b>3.4.6</b> 功效分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-常用包总结.html"><a href="r-常用包总结.html"><i class="fa fa-check"></i><b>4</b> R 常用包总结</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#dplyr-包"><i class="fa fa-check"></i><b>4.1</b> dplyr 包</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数"><i class="fa fa-check"></i><b>4.1.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#案例"><i class="fa fa-check"></i><b>4.1.2</b> 案例</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#tidyr-包"><i class="fa fa-check"></i><b>4.2</b> tidyr 包</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-1"><i class="fa fa-check"></i><b>4.2.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.2.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子"><i class="fa fa-check"></i><b>4.2.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="r-常用包总结.html"><a href="r-常用包总结.html#stringr"><i class="fa fa-check"></i><b>4.3</b> stringr</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-2"><i class="fa fa-check"></i><b>4.3.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子-1"><i class="fa fa-check"></i><b>4.3.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r-常用包总结.html"><a href="r-常用包总结.html#lubridate"><i class="fa fa-check"></i><b>4.4</b> lubridate</a></li>
+<li class="chapter" data-level="4.5" data-path="r-常用包总结.html"><a href="r-常用包总结.html#purrr"><i class="fa fa-check"></i><b>4.5</b> purrr</a></li>
+<li class="chapter" data-level="4.6" data-path="r-常用包总结.html"><a href="r-常用包总结.html#forcats"><i class="fa fa-check"></i><b>4.6</b> forcats</a></li>
+<li class="chapter" data-level="4.7" data-path="r-常用包总结.html"><a href="r-常用包总结.html#httr"><i class="fa fa-check"></i><b>4.7</b> httr</a></li>
+<li class="chapter" data-level="4.8" data-path="r-常用包总结.html"><a href="r-常用包总结.html#rlang"><i class="fa fa-check"></i><b>4.8</b> rlang</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="监督学习.html"><a href="监督学习.html"><i class="fa fa-check"></i><b>5</b> 监督学习</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="监督学习.html"><a href="监督学习.html#决策树"><i class="fa fa-check"></i><b>5.1</b> 决策树</a></li>
+<li class="chapter" data-level="5.2" data-path="监督学习.html"><a href="监督学习.html#随机森林"><i class="fa fa-check"></i><b>5.2</b> 随机森林</a></li>
+<li class="chapter" data-level="5.3" data-path="监督学习.html"><a href="监督学习.html#xgboost"><i class="fa fa-check"></i><b>5.3</b> Xgboost</a></li>
+<li class="chapter" data-level="5.4" data-path="监督学习.html"><a href="监督学习.html#特征选择"><i class="fa fa-check"></i><b>5.4</b> 特征选择</a></li>
+<li class="chapter" data-level="5.5" data-path="监督学习.html"><a href="监督学习.html#深度学习"><i class="fa fa-check"></i><b>5.5</b> 深度学习</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html"><i class="fa fa-check"></i><b>6</b> 无监督学习与自然语言</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#k-均值聚类"><i class="fa fa-check"></i><b>6.1</b> K 均值聚类</a></li>
+<li class="chapter" data-level="6.2" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#层次聚类"><i class="fa fa-check"></i><b>6.2</b> 层次聚类</a></li>
+<li class="chapter" data-level="6.3" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#dbscan"><i class="fa fa-check"></i><b>6.3</b> DBSCAN</a></li>
+<li class="chapter" data-level="6.4" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#自然语言处理"><i class="fa fa-check"></i><b>6.4</b> 自然语言处理</a></li>
+<li class="chapter" data-level="6.5" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#时间序列"><i class="fa fa-check"></i><b>6.5</b> 时间序列</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="流程挖掘.html"><a href="流程挖掘.html"><i class="fa fa-check"></i><b>7</b> 流程挖掘</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="流程挖掘.html"><a href="流程挖掘.html#流程发现"><i class="fa fa-check"></i><b>7.1</b> 流程发现</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html"><i class="fa fa-check"></i><b>8</b> 可解释机器学习与因果推断</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#可解释机器学习"><i class="fa fa-check"></i><b>8.1</b> 可解释机器学习</a></li>
+<li class="chapter" data-level="8.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断"><i class="fa fa-check"></i><b>8.2</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断起源"><i class="fa fa-check"></i><b>8.2.1</b> 因果推断起源</a></li>
+<li class="chapter" data-level="8.2.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断介绍"><i class="fa fa-check"></i><b>8.2.2</b> 因果推断介绍</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-语言数据分析" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> R 语言数据分析<a href="r-语言数据分析.html#r-语言数据分析" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="数据导入和导出" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> 数据导入和导出<a href="r-语言数据分析.html#数据导入和导出" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在R语言中，你可以使用各种函数和包来读取和导出数据，包括文本文件、CSV文件、Excel文件、数据库、以及其他常见的数据源。</p>
+<div id="数据读取" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> 数据读取<a href="r-语言数据分析.html#数据读取" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>读取文本文件：你可以使用read.table()函数来读取文本文件，或者使用read.csv()函数来读取逗号分隔的文本文件。</p>
+<pre><code># 读取文本文件
+data &lt;- read.table(&quot;data.txt&quot;, header = TRUE, sep = &quot;\t&quot;)
+</code></pre>
+<p>读取Excel文件：readxl包或openxlsx包可以用于读取Excel文件。</p>
+<pre><code># 读取Excel文件（使用readxl包）
+library(readxl)
+data &lt;- read_excel(&quot;data.xlsx&quot;)
+</code></pre>
+<p>读取CSV文件：你可以使用read.csv()函数或readr包中的read_csv()函数来读取CSV文件。</p>
+<pre><code># 读取CSV文件
+data &lt;- read.csv(&quot;data.csv&quot;)
+</code></pre>
+<p>读取数据库：你可以使用RODBC包或RMySQL包等数据库连接包来连接数据库并读取数据。</p>
+<pre><code># 读取数据库（使用RODBC包）
+library(RODBC)
+channel &lt;- odbcConnect(&quot;mydb&quot;)
+data &lt;- sqlQuery(channel, &quot;SELECT * FROM mytable&quot;)
+</code></pre>
+<p>读取JSON数据：jsonlite包用于读取JSON格式的数据。</p>
+<pre><code># 读取JSON数据（使用jsonlite包）
+library(jsonlite)
+data &lt;- fromJSON(&quot;data.json&quot;)
+</code></pre>
+</div>
+<div id="数据导出" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> 数据导出<a href="r-语言数据分析.html#数据导出" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>导出数据到文本文件：你可以使用write.table()函数将数据导出为文本文件。</p>
+<pre><code># 导出数据到文本文件
+write.table(data, &quot;data.txt&quot;, sep = &quot;\t&quot;, row.names = FALSE)
+</code></pre>
+<p>导出数据到CSV文件：使用write.csv()函数导出数据到CSV文件。</p>
+<pre><code># 导出数据到CSV文件
+write.csv(data, &quot;data.csv&quot;, row.names = FALSE)
+</code></pre>
+<p>导出数据到Excel文件：writexl包用于将数据导出到Excel文件。</p>
+<pre><code># 导出数据到Excel文件（使用writexl包）
+library(writexl)
+write_xlsx(data, &quot;data.xlsx&quot;)
+</code></pre>
+<p>导出数据到数据库：你可以使用数据库连接包，如RODBC或RMySQL，将数据导出到数据库表。</p>
+<pre><code># 导出数据到数据库（使用RODBC包）
+library(RODBC)
+channel &lt;- odbcConnect(&quot;mydb&quot;)
+sqlSave(channel, data, tablename = &quot;mytable&quot;, append = TRUE)
+</code></pre>
+<p>导出数据到JSON：使用jsonlite包将数据导出为JSON格式。</p>
+<pre><code># 导出数据到JSON（使用jsonlite包）
+library(jsonlite)
+toJSON(data, file = &quot;data.json&quot;)
+</code></pre>
+</div>
+</div>
+<div id="r-语言数据处理" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> R 语言数据处理<a href="r-语言数据分析.html#r-语言数据处理" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="缺失值处理" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> 缺失值处理<a href="r-语言数据分析.html#缺失值处理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在R语言中，处理缺失值是数据预处理中的重要任务。R提供了多种方法来处理缺失值，包括识别、填充、删除和插补等。以下是一些处理缺失值的常见方法的总结：</p>
+<ol style="list-style-type: decimal">
+<li>识别缺失值：
+在R中，缺失值通常用NA表示。可以使用以下函数来识别数据中的缺失值：</li>
+</ol>
+<ul>
+<li>is.na()：用于检查数据中是否包含缺失值，并返回逻辑向量，其中TRUE表示缺失值。</li>
+<li>complete.cases()：返回包含完整观测值的逻辑向量，通常用于过滤掉包含缺失值的行。</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="r-语言数据分析.html#cb11-1" tabindex="-1"></a><span class="co"># 识别缺失值</span></span>
+<span id="cb11-2"><a href="r-语言数据分析.html#cb11-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb11-3"><a href="r-语言数据分析.html#cb11-3" tabindex="-1"></a>is_missing <span class="ot">&lt;-</span> <span class="fu">is.na</span>(data)  <span class="co"># 返回逻辑向量</span></span>
+<span id="cb11-4"><a href="r-语言数据分析.html#cb11-4" tabindex="-1"></a>complete_data <span class="ot">&lt;-</span> data[<span class="fu">complete.cases</span>(data)]  <span class="co"># 过滤掉包含缺失值的行</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>填充缺失值：
+你可以使用以下函数来填充缺失值：</li>
+</ol>
+<ul>
+<li>na.omit()：删除包含缺失值的行。</li>
+<li>na.fill()：用指定的值替换缺失值。</li>
+<li>zoo包中的函数，如na.locf()，可以用最近的非缺失值填充缺失值。</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r-语言数据分析.html#cb12-1" tabindex="-1"></a><span class="co"># 填充缺失值</span></span>
+<span id="cb12-2"><a href="r-语言数据分析.html#cb12-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb12-3"><a href="r-语言数据分析.html#cb12-3" tabindex="-1"></a>data_no_missing <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(data)  <span class="co"># 删除包含缺失值的行</span></span>
+<span id="cb12-4"><a href="r-语言数据分析.html#cb12-4" tabindex="-1"></a>data_filled <span class="ot">&lt;-</span> zoo<span class="sc">::</span><span class="fu">na.fill</span>(data, <span class="at">fill =</span> <span class="dv">0</span>)  <span class="co"># 用0替换缺失值</span></span>
+<span id="cb12-5"><a href="r-语言数据分析.html#cb12-5" tabindex="-1"></a>data_filled</span></code></pre></div>
+<pre><code>## [1] 1 2 0 4 5</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>删除缺失值：
+你可以使用以下函数删除包含缺失值的行或列：</li>
+</ol>
+<ul>
+<li>na.omit()：删除包含缺失值的行。</li>
+<li>na.exclude()：类似于na.omit()，但会保留一个用于计数的特殊属性。</li>
+<li>complete.cases()：返回包含完整观测值的逻辑向量。</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="r-语言数据分析.html#cb14-1" tabindex="-1"></a><span class="co"># 删除缺失值</span></span>
+<span id="cb14-2"><a href="r-语言数据分析.html#cb14-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">5</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
+<span id="cb14-3"><a href="r-语言数据分析.html#cb14-3" tabindex="-1"></a>data_no_missing_rows <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(data)  <span class="co"># 删除包含缺失值的行</span></span>
+<span id="cb14-4"><a href="r-语言数据分析.html#cb14-4" tabindex="-1"></a>data_no_missing_cols <span class="ot">&lt;-</span> data[<span class="fu">complete.cases</span>(data),]  <span class="co"># 删除包含缺失值的列</span></span>
+<span id="cb14-5"><a href="r-语言数据分析.html#cb14-5" tabindex="-1"></a>data_no_missing_cols</span></code></pre></div>
+<pre><code>##   x y
+## 2 2 2
+## 4 4 4
+## 5 5 5</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>插补缺失值：
+如果你希望根据数据的分布或其他方法来估算缺失值，可以使用以下方法：</li>
+</ol>
+<ul>
+<li>mice包：多重插补方法。</li>
+<li>其他统计方法，如线性回归、随机森林等，用于预测缺失值。</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="r-语言数据分析.html#cb16-1" tabindex="-1"></a><span class="co"># 插补缺失值</span></span>
+<span id="cb16-2"><a href="r-语言数据分析.html#cb16-2" tabindex="-1"></a><span class="fu">library</span>(mice)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;mice&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     cbind, rbind</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="r-语言数据分析.html#cb20-1" tabindex="-1"></a>imp <span class="ot">&lt;-</span> <span class="fu">mice</span>(nhanes)</span></code></pre></div>
+<pre><code>## 
+##  iter imp variable
+##   1   1  bmi  hyp  chl
+##   1   2  bmi  hyp  chl
+##   1   3  bmi  hyp  chl
+##   1   4  bmi  hyp  chl
+##   1   5  bmi  hyp  chl
+##   2   1  bmi  hyp  chl
+##   2   2  bmi  hyp  chl
+##   2   3  bmi  hyp  chl
+##   2   4  bmi  hyp  chl
+##   2   5  bmi  hyp  chl
+##   3   1  bmi  hyp  chl
+##   3   2  bmi  hyp  chl
+##   3   3  bmi  hyp  chl
+##   3   4  bmi  hyp  chl
+##   3   5  bmi  hyp  chl
+##   4   1  bmi  hyp  chl
+##   4   2  bmi  hyp  chl
+##   4   3  bmi  hyp  chl
+##   4   4  bmi  hyp  chl
+##   4   5  bmi  hyp  chl
+##   5   1  bmi  hyp  chl
+##   5   2  bmi  hyp  chl
+##   5   3  bmi  hyp  chl
+##   5   4  bmi  hyp  chl
+##   5   5  bmi  hyp  chl</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r-语言数据分析.html#cb22-1" tabindex="-1"></a>imp</span></code></pre></div>
+<pre><code>## Class: mids
+## Number of multiple imputations:  5 
+## Imputation methods:
+##   age   bmi   hyp   chl 
+##    &quot;&quot; &quot;pmm&quot; &quot;pmm&quot; &quot;pmm&quot; 
+## PredictorMatrix:
+##     age bmi hyp chl
+## age   0   1   1   1
+## bmi   1   0   1   1
+## hyp   1   1   0   1
+## chl   1   1   1   0</code></pre>
+<p>处理缺失值是数据预处理的重要一部分，R提供了多种方法来识别、填充、删除和插补缺失值。具体的方法取决于数据的性质和分析的需求，你可以根据具体情况选择合适的处理方法。</p>
+</div>
+<div id="r异常值处理" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> R异常值处理<a href="r-语言数据分析.html#r异常值处理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在R语言中，异常值（outliers）是指数据集中与其余数据明显不同的数据点。异常值可能会对数据分析和建模产生不良影响，因此需要进行异常值检测和处理。</p>
+<ol style="list-style-type: decimal">
+<li>箱线图（Box Plot）：
+箱线图是一种可视化方法，它可以帮助你快速识别数据中的异常值。箱线图显示了数据的分布情况，包括中位数、四分位数和可能的异常值。</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="r-语言数据分析.html#cb24-1" tabindex="-1"></a><span class="co"># 创建箱线图</span></span>
+<span id="cb24-2"><a href="r-语言数据分析.html#cb24-2" tabindex="-1"></a><span class="fu">boxplot</span>(iris)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Z-得分（Z-Score）：
+Z-得分是一种统计方法，用于测量数据点与数据集均值之间的标准差差异。通常，超过一定的阈值（例如，Z-得分大于3或小于-3）的数据点被视为异常值。</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="r-语言数据分析.html#cb25-1" tabindex="-1"></a><span class="co"># 计算Z-得分</span></span>
+<span id="cb25-2"><a href="r-语言数据分析.html#cb25-2" tabindex="-1"></a>z_scores <span class="ot">&lt;-</span> <span class="fu">scale</span>(iris[,<span class="sc">-</span><span class="dv">5</span>])</span>
+<span id="cb25-3"><a href="r-语言数据分析.html#cb25-3" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> <span class="fu">abs</span>(z_scores) <span class="sc">&gt;</span> <span class="dv">3</span>  <span class="co"># 阈值通常为3</span></span>
+<span id="cb25-4"><a href="r-语言数据分析.html#cb25-4" tabindex="-1"></a><span class="fu">head</span>(outliers)</span></code></pre></div>
+<pre><code>##      Sepal.Length Sepal.Width Petal.Length Petal.Width
+## [1,]        FALSE       FALSE        FALSE       FALSE
+## [2,]        FALSE       FALSE        FALSE       FALSE
+## [3,]        FALSE       FALSE        FALSE       FALSE
+## [4,]        FALSE       FALSE        FALSE       FALSE
+## [5,]        FALSE       FALSE        FALSE       FALSE
+## [6,]        FALSE       FALSE        FALSE       FALSE</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>离群值检测包：
+R中有一些专门用于异常值检测的包，例如outliers、extRemes和robustbase。这些包提供了各种统计方法和算法来检测异常值。</li>
+</ol>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="r-语言数据分析.html#cb27-1" tabindex="-1"></a><span class="co"># 使用异常值检测包</span></span>
+<span id="cb27-2"><a href="r-语言数据分析.html#cb27-2" tabindex="-1"></a><span class="fu">library</span>(outliers)</span>
+<span id="cb27-3"><a href="r-语言数据分析.html#cb27-3" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> <span class="fu">outlier</span>(iris[,<span class="sc">-</span><span class="dv">5</span>], <span class="at">opposite =</span> <span class="cn">TRUE</span>)  <span class="co"># 使用&quot;outliers&quot;包</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>简单统计方法：
+一些简单的统计方法也可以用于异常值检测，例如使用百分位数来检测超出上下分位数范围的数据点。</li>
+</ol>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="r-语言数据分析.html#cb28-1" tabindex="-1"></a><span class="co"># 使用百分位数</span></span>
+<span id="cb28-2"><a href="r-语言数据分析.html#cb28-2" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(iris<span class="sc">$</span>Sepal.Length, <span class="fl">0.25</span>)</span>
+<span id="cb28-3"><a href="r-语言数据分析.html#cb28-3" tabindex="-1"></a>q3 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(iris<span class="sc">$</span>Sepal.Length, <span class="fl">0.75</span>)</span>
+<span id="cb28-4"><a href="r-语言数据分析.html#cb28-4" tabindex="-1"></a>iqr <span class="ot">&lt;-</span> q3 <span class="sc">-</span> q1</span>
+<span id="cb28-5"><a href="r-语言数据分析.html#cb28-5" tabindex="-1"></a>lower_bound <span class="ot">&lt;-</span> q1 <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> iqr</span>
+<span id="cb28-6"><a href="r-语言数据分析.html#cb28-6" tabindex="-1"></a>upper_bound <span class="ot">&lt;-</span> q3 <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> iqr</span>
+<span id="cb28-7"><a href="r-语言数据分析.html#cb28-7" tabindex="-1"></a>outliers <span class="ot">&lt;-</span> iris<span class="sc">$</span>Sepal.Length <span class="sc">&lt;</span> lower_bound <span class="sc">|</span> iris<span class="sc">$</span>Sepal.Length <span class="sc">&gt;</span> upper_bound</span>
+<span id="cb28-8"><a href="r-语言数据分析.html#cb28-8" tabindex="-1"></a>outliers</span></code></pre></div>
+<pre><code>##   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [97] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [109] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [121] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [133] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [145] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+</div>
+<div id="r探索性数据分析" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> R探索性数据分析<a href="r-语言数据分析.html#r探索性数据分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>探索性数据分析（Exploratory Data Analysis，EDA）是数据分析过程中的关键步骤，旨在了解数据的特点、检测异常、发现模式和提供初步见解。</p>
+<ol style="list-style-type: decimal">
+<li>描述性统计：
+使用统计函数如summary()、mean()、median()、sd()等来获取关于数据分布的基本信息。</li>
+</ol>
+<pre><code># 描述性统计
+summary(data$column_name)  # 综合描述
+mean(data$column_name)  # 均值
+median(data$column_name)  # 中位数
+sd(data$column_name)  # 标准差
+</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>直方图和密度图：
+绘制直方图和密度图以可视化数据分布。</li>
+</ol>
+<pre><code># 直方图
+hist(data$column_name)
+
+# 密度图
+plot(density(data$column_name))
+</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>箱线图：
+绘制箱线图以可视化数据的五数概括（最小值、第一四分位数、中位数、第三四分位数、最大值），帮助检测异常值。</li>
+</ol>
+<pre><code># 箱线图
+boxplot(data$column_name)
+</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>散点图：
+使用散点图来探索两个连续变量之间的关系，以检测相关性和趋势。</li>
+</ol>
+<pre><code># 散点图
+plot(data$variable1, data$variable2)
+</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>多变量分析：
+使用多元分析方法如主成分分析（PCA）和聚类分析来降维和发现数据中的模式。</li>
+</ol>
+<pre><code># 主成分分析
+pca_result &lt;- prcomp(data[, -1], scale = TRUE)
+
+# 聚类分析
+kmeans_result &lt;- kmeans(data[, -1], centers = 3)
+</code></pre>
+<div id="autoeda" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> AutoEDA<a href="r-语言数据分析.html#autoeda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>自动探索性数据分析（Automated Exploratory Data Analysis，Auto EDA）是一种使用计算机算法和工具来自动执行数据探索的方法，以提供关于数据的初步见解。以下是一些R中用于自动EDA的工具和包的总结：</p>
+<ol style="list-style-type: decimal">
+<li>autoEDA 包：
+autoEDA包是一个R包，它提供了一系列函数来自动执行EDA，包括数据摘要、可视化、异常值检测和缺失值处理。这个包可以帮助你快速了解数据的基本特征。</li>
+</ol>
+<pre><code># 安装autoEDA包
+install.packages(&quot;autoEDA&quot;)
+
+# 使用autoEDA包执行自动EDA
+library(autoEDA)
+eda_summary(data)
+</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>DataExplorer 包：
+DataExplorer包是另一个R包，它提供了自动化的EDA功能，包括数据摘要、可视化、异常值检测和关系分析。它可以自动生成数据报告，使你更容易理解数据。</li>
+</ol>
+<pre><code># 安装DataExplorer包
+install.packages(&quot;DataExplorer&quot;)
+
+# 使用DataExplorer包执行自动EDA
+library(DataExplorer)
+create_report(data)
+</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>pandas_profiling：
+虽然pandas_profiling是Python中的一个包，但它也可以用于自动EDA。它生成详细的报告，包括关于数据的统计信息、分布、相关性和异常值的信息。</li>
+</ol>
+<pre><code># 安装reticulate包来调用Python库
+install.packages(&quot;reticulate&quot;)
+
+# 使用pandas_profiling进行自动EDA
+library(reticulate)
+pandas_profiling &lt;- import(&quot;pandas_profiling&quot;)
+report &lt;- pandas_profiling$ProfileReport(data)
+</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>auto_eda 包：
+auto_eda包是一个R包，它使用机器学习模型来自动执行EDA，包括特征选择和可视化。它可以帮助你识别关键特征和趋势。</li>
+</ol>
+<pre><code># 安装auto_eda包
+devtools::install_github(&quot;gabrielodom/auto_eda&quot;)
+
+# 使用auto_eda包执行自动EDA
+library(auto_eda)
+auto_eda(data)
+</code></pre>
+<p>这些工具和包可帮助数据分析人员在不需要手动执行每个EDA步骤的情况下，快速获得数据的洞见。根据数据的特点和需求，你可以选择适合你的自动EDA工具。</p>
+</div>
+<div id="r-语言数据可视化" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> R 语言数据可视化<a href="r-语言数据分析.html#r-语言数据可视化" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>数据可视化细节调整： <a href="https://rpubs.com/liam/detailofplot" class="uri">https://rpubs.com/liam/detailofplot</a> , <a href="https://rpubs.com/liam/plotdetail" class="uri">https://rpubs.com/liam/plotdetail</a><br />
+</li>
+<li>数据可视化主题: <a href="https://rpubs.com/liam/ggplot2theme" class="uri">https://rpubs.com/liam/ggplot2theme</a></li>
+<li>echarts 数据可视化: <a href="https://rpubs.com/liam/echarts42021" class="uri">https://rpubs.com/liam/echarts42021</a></li>
+<li>plotly 交互式绘图: <a href="http://rpubs.com/liam/plotly" class="uri">http://rpubs.com/liam/plotly</a></li>
+<li>Shiny 初级教程: <a href="https://rpubs.com/liam/463812" class="uri">https://rpubs.com/liam/463812</a></li>
+<li>Shiny 中级教程: <a href="https://rpubs.com/liam/Shinymid" class="uri">https://rpubs.com/liam/Shinymid</a></li>
+</ol>
+<p>另外参考:</p>
+<ul>
+<li>米霖.(2021). R语言数据可视化实战 .中国:机械工业出版社 – url:<a href="https://www.hzmedia.com.cn/books11121329" class="uri">https://www.hzmedia.com.cn/books11121329</a></li>
+</ul>
+<div id="r基本绘图" class="section level4 hasAnchor" number="3.3.2.1">
+<h4><span class="header-section-number">3.3.2.1</span> R基本绘图<a href="r-语言数据分析.html#r基本绘图" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>直方图：
+直方图用于显示数据的分布。下面的示例使用R的内置数据集iris来创建花瓣长度的直方图：</li>
+</ol>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r-语言数据分析.html#cb39-1" tabindex="-1"></a><span class="co"># 加载数据集</span></span>
+<span id="cb39-2"><a href="r-语言数据分析.html#cb39-2" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb39-3"><a href="r-语言数据分析.html#cb39-3" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="r-语言数据分析.html#cb39-4" tabindex="-1"></a><span class="co"># 创建直方图</span></span>
+<span id="cb39-5"><a href="r-语言数据分析.html#cb39-5" tabindex="-1"></a><span class="fu">hist</span>(iris<span class="sc">$</span>Petal.Length, <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Petal Length Histogram&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Petal Length&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>散点图：
+散点图用于显示两个变量之间的关系。以下示例使用mtcars数据集来创建汽车的马力和燃油效率之间的散点图：</li>
+</ol>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-语言数据分析.html#cb40-1" tabindex="-1"></a><span class="co"># 加载数据集</span></span>
+<span id="cb40-2"><a href="r-语言数据分析.html#cb40-2" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb40-3"><a href="r-语言数据分析.html#cb40-3" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="r-语言数据分析.html#cb40-4" tabindex="-1"></a><span class="co"># 创建散点图</span></span>
+<span id="cb40-5"><a href="r-语言数据分析.html#cb40-5" tabindex="-1"></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>hp, mtcars<span class="sc">$</span>mpg, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Horsepower&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Miles per Gallon&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Scatterplot of Horsepower vs. MPG&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>箱线图：
+箱线图用于可视化数据的分布和异常值。下面的示例使用iris数据集来创建不同种类的花瓣长度的箱线图：</li>
+</ol>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r-语言数据分析.html#cb41-1" tabindex="-1"></a><span class="co"># 加载数据集</span></span>
+<span id="cb41-2"><a href="r-语言数据分析.html#cb41-2" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb41-3"><a href="r-语言数据分析.html#cb41-3" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="r-语言数据分析.html#cb41-4" tabindex="-1"></a><span class="co"># 创建箱线图</span></span>
+<span id="cb41-5"><a href="r-语言数据分析.html#cb41-5" tabindex="-1"></a><span class="fu">boxplot</span>(iris<span class="sc">$</span>Petal.Length <span class="sc">~</span> iris<span class="sc">$</span>Species, <span class="at">col =</span> <span class="st">&quot;lightgreen&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Petal Length Boxplot by Species&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Species&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Petal Length&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>折线图：
+折线图用于显示随时间变化的数据。以下示例使用内置数据集AirPassengers来创建乘客数量的月度折线图：</li>
+</ol>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r-语言数据分析.html#cb42-1" tabindex="-1"></a><span class="co"># 加载数据集</span></span>
+<span id="cb42-2"><a href="r-语言数据分析.html#cb42-2" tabindex="-1"></a><span class="fu">data</span>(AirPassengers)</span>
+<span id="cb42-3"><a href="r-语言数据分析.html#cb42-3" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="r-语言数据分析.html#cb42-4" tabindex="-1"></a><span class="co"># 创建折线图</span></span>
+<span id="cb42-5"><a href="r-语言数据分析.html#cb42-5" tabindex="-1"></a><span class="fu">plot</span>(AirPassengers, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Year&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Passengers&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Monthly Air Passengers&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="ggplot2" class="section level4 hasAnchor" number="3.3.2.2">
+<h4><span class="header-section-number">3.3.2.2</span> ggplot2<a href="r-语言数据分析.html#ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>ggplot2是R语言中用于数据可视化的强大包，它提供了丰富的功能和灵活性，允许你创建各种类型的精美图形。</p>
+<ol style="list-style-type: decimal">
+<li>创建基本散点图：
+使用ggplot()函数来创建一个基本的散点图，指定数据和要显示的变量。</li>
+</ol>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="r-语言数据分析.html#cb43-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb43-2"><a href="r-语言数据分析.html#cb43-2" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="r-语言数据分析.html#cb43-3" tabindex="-1"></a><span class="co"># 创建散点图</span></span>
+<span id="cb43-4"><a href="r-语言数据分析.html#cb43-4" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> disp)) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="r-语言数据分析.html#cb43-5" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>自定义图形外观：
+你可以自定义图形的外观，包括点的颜色、大小、形状和坐标轴标签。</li>
+</ol>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-语言数据分析.html#cb44-1" tabindex="-1"></a><span class="co"># 自定义图形外观</span></span>
+<span id="cb44-2"><a href="r-语言数据分析.html#cb44-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> disp, <span class="at">color =</span> gear)) <span class="sc">+</span></span>
+<span id="cb44-3"><a href="r-语言数据分析.html#cb44-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">17</span>) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="r-语言数据分析.html#cb44-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Miles per Gallon&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Displacement&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Gear&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>添加图层：
+使用+运算符来添加图层，例如，添加线条、平滑曲线、文本注释等。</li>
+</ol>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-语言数据分析.html#cb45-1" tabindex="-1"></a><span class="co"># 添加图层</span></span>
+<span id="cb45-2"><a href="r-语言数据分析.html#cb45-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> disp, <span class="at">color =</span> gear)) <span class="sc">+</span></span>
+<span id="cb45-3"><a href="r-语言数据分析.html#cb45-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb45-4"><a href="r-语言数据分析.html#cb45-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb45-5"><a href="r-语言数据分析.html#cb45-5" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">rownames</span>(mtcars), <span class="at">hjust =</span> <span class="fl">1.1</span>))</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: The following aesthetics were dropped during statistical transformation: colour
+## ℹ This can happen when ggplot fails to infer the correct grouping structure in
+##   the data.
+## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+##   variable into a factor?</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>绘制其他类型的图形：
+ggplot2支持绘制多种类型的图形，如直方图、箱线图、条形图等。</li>
+</ol>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="r-语言数据分析.html#cb48-1" tabindex="-1"></a><span class="co"># 绘制直方图</span></span>
+<span id="cb48-2"><a href="r-语言数据分析.html#cb48-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb48-3"><a href="r-语言数据分析.html#cb48-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="r-语言数据分析.html#cb49-1" tabindex="-1"></a><span class="co"># 绘制箱线图</span></span>
+<span id="cb49-2"><a href="r-语言数据分析.html#cb49-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> gear, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb49-3"><a href="r-语言数据分析.html#cb49-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;lightgreen&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Continuous x aesthetic
+## ℹ did you forget `aes(group = ...)`?</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>使用主题和调色板：
+你可以使用不同的主题和调色板来自定义图形的整体外观。</li>
+</ol>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r-语言数据分析.html#cb51-1" tabindex="-1"></a><span class="co"># 使用主题和调色板</span></span>
+<span id="cb51-2"><a href="r-语言数据分析.html#cb51-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> disp, <span class="at">color =</span> gear)) <span class="sc">+</span></span>
+<span id="cb51-3"><a href="r-语言数据分析.html#cb51-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb51-4"><a href="r-语言数据分析.html#cb51-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb51-5"><a href="r-语言数据分析.html#cb51-5" tabindex="-1"></a><span class="fu">scale_color_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="创建出版级别的图表" class="section level4 hasAnchor" number="3.3.2.3">
+<h4><span class="header-section-number">3.3.2.3</span> 创建出版级别的图表<a href="r-语言数据分析.html#创建出版级别的图表" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>要创建出版级别的数据可视化图形，你需要注意细节、图形外观和注释。</p>
+<ol style="list-style-type: decimal">
+<li><p>选择合适的图形类型：
+选择最适合你的数据和目的的图形类型。常见的选项包括散点图、线图、直方图、箱线图等。</p></li>
+<li><p>设置图形大小和分辨率：
+确保图形的大小和分辨率足够高，以适应出版需要。你可以使用ggsave()函数保存图形，并指定图形的大小和分辨率。</p></li>
+</ol>
+<pre><code># 设置图形大小和分辨率
+ggsave(&quot;publication_graph.png&quot;, width = 8, height = 6, dpi = 300)
+</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>自定义图形外观：
+使用theme()函数来自定义图形的外观，包括标题、坐标轴、标签、颜色、字体大小等。</li>
+</ol>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="r-语言数据分析.html#cb53-1" tabindex="-1"></a><span class="co"># 自定义图形外观</span></span>
+<span id="cb53-2"><a href="r-语言数据分析.html#cb53-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> disp, <span class="at">color =</span> gear)) <span class="sc">+</span></span>
+<span id="cb53-3"><a href="r-语言数据分析.html#cb53-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb53-4"><a href="r-语言数据分析.html#cb53-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatter Plot of MPG vs. Displacement&quot;</span>,</span>
+<span id="cb53-5"><a href="r-语言数据分析.html#cb53-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Miles per Gallon&quot;</span>,</span>
+<span id="cb53-6"><a href="r-语言数据分析.html#cb53-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Displacement&quot;</span>) <span class="sc">+</span></span>
+<span id="cb53-7"><a href="r-语言数据分析.html#cb53-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb53-8"><a href="r-语言数据分析.html#cb53-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>添加注释和标签：
+在图形上添加必要的注释、标签和图例，以帮助读者理解图形。</li>
+</ol>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="r-语言数据分析.html#cb54-1" tabindex="-1"></a><span class="co"># 添加注释和标签</span></span>
+<span id="cb54-2"><a href="r-语言数据分析.html#cb54-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> disp, <span class="at">color =</span> gear)) <span class="sc">+</span></span>
+<span id="cb54-3"><a href="r-语言数据分析.html#cb54-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb54-4"><a href="r-语言数据分析.html#cb54-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatter Plot of MPG vs. Displacement&quot;</span>,</span>
+<span id="cb54-5"><a href="r-语言数据分析.html#cb54-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Miles per Gallon&quot;</span>,</span>
+<span id="cb54-6"><a href="r-语言数据分析.html#cb54-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Displacement&quot;</span>) <span class="sc">+</span></span>
+<span id="cb54-7"><a href="r-语言数据分析.html#cb54-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb54-8"><a href="r-语言数据分析.html#cb54-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb54-9"><a href="r-语言数据分析.html#cb54-9" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">rownames</span>(mtcars), <span class="at">hjust =</span> <span class="fl">1.1</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>这些准则和示例将帮助你创建出版级别的数据可视化图形，以便在出版物、报告或演示中使用。通过精心调整图形的各个方面，你可以确保图形既具有信息性又具有美观性。</p>
+</div>
+</div>
+</div>
+<div id="r语言统计推断" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> R语言统计推断<a href="r-语言数据分析.html#r语言统计推断" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>统计推断是统计学中的一个重要分支，用于从样本数据中推断总体参数、进行假设检验和置信区间估计。以下是关于R语言中统计推断的总结，包括基本概念和常见方法：</p>
+<ol style="list-style-type: decimal">
+<li>基本概念：</li>
+</ol>
+<ul>
+<li>总体和样本：总体是研究对象的全体，样本是从总体中抽取的一部分数据。</li>
+<li>参数和统计量：总体的特征量称为参数，样本的特征量称为统计量。</li>
+<li>抽样分布：抽样分布是统计量的分布，表示不同样本可能的值。</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>假设检验：</li>
+</ol>
+<ul>
+<li>假设检验的步骤：假设检验包括提出原假设（H0）和备择假设（H1），计算检验统计量，以及比较检验统计量与临界值或P值来做出决策。</li>
+<li>假设检验函数：在R中，t.test()、wilcox.test()、chisq.test()等函数可用于不同类型的假设检验。</li>
+<li>显著性水平：显著性水平（通常设为0.05）是拒绝原假设的概率阈值。</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>置信区间估计：</li>
+</ol>
+<ul>
+<li>置信区间：置信区间是对参数的区间估计，表示我们对参数值的估计范围。</li>
+<li>置信区间函数：在R中，t.test()、prop.test()、confint()等函数可用于计算置信区间。</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>方差分析：</li>
+</ol>
+<ul>
+<li>单因素方差分析：用于比较多个组之间的均值是否存在显著差异。</li>
+<li>双因素方差分析：考虑两个或多个因素对结果的影响。</li>
+<li>方差分析函数：在R中，aov()、lm()等函数可用于执行方差分析。</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>非参数统计方法：</li>
+</ol>
+<ul>
+<li>Wilcoxon符号秩检验：用于比较两个配对样本的差异。</li>
+<li>Kruskal-Wallis检验：用于比较多个组的差异，不要求满足正态分布。</li>
+<li>非参数统计函数：在R中，wilcox.test()、kruskal.test()等函数可用于非参数统计。</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>回归分析：</li>
+</ol>
+<ul>
+<li>线性回归：用于建立连续因变量和一个或多个自变量之间的关系。</li>
+<li>逻辑回归：用于建立二元或多元分类问题的模型。</li>
+<li>回归函数：在R中，lm()、glm()等函数可用于执行回归分析。</li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li>生存分析：</li>
+</ol>
+<ul>
+<li>Kaplan-Meier曲线：用于分析事件发生的时间。</li>
+<li>Cox比例风险模型：用于研究生存时间和危险因素之间的关系。</li>
+<li>生存分析函数：在R中，survival包提供了生存分析工具。</li>
+</ul>
+<ol start="8" style="list-style-type: decimal">
+<li>多重比较校正：</li>
+</ol>
+<ul>
+<li>Bonferroni校正：用于控制多重比较的错误率。</li>
+<li>Tukey校正：用于ANOVA多组比较时的多重比较校正。</li>
+<li>多重比较校正函数：在R中，p.adjust()函数用于多重比较校正。</li>
+</ul>
+<p>等等</p>
+<p>统计推断是数据分析的重要工具，帮助研究者从样本中得出关于总体的推断。使用R语言，你可以执行各种统计推断分析，根据你的研究问题选择适当的方法。</p>
+<div id="假设检验" class="section level4 hasAnchor" number="3.4.0.1">
+<h4><span class="header-section-number">3.4.0.1</span> 假设检验<a href="r-语言数据分析.html#假设检验" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>在R语言中进行假设检验的步骤通常包括：提出原假设（H0）、提出备择假设（H1）、计算检验统计量、计算P值、确定显著性水平（通常设为0.05），然后根据P值和显著性水平来做出决策。以下是不同类型假设检验的总结和完整示例：</p>
+<ol style="list-style-type: decimal">
+<li>单样本t检验：</li>
+</ol>
+<p>用于检验一个总体均值是否等于某个特定值。</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="r-语言数据分析.html#cb55-1" tabindex="-1"></a><span class="co"># 创建一个样本数据</span></span>
+<span id="cb55-2"><a href="r-语言数据分析.html#cb55-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>, <span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb55-3"><a href="r-语言数据分析.html#cb55-3" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="r-语言数据分析.html#cb55-4" tabindex="-1"></a><span class="co"># 单样本t检验</span></span>
+<span id="cb55-5"><a href="r-语言数据分析.html#cb55-5" tabindex="-1"></a><span class="fu">t.test</span>(data, <span class="at">mu =</span> <span class="dv">28</span>)  <span class="co"># 原假设：总体均值等于28</span></span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  data
+## t = -1.3817, df = 9, p-value = 0.2004
+## alternative hypothesis: true mean is not equal to 28
+## 95 percent confidence interval:
+##  24.30788 28.89212
+## sample estimates:
+## mean of x 
+##      26.6</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>双样本t检验：
+用于比较两组样本的均值是否存在显著差异。</li>
+</ol>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="r-语言数据分析.html#cb57-1" tabindex="-1"></a><span class="co"># 创建两组样本数据</span></span>
+<span id="cb57-2"><a href="r-语言数据分析.html#cb57-2" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>)</span>
+<span id="cb57-3"><a href="r-语言数据分析.html#cb57-3" tabindex="-1"></a>group2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb57-4"><a href="r-语言数据分析.html#cb57-4" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="r-语言数据分析.html#cb57-5" tabindex="-1"></a><span class="co"># 双样本t检验</span></span>
+<span id="cb57-6"><a href="r-语言数据分析.html#cb57-6" tabindex="-1"></a><span class="fu">t.test</span>(group1, group2)  <span class="co"># 原假设：两组均值相等</span></span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  group1 and group2
+## t = -3.6389, df = 7.8253, p-value = 0.006853
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -7.853691 -1.746309
+## sample estimates:
+## mean of x mean of y 
+##      24.2      29.0</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>配对样本t检验：
+用于比较相依样本的均值是否存在显著差异。</li>
+</ol>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="r-语言数据分析.html#cb59-1" tabindex="-1"></a><span class="co"># 创建配对样本数据</span></span>
+<span id="cb59-2"><a href="r-语言数据分析.html#cb59-2" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>)</span>
+<span id="cb59-3"><a href="r-语言数据分析.html#cb59-3" tabindex="-1"></a>after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb59-4"><a href="r-语言数据分析.html#cb59-4" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="r-语言数据分析.html#cb59-5" tabindex="-1"></a><span class="co"># 配对样本t检验</span></span>
+<span id="cb59-6"><a href="r-语言数据分析.html#cb59-6" tabindex="-1"></a><span class="fu">t.test</span>(before, after, <span class="at">paired =</span> <span class="cn">TRUE</span>)  <span class="co"># 原假设：差值的均值等于0</span></span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  before and after
+## t = -4.1466, df = 4, p-value = 0.0143
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  -8.013968 -1.586032
+## sample estimates:
+## mean difference 
+##            -4.8</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>卡方检验：
+用于比较两个或多个分类变量之间的关联性。</li>
+</ol>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="r-语言数据分析.html#cb61-1" tabindex="-1"></a><span class="co"># 创建一个列联表</span></span>
+<span id="cb61-2"><a href="r-语言数据分析.html#cb61-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">45</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">55</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb61-3"><a href="r-语言数据分析.html#cb61-3" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="r-语言数据分析.html#cb61-4" tabindex="-1"></a><span class="co"># 卡方检验</span></span>
+<span id="cb61-5"><a href="r-语言数据分析.html#cb61-5" tabindex="-1"></a><span class="fu">chisq.test</span>(data)  <span class="co"># 原假设：两个变量独立</span></span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  data
+## X-squared = 15.638, df = 1, p-value = 7.67e-05</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>方差分析：
+用于比较多组之间的均值是否存在显著差异。</li>
+</ol>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="r-语言数据分析.html#cb63-1" tabindex="-1"></a><span class="co"># 创建多组样本数据</span></span>
+<span id="cb63-2"><a href="r-语言数据分析.html#cb63-2" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>)</span>
+<span id="cb63-3"><a href="r-语言数据分析.html#cb63-3" tabindex="-1"></a>group2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb63-4"><a href="r-语言数据分析.html#cb63-4" tabindex="-1"></a>group3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">36</span>, <span class="dv">39</span>)</span>
+<span id="cb63-5"><a href="r-语言数据分析.html#cb63-5" tabindex="-1"></a></span>
+<span id="cb63-6"><a href="r-语言数据分析.html#cb63-6" tabindex="-1"></a><span class="co"># 单因素方差分析</span></span>
+<span id="cb63-7"><a href="r-语言数据分析.html#cb63-7" tabindex="-1"></a>aov_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">c</span>(group1, group2, group3) <span class="sc">~</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each =</span> <span class="dv">5</span>))</span>
+<span id="cb63-8"><a href="r-语言数据分析.html#cb63-8" tabindex="-1"></a></span>
+<span id="cb63-9"><a href="r-语言数据分析.html#cb63-9" tabindex="-1"></a><span class="co"># 方差分析的显著性检验</span></span>
+<span id="cb63-10"><a href="r-语言数据分析.html#cb63-10" tabindex="-1"></a><span class="fu">summary</span>(aov_result)  <span class="co"># 检验因素的显著性</span></span></code></pre></div>
+<pre><code>##                    Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## rep(1:3, each = 5)  1  448.9   448.9   91.14 3.07e-07 ***
+## Residuals          13   64.0     4.9                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Wilcoxon符号秩检验：
+用于比较两组配对样本的差异。</li>
+</ol>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="r-语言数据分析.html#cb65-1" tabindex="-1"></a><span class="co"># 创建配对样本数据</span></span>
+<span id="cb65-2"><a href="r-语言数据分析.html#cb65-2" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>)</span>
+<span id="cb65-3"><a href="r-语言数据分析.html#cb65-3" tabindex="-1"></a>after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb65-4"><a href="r-语言数据分析.html#cb65-4" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="r-语言数据分析.html#cb65-5" tabindex="-1"></a><span class="co"># Wilcoxon符号秩检验</span></span>
+<span id="cb65-6"><a href="r-语言数据分析.html#cb65-6" tabindex="-1"></a><span class="fu">wilcox.test</span>(before, after, <span class="at">paired =</span> <span class="cn">TRUE</span>)  <span class="co"># 原假设：两组差值的分布相同</span></span></code></pre></div>
+<pre><code>## Warning in wilcox.test.default(before, after, paired = TRUE): cannot compute
+## exact p-value with ties</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  before and after
+## V = 0, p-value = 0.05791
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+<div id="置信区间" class="section level4 hasAnchor" number="3.4.0.2">
+<h4><span class="header-section-number">3.4.0.2</span> 置信区间<a href="r-语言数据分析.html#置信区间" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>在R语言中进行置信区间估计可以帮助你确定一个参数的估计范围。</p>
+<ol style="list-style-type: decimal">
+<li>单样本均值的置信区间：
+用于估计一个总体均值的区间。</li>
+</ol>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="r-语言数据分析.html#cb68-1" tabindex="-1"></a><span class="co"># 创建一个样本数据</span></span>
+<span id="cb68-2"><a href="r-语言数据分析.html#cb68-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>, <span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb68-3"><a href="r-语言数据分析.html#cb68-3" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="r-语言数据分析.html#cb68-4" tabindex="-1"></a><span class="co"># 单样本均值的置信区间估计</span></span>
+<span id="cb68-5"><a href="r-语言数据分析.html#cb68-5" tabindex="-1"></a>conf_interval <span class="ot">&lt;-</span> <span class="fu">t.test</span>(data)<span class="sc">$</span>conf.int</span>
+<span id="cb68-6"><a href="r-语言数据分析.html#cb68-6" tabindex="-1"></a>conf_interval  <span class="co"># 输出置信区间的下限和上限</span></span></code></pre></div>
+<pre><code>## [1] 24.30788 28.89212
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>双样本均值的置信区间：
+用于比较两组样本均值的区间估计。</li>
+</ol>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="r-语言数据分析.html#cb70-1" tabindex="-1"></a><span class="co"># 创建配对样本数据</span></span>
+<span id="cb70-2"><a href="r-语言数据分析.html#cb70-2" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>)</span>
+<span id="cb70-3"><a href="r-语言数据分析.html#cb70-3" tabindex="-1"></a>after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb70-4"><a href="r-语言数据分析.html#cb70-4" tabindex="-1"></a></span>
+<span id="cb70-5"><a href="r-语言数据分析.html#cb70-5" tabindex="-1"></a><span class="co"># 配对样本均值的置信区间估计</span></span>
+<span id="cb70-6"><a href="r-语言数据分析.html#cb70-6" tabindex="-1"></a>conf_interval <span class="ot">&lt;-</span> <span class="fu">t.test</span>(before, after, <span class="at">paired =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>conf.int</span>
+<span id="cb70-7"><a href="r-语言数据分析.html#cb70-7" tabindex="-1"></a>conf_interval  <span class="co"># 输出置信区间的下限和上限</span></span></code></pre></div>
+<pre><code>## [1] -8.013968 -1.586032
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>配对样本均值的置信区间：
+用于估计相依样本的均值差异的区间。</li>
+</ol>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="r-语言数据分析.html#cb72-1" tabindex="-1"></a><span class="co"># 创建配对样本数据</span></span>
+<span id="cb72-2"><a href="r-语言数据分析.html#cb72-2" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>)</span>
+<span id="cb72-3"><a href="r-语言数据分析.html#cb72-3" tabindex="-1"></a>after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb72-4"><a href="r-语言数据分析.html#cb72-4" tabindex="-1"></a></span>
+<span id="cb72-5"><a href="r-语言数据分析.html#cb72-5" tabindex="-1"></a><span class="co"># 配对样本均值的置信区间估计</span></span>
+<span id="cb72-6"><a href="r-语言数据分析.html#cb72-6" tabindex="-1"></a>conf_interval <span class="ot">&lt;-</span> <span class="fu">t.test</span>(before, after, <span class="at">paired =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>conf.int</span>
+<span id="cb72-7"><a href="r-语言数据分析.html#cb72-7" tabindex="-1"></a>conf_interval  <span class="co"># 输出置信区间的下限和上限</span></span></code></pre></div>
+<pre><code>## [1] -8.013968 -1.586032
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>比例的置信区间：
+用于估计一个总体比例的区间。</li>
+</ol>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="r-语言数据分析.html#cb74-1" tabindex="-1"></a><span class="co"># 创建一个二项分布样本数据</span></span>
+<span id="cb74-2"><a href="r-语言数据分析.html#cb74-2" tabindex="-1"></a>successes <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb74-3"><a href="r-语言数据分析.html#cb74-3" tabindex="-1"></a>trials <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb74-4"><a href="r-语言数据分析.html#cb74-4" tabindex="-1"></a>sample_proportion <span class="ot">&lt;-</span> successes <span class="sc">/</span> trials</span>
+<span id="cb74-5"><a href="r-语言数据分析.html#cb74-5" tabindex="-1"></a></span>
+<span id="cb74-6"><a href="r-语言数据分析.html#cb74-6" tabindex="-1"></a><span class="co"># 比例的置信区间估计</span></span>
+<span id="cb74-7"><a href="r-语言数据分析.html#cb74-7" tabindex="-1"></a>conf_interval <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(successes, trials)<span class="sc">$</span>conf.int</span>
+<span id="cb74-8"><a href="r-语言数据分析.html#cb74-8" tabindex="-1"></a>conf_interval  <span class="co"># 输出置信区间的下限和上限</span></span></code></pre></div>
+<pre><code>## [1] 0.2145426 0.4010604
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>方差的置信区间：
+用于估计一个总体方差的区间。</li>
+</ol>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="r-语言数据分析.html#cb76-1" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb76-2"><a href="r-语言数据分析.html#cb76-2" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="r-语言数据分析.html#cb76-3" tabindex="-1"></a><span class="co"># 示例数据集</span></span>
+<span id="cb76-4"><a href="r-语言数据分析.html#cb76-4" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">24</span>, <span class="dv">26</span>)</span>
+<span id="cb76-5"><a href="r-语言数据分析.html#cb76-5" tabindex="-1"></a></span>
+<span id="cb76-6"><a href="r-语言数据分析.html#cb76-6" tabindex="-1"></a><span class="co"># 计算样本方差</span></span>
+<span id="cb76-7"><a href="r-语言数据分析.html#cb76-7" tabindex="-1"></a>sample_variance <span class="ot">&lt;-</span> <span class="fu">var</span>(data)</span>
+<span id="cb76-8"><a href="r-语言数据分析.html#cb76-8" tabindex="-1"></a></span>
+<span id="cb76-9"><a href="r-语言数据分析.html#cb76-9" tabindex="-1"></a><span class="co"># 置信水平</span></span>
+<span id="cb76-10"><a href="r-语言数据分析.html#cb76-10" tabindex="-1"></a>confidence_level <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
+<span id="cb76-11"><a href="r-语言数据分析.html#cb76-11" tabindex="-1"></a></span>
+<span id="cb76-12"><a href="r-语言数据分析.html#cb76-12" tabindex="-1"></a><span class="co"># 样本大小</span></span>
+<span id="cb76-13"><a href="r-语言数据分析.html#cb76-13" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(data)</span>
+<span id="cb76-14"><a href="r-语言数据分析.html#cb76-14" tabindex="-1"></a></span>
+<span id="cb76-15"><a href="r-语言数据分析.html#cb76-15" tabindex="-1"></a><span class="co"># 自由度</span></span>
+<span id="cb76-16"><a href="r-语言数据分析.html#cb76-16" tabindex="-1"></a>df <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb76-17"><a href="r-语言数据分析.html#cb76-17" tabindex="-1"></a></span>
+<span id="cb76-18"><a href="r-语言数据分析.html#cb76-18" tabindex="-1"></a><span class="co"># 计算标准误差</span></span>
+<span id="cb76-19"><a href="r-语言数据分析.html#cb76-19" tabindex="-1"></a>standard_error <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sample_variance <span class="sc">/</span> n)</span>
+<span id="cb76-20"><a href="r-语言数据分析.html#cb76-20" tabindex="-1"></a></span>
+<span id="cb76-21"><a href="r-语言数据分析.html#cb76-21" tabindex="-1"></a><span class="co"># 计算t分布的临界值（双尾）</span></span>
+<span id="cb76-22"><a href="r-语言数据分析.html#cb76-22" tabindex="-1"></a>t_critical <span class="ot">&lt;-</span> <span class="fu">qt</span>((<span class="dv">1</span> <span class="sc">-</span> confidence_level) <span class="sc">/</span> <span class="dv">2</span>, df)</span>
+<span id="cb76-23"><a href="r-语言数据分析.html#cb76-23" tabindex="-1"></a></span>
+<span id="cb76-24"><a href="r-语言数据分析.html#cb76-24" tabindex="-1"></a><span class="co"># 计算方差的置信区间</span></span>
+<span id="cb76-25"><a href="r-语言数据分析.html#cb76-25" tabindex="-1"></a>lower_bound <span class="ot">&lt;-</span> (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> sample_variance <span class="sc">/</span> <span class="fu">qchisq</span>((<span class="dv">1</span> <span class="sc">-</span> confidence_level) <span class="sc">/</span> <span class="dv">2</span>, df)</span>
+<span id="cb76-26"><a href="r-语言数据分析.html#cb76-26" tabindex="-1"></a>upper_bound <span class="ot">&lt;-</span> (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> sample_variance <span class="sc">/</span> <span class="fu">qchisq</span>((<span class="dv">1</span> <span class="sc">+</span> confidence_level) <span class="sc">/</span> <span class="dv">2</span>, df)</span>
+<span id="cb76-27"><a href="r-语言数据分析.html#cb76-27" tabindex="-1"></a></span>
+<span id="cb76-28"><a href="r-语言数据分析.html#cb76-28" tabindex="-1"></a><span class="co"># 打印方差的置信区间</span></span>
+<span id="cb76-29"><a href="r-语言数据分析.html#cb76-29" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;方差的置信区间 (95%): [&quot;</span>, lower_bound, <span class="st">&quot;, &quot;</span>, upper_bound, <span class="st">&quot;]</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 方差的置信区间 (95%): [ 103.4843 ,  10.92098 ]</code></pre>
+<p>以上是不同类型的置信区间估计的总结和示例。在进行置信区间估计时，确保了解你的研究问题和数据类型，并选择适当的方法。置信区间表示了参数估计的不确定性范围，帮助你更好地理解数据。</p>
+</div>
+<div id="方差分析" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> 方差分析<a href="r-语言数据分析.html#方差分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>方差分析是一种用于比较多个组之间均值是否存在显著差异的统计方法。</p>
+<div id="单因素方差分析" class="section level5 hasAnchor" number="3.4.1.0.1">
+<h5><span class="header-section-number">3.4.1.0.1</span> 单因素方差分析：<a href="r-语言数据分析.html#单因素方差分析" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>单因素方差分析用于比较多个组之间的均值是否存在显著差异。以下是一个完整的示例：</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="r-语言数据分析.html#cb78-1" tabindex="-1"></a><span class="co"># 创建多组样本数据</span></span>
+<span id="cb78-2"><a href="r-语言数据分析.html#cb78-2" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>)</span>
+<span id="cb78-3"><a href="r-语言数据分析.html#cb78-3" tabindex="-1"></a>group2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb78-4"><a href="r-语言数据分析.html#cb78-4" tabindex="-1"></a>group3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">36</span>, <span class="dv">39</span>)</span>
+<span id="cb78-5"><a href="r-语言数据分析.html#cb78-5" tabindex="-1"></a></span>
+<span id="cb78-6"><a href="r-语言数据分析.html#cb78-6" tabindex="-1"></a><span class="co"># 合并数据</span></span>
+<span id="cb78-7"><a href="r-语言数据分析.html#cb78-7" tabindex="-1"></a>all_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb78-8"><a href="r-语言数据分析.html#cb78-8" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">c</span>(group1, group2, group3),</span>
+<span id="cb78-9"><a href="r-语言数据分析.html#cb78-9" tabindex="-1"></a>  <span class="at">Group =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each =</span> <span class="dv">5</span>))</span>
+<span id="cb78-10"><a href="r-语言数据分析.html#cb78-10" tabindex="-1"></a>)</span>
+<span id="cb78-11"><a href="r-语言数据分析.html#cb78-11" tabindex="-1"></a></span>
+<span id="cb78-12"><a href="r-语言数据分析.html#cb78-12" tabindex="-1"></a><span class="co"># 单因素方差分析</span></span>
+<span id="cb78-13"><a href="r-语言数据分析.html#cb78-13" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(Value <span class="sc">~</span> Group, <span class="at">data =</span> all_data)</span>
+<span id="cb78-14"><a href="r-语言数据分析.html#cb78-14" tabindex="-1"></a></span>
+<span id="cb78-15"><a href="r-语言数据分析.html#cb78-15" tabindex="-1"></a><span class="co"># 检验因素的显著性</span></span>
+<span id="cb78-16"><a href="r-语言数据分析.html#cb78-16" tabindex="-1"></a><span class="fu">summary</span>(anova_result)</span></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Group        2  460.9  230.47   53.19 1.09e-06 ***
+## Residuals   12   52.0    4.33                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="双因素方差分析" class="section level5 hasAnchor" number="3.4.1.0.2">
+<h5><span class="header-section-number">3.4.1.0.2</span> 双因素方差分析：<a href="r-语言数据分析.html#双因素方差分析" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>双因素方差分析考虑两个或多个因素对结果的影响。以下是一个完整的双因素方差分析示例：</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="r-语言数据分析.html#cb80-1" tabindex="-1"></a><span class="co"># 创建多组样本数据</span></span>
+<span id="cb80-2"><a href="r-语言数据分析.html#cb80-2" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>)</span>
+<span id="cb80-3"><a href="r-语言数据分析.html#cb80-3" tabindex="-1"></a>group2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb80-4"><a href="r-语言数据分析.html#cb80-4" tabindex="-1"></a>group3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">36</span>, <span class="dv">39</span>)</span>
+<span id="cb80-5"><a href="r-语言数据分析.html#cb80-5" tabindex="-1"></a></span>
+<span id="cb80-6"><a href="r-语言数据分析.html#cb80-6" tabindex="-1"></a><span class="co"># 创建两个因素（因子）</span></span>
+<span id="cb80-7"><a href="r-语言数据分析.html#cb80-7" tabindex="-1"></a>factor1 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each =</span> <span class="dv">5</span>))</span>
+<span id="cb80-8"><a href="r-语言数据分析.html#cb80-8" tabindex="-1"></a>factor2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">times =</span> <span class="dv">5</span>))</span>
+<span id="cb80-9"><a href="r-语言数据分析.html#cb80-9" tabindex="-1"></a></span>
+<span id="cb80-10"><a href="r-语言数据分析.html#cb80-10" tabindex="-1"></a><span class="co"># 合并数据</span></span>
+<span id="cb80-11"><a href="r-语言数据分析.html#cb80-11" tabindex="-1"></a>all_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb80-12"><a href="r-语言数据分析.html#cb80-12" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">c</span>(group1, group2, group3),</span>
+<span id="cb80-13"><a href="r-语言数据分析.html#cb80-13" tabindex="-1"></a>  <span class="at">Factor1 =</span> factor1,</span>
+<span id="cb80-14"><a href="r-语言数据分析.html#cb80-14" tabindex="-1"></a>  <span class="at">Factor2 =</span> factor2</span>
+<span id="cb80-15"><a href="r-语言数据分析.html#cb80-15" tabindex="-1"></a>)</span>
+<span id="cb80-16"><a href="r-语言数据分析.html#cb80-16" tabindex="-1"></a></span>
+<span id="cb80-17"><a href="r-语言数据分析.html#cb80-17" tabindex="-1"></a><span class="co"># 双因素方差分析</span></span>
+<span id="cb80-18"><a href="r-语言数据分析.html#cb80-18" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(Value <span class="sc">~</span> Factor1 <span class="sc">*</span> Factor2, <span class="at">data =</span> all_data)</span>
+<span id="cb80-19"><a href="r-语言数据分析.html#cb80-19" tabindex="-1"></a></span>
+<span id="cb80-20"><a href="r-语言数据分析.html#cb80-20" tabindex="-1"></a><span class="co"># 检验因素和交互作用的显著性</span></span>
+<span id="cb80-21"><a href="r-语言数据分析.html#cb80-21" tabindex="-1"></a><span class="fu">summary</span>(anova_result)</span></code></pre></div>
+<pre><code>##                 Df Sum Sq Mean Sq F value  Pr(&gt;F)    
+## Factor1          2  460.9  230.47 184.373 4.1e-06 ***
+## Factor2          2    3.8    1.91   1.527  0.2911    
+## Factor1:Factor2  4   40.7   10.17   8.137  0.0133 *  
+## Residuals        6    7.5    1.25                    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="非参数检验" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> 非参数检验<a href="r-语言数据分析.html#非参数检验" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>非参数检验是一种用于统计假设检验的方法，它不要求数据符合特定的分布假设，特别是不要求数据服从正态分布。相对于参数检验，非参数检验更加灵活，适用于各种数据类型和分布情况。</p>
+<p>非参数检验通常用于以下情况：</p>
+<ol style="list-style-type: decimal">
+<li><p>数据不服从正态分布：当数据不满足正态分布假设时，传统的参数检验（如t检验和方差分析）不适用。非参数检验是一种解决方案。</p></li>
+<li><p>数据类型不明确：非参数检验适用于不同类型的数据，包括定序数据、名义数据和间隔数据。</p></li>
+<li><p>小样本数据：非参数检验在小样本情况下表现良好，不依赖于样本量。</p></li>
+</ol>
+<p>一些常见的非参数检验方法包括Wilcoxon符号秩检验、Mann-Whitney U检验、Kruskal-Wallis检验、Friedman检验、Kendall相关性检验等。这些方法基于秩或排名的分析，而不是基于原始数据值的分析。</p>
+<p>非参数检验的优点包括对数据分布的假设要求较少，适用于各种数据类型，以及在小样本情况下的鲁棒性。然而，非参数检验通常对于检测效应较小的差异要求更大的样本量，因此在某些情况下可能不如参数检验敏感。选择适当的检验方法应基于研究问题和数据性质。</p>
+<ol style="list-style-type: decimal">
+<li>Wilcoxon符号秩检验：
+Wilcoxon符号秩检验用于比较两组配对样本的差异。</li>
+</ol>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="r-语言数据分析.html#cb82-1" tabindex="-1"></a><span class="co"># 创建配对样本数据</span></span>
+<span id="cb82-2"><a href="r-语言数据分析.html#cb82-2" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>)</span>
+<span id="cb82-3"><a href="r-语言数据分析.html#cb82-3" tabindex="-1"></a>after <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb82-4"><a href="r-语言数据分析.html#cb82-4" tabindex="-1"></a></span>
+<span id="cb82-5"><a href="r-语言数据分析.html#cb82-5" tabindex="-1"></a><span class="co"># Wilcoxon符号秩检验</span></span>
+<span id="cb82-6"><a href="r-语言数据分析.html#cb82-6" tabindex="-1"></a>wilcox_test <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(before, after, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Warning in wilcox.test.default(before, after, paired = TRUE): cannot compute
+## exact p-value with ties</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="r-语言数据分析.html#cb84-1" tabindex="-1"></a>wilcox_test</span></code></pre></div>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  before and after
+## V = 0, p-value = 0.05791
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Mann-Whitney U检验：
+Mann-Whitney U检验用于比较两组独立样本的差异。</li>
+</ol>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="r-语言数据分析.html#cb86-1" tabindex="-1"></a><span class="co"># 创建两组独立样本数据</span></span>
+<span id="cb86-2"><a href="r-语言数据分析.html#cb86-2" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>)</span>
+<span id="cb86-3"><a href="r-语言数据分析.html#cb86-3" tabindex="-1"></a>group2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb86-4"><a href="r-语言数据分析.html#cb86-4" tabindex="-1"></a></span>
+<span id="cb86-5"><a href="r-语言数据分析.html#cb86-5" tabindex="-1"></a><span class="co"># Mann-Whitney U检验</span></span>
+<span id="cb86-6"><a href="r-语言数据分析.html#cb86-6" tabindex="-1"></a>mannwhitneyu_test <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(group1, group2)</span>
+<span id="cb86-7"><a href="r-语言数据分析.html#cb86-7" tabindex="-1"></a>mannwhitneyu_test</span></code></pre></div>
+<pre><code>## 
+##  Wilcoxon rank sum exact test
+## 
+## data:  group1 and group2
+## W = 1, p-value = 0.01587
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Kruskal-Wallis检验：
+Kruskal-Wallis检验用于比较多组独立样本的差异。</li>
+</ol>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="r-语言数据分析.html#cb88-1" tabindex="-1"></a><span class="co"># 创建多组独立样本数据</span></span>
+<span id="cb88-2"><a href="r-语言数据分析.html#cb88-2" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">27</span>)</span>
+<span id="cb88-3"><a href="r-语言数据分析.html#cb88-3" tabindex="-1"></a>group2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">26</span>, <span class="dv">29</span>)</span>
+<span id="cb88-4"><a href="r-语言数据分析.html#cb88-4" tabindex="-1"></a>group3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">36</span>, <span class="dv">39</span>)</span>
+<span id="cb88-5"><a href="r-语言数据分析.html#cb88-5" tabindex="-1"></a></span>
+<span id="cb88-6"><a href="r-语言数据分析.html#cb88-6" tabindex="-1"></a><span class="co"># Kruskal-Wallis检验</span></span>
+<span id="cb88-7"><a href="r-语言数据分析.html#cb88-7" tabindex="-1"></a>kruskal_test <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(<span class="fu">list</span>(group1, group2, group3))</span>
+<span id="cb88-8"><a href="r-语言数据分析.html#cb88-8" tabindex="-1"></a>kruskal_test</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  list(group1, group2, group3)
+## Kruskal-Wallis chi-squared = 12.02, df = 2, p-value = 0.002454</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Friedman检验：
+Friedman检验用于比较多组配对样本的差异。</li>
+</ol>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="r-语言数据分析.html#cb90-1" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(warpbreaks<span class="sc">$</span>breaks,</span>
+<span id="cb90-2"><a href="r-语言数据分析.html#cb90-2" tabindex="-1"></a>                <span class="at">by =</span> <span class="fu">list</span>(<span class="at">w =</span> warpbreaks<span class="sc">$</span>wool,</span>
+<span id="cb90-3"><a href="r-语言数据分析.html#cb90-3" tabindex="-1"></a>                          <span class="at">t =</span> warpbreaks<span class="sc">$</span>tension),</span>
+<span id="cb90-4"><a href="r-语言数据分析.html#cb90-4" tabindex="-1"></a>                <span class="at">FUN =</span> mean)</span>
+<span id="cb90-5"><a href="r-语言数据分析.html#cb90-5" tabindex="-1"></a>wb</span></code></pre></div>
+<pre><code>##   w t        x
+## 1 A L 44.55556
+## 2 B L 28.22222
+## 3 A M 24.00000
+## 4 B M 28.77778
+## 5 A H 24.55556
+## 6 B H 18.77778</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="r-语言数据分析.html#cb92-1" tabindex="-1"></a><span class="fu">friedman.test</span>(wb<span class="sc">$</span>x, wb<span class="sc">$</span>w, wb<span class="sc">$</span>t)</span></code></pre></div>
+<pre><code>## 
+##  Friedman rank sum test
+## 
+## data:  wb$x, wb$w and wb$t
+## Friedman chi-squared = 0.33333, df = 1, p-value = 0.5637</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Kendall相关性检验：
+Kendall相关性检验用于检查两个变量之间的相关性。</li>
+</ol>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="r-语言数据分析.html#cb94-1" tabindex="-1"></a><span class="co"># 创建两个相关变量的数据</span></span>
+<span id="cb94-2"><a href="r-语言数据分析.html#cb94-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>)</span>
+<span id="cb94-3"><a href="r-语言数据分析.html#cb94-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">4</span>)</span>
+<span id="cb94-4"><a href="r-语言数据分析.html#cb94-4" tabindex="-1"></a></span>
+<span id="cb94-5"><a href="r-语言数据分析.html#cb94-5" tabindex="-1"></a><span class="co"># Kendall相关性检验</span></span>
+<span id="cb94-6"><a href="r-语言数据分析.html#cb94-6" tabindex="-1"></a>kendall_test <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(x, y, <span class="at">method =</span> <span class="st">&quot;kendall&quot;</span>)</span>
+<span id="cb94-7"><a href="r-语言数据分析.html#cb94-7" tabindex="-1"></a>kendall_test</span></code></pre></div>
+<pre><code>## 
+##  Kendall&#39;s rank correlation tau
+## 
+## data:  x and y
+## T = 1, p-value = 0.08333
+## alternative hypothesis: true tau is not equal to 0
+## sample estimates:
+##  tau 
+## -0.8</code></pre>
+</div>
+<div id="回归" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> 回归<a href="r-语言数据分析.html#回归" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>回归分析是一种用于建立和解释变量之间关系的统计方法。在R语言中，你可以执行线性回归、多元线性回归、逻辑回归等不同类型的回归分析。</p>
+<ol style="list-style-type: decimal">
+<li>线性回归：
+线性回归用于建立连续因变量和一个或多个连续或分类自变量之间的关系。</li>
+</ol>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="r-语言数据分析.html#cb96-1" tabindex="-1"></a><span class="co"># 创建示例数据</span></span>
+<span id="cb96-2"><a href="r-语言数据分析.html#cb96-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb96-3"><a href="r-语言数据分析.html#cb96-3" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>),</span>
+<span id="cb96-4"><a href="r-语言数据分析.html#cb96-4" tabindex="-1"></a>  <span class="at">Y =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">6</span>)</span>
+<span id="cb96-5"><a href="r-语言数据分析.html#cb96-5" tabindex="-1"></a>)</span>
+<span id="cb96-6"><a href="r-语言数据分析.html#cb96-6" tabindex="-1"></a></span>
+<span id="cb96-7"><a href="r-语言数据分析.html#cb96-7" tabindex="-1"></a><span class="co"># 线性回归</span></span>
+<span id="cb96-8"><a href="r-语言数据分析.html#cb96-8" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> data)</span>
+<span id="cb96-9"><a href="r-语言数据分析.html#cb96-9" tabindex="-1"></a></span>
+<span id="cb96-10"><a href="r-语言数据分析.html#cb96-10" tabindex="-1"></a><span class="co"># 获取回归系数和拟合统计信息</span></span>
+<span id="cb96-11"><a href="r-语言数据分析.html#cb96-11" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Y ~ X, data = data)
+## 
+## Residuals:
+##    1    2    3    4    5 
+## -0.6  0.6  0.8 -1.0  0.2 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)   1.8000     0.9381   1.919   0.1508  
+## X             0.8000     0.2828   2.828   0.0663 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.8944 on 3 degrees of freedom
+## Multiple R-squared:  0.7273, Adjusted R-squared:  0.6364 
+## F-statistic:     8 on 1 and 3 DF,  p-value: 0.06628</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>多元线性回归：
+多元线性回归用于建立连续因变量和多个连续或分类自变量之间的关系。</li>
+</ol>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="r-语言数据分析.html#cb98-1" tabindex="-1"></a><span class="co"># 创建示例数据</span></span>
+<span id="cb98-2"><a href="r-语言数据分析.html#cb98-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb98-3"><a href="r-语言数据分析.html#cb98-3" tabindex="-1"></a>  <span class="at">X1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>),</span>
+<span id="cb98-4"><a href="r-语言数据分析.html#cb98-4" tabindex="-1"></a>  <span class="at">X2 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">5</span>),</span>
+<span id="cb98-5"><a href="r-语言数据分析.html#cb98-5" tabindex="-1"></a>  <span class="at">Y =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">6</span>)</span>
+<span id="cb98-6"><a href="r-语言数据分析.html#cb98-6" tabindex="-1"></a>)</span>
+<span id="cb98-7"><a href="r-语言数据分析.html#cb98-7" tabindex="-1"></a></span>
+<span id="cb98-8"><a href="r-语言数据分析.html#cb98-8" tabindex="-1"></a><span class="co"># 多元线性回归</span></span>
+<span id="cb98-9"><a href="r-语言数据分析.html#cb98-9" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2, <span class="at">data =</span> data)</span>
+<span id="cb98-10"><a href="r-语言数据分析.html#cb98-10" tabindex="-1"></a></span>
+<span id="cb98-11"><a href="r-语言数据分析.html#cb98-11" tabindex="-1"></a><span class="co"># 获取回归系数和拟合统计信息</span></span>
+<span id="cb98-12"><a href="r-语言数据分析.html#cb98-12" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Y ~ X1 + X2, data = data)
+## 
+## Residuals:
+##      1      2      3      4      5 
+## -0.375  0.375  0.125  0.125 -0.250 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept) -3.476e-16  7.115e-01   0.000   1.0000  
+## X1           1.250e-01  2.469e-01   0.506   0.6629  
+## X2           1.125e+00  3.423e-01   3.286   0.0814 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.433 on 2 degrees of freedom
+## Multiple R-squared:  0.9574, Adjusted R-squared:  0.9148 
+## F-statistic: 22.47 on 2 and 2 DF,  p-value: 0.04261</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>逻辑回归：
+逻辑回归用于建立二分类或多分类因变量与一个或多个连续或分类自变量之间的关系。</li>
+</ol>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="r-语言数据分析.html#cb100-1" tabindex="-1"></a><span class="co"># 创建示例数据</span></span>
+<span id="cb100-2"><a href="r-语言数据分析.html#cb100-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb100-3"><a href="r-语言数据分析.html#cb100-3" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>),</span>
+<span id="cb100-4"><a href="r-语言数据分析.html#cb100-4" tabindex="-1"></a>  <span class="at">Y =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb100-5"><a href="r-语言数据分析.html#cb100-5" tabindex="-1"></a>)</span>
+<span id="cb100-6"><a href="r-语言数据分析.html#cb100-6" tabindex="-1"></a></span>
+<span id="cb100-7"><a href="r-语言数据分析.html#cb100-7" tabindex="-1"></a><span class="co"># 逻辑回归</span></span>
+<span id="cb100-8"><a href="r-语言数据分析.html#cb100-8" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> X, <span class="at">data =</span> data, <span class="at">family =</span> binomial)</span>
+<span id="cb100-9"><a href="r-语言数据分析.html#cb100-9" tabindex="-1"></a></span>
+<span id="cb100-10"><a href="r-语言数据分析.html#cb100-10" tabindex="-1"></a><span class="co"># 获取回归系数和拟合统计信息</span></span>
+<span id="cb100-11"><a href="r-语言数据分析.html#cb100-11" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = Y ~ X, family = binomial, data = data)
+## 
+## Deviance Residuals: 
+##       1        2        3        4        5  
+## -0.3430  -0.5758   1.4506  -1.3814   0.6181  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept)  -3.8940     3.4654  -1.124    0.261
+## X             1.0904     0.9748   1.119    0.263
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 6.7301  on 4  degrees of freedom
+## Residual deviance: 4.8439  on 3  degrees of freedom
+## AIC: 8.8439
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>泊松回归：
+泊松回归用于建立计数数据的模型，通常用于分析事件发生率或频率。</li>
+</ol>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="r-语言数据分析.html#cb102-1" tabindex="-1"></a><span class="co"># 创建示例数据</span></span>
+<span id="cb102-2"><a href="r-语言数据分析.html#cb102-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb102-3"><a href="r-语言数据分析.html#cb102-3" tabindex="-1"></a>  <span class="at">Exposure =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">400</span>, <span class="dv">500</span>),</span>
+<span id="cb102-4"><a href="r-语言数据分析.html#cb102-4" tabindex="-1"></a>  <span class="at">Events =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>)</span>
+<span id="cb102-5"><a href="r-语言数据分析.html#cb102-5" tabindex="-1"></a>)</span>
+<span id="cb102-6"><a href="r-语言数据分析.html#cb102-6" tabindex="-1"></a></span>
+<span id="cb102-7"><a href="r-语言数据分析.html#cb102-7" tabindex="-1"></a><span class="co"># 泊松回归</span></span>
+<span id="cb102-8"><a href="r-语言数据分析.html#cb102-8" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Events <span class="sc">~</span> <span class="fu">log</span>(Exposure), <span class="at">data =</span> data, <span class="at">family =</span> poisson)</span>
+<span id="cb102-9"><a href="r-语言数据分析.html#cb102-9" tabindex="-1"></a></span>
+<span id="cb102-10"><a href="r-语言数据分析.html#cb102-10" tabindex="-1"></a><span class="co"># 获取回归系数和拟合统计信息</span></span>
+<span id="cb102-11"><a href="r-语言数据分析.html#cb102-11" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = Events ~ log(Exposure), family = poisson, data = data)
+## 
+## Deviance Residuals: 
+##         1          2          3          4          5  
+## 2.980e-08  2.980e-08  0.000e+00  4.215e-08  0.000e+00  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)    -2.9957     1.5190  -1.972 0.048589 *  
+## log(Exposure)   1.0000     0.2601   3.845 0.000121 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for poisson family taken to be 1)
+## 
+##     Null deviance: 1.7953e+01  on 4  degrees of freedom
+## Residual deviance: 2.2204e-15  on 3  degrees of freedom
+## AIC: 26.1
+## 
+## Number of Fisher Scoring iterations: 3</code></pre>
+<p>以上是不同类型的回归分析的总结和完整示例。回归分析可用于建立模型、预测和解释变量之间的关系。</p>
+</div>
+<div id="生存分析" class="section level3 hasAnchor" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> 生存分析<a href="r-语言数据分析.html#生存分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>生存分析是一种统计方法，用于研究事件发生时间（例如患病、死亡）与一个或多个因素之间的关系。在R语言中，你可以使用survival包来执行生存分析。生存分析的主要目标是估计事件发生的概率、比较不同组之间的生存情况，并识别影响生存的因素。常见的生存分析方法包括Kaplan-Meier曲线、Cox比例风险模型、Log-rank检验等。</p>
+<p>假设你有一个数据集，记录了癌症患者的存活时间和一些相关因素，例如年龄、性别和治疗方案。你希望进行生存分析，了解这些因素对患者生存时间的影响。</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="r-语言数据分析.html#cb104-1" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb104-2"><a href="r-语言数据分析.html#cb104-2" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="r-语言数据分析.html#cb104-3" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb104-4"><a href="r-语言数据分析.html#cb104-4" tabindex="-1"></a>  <span class="at">Time =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">24</span>, <span class="dv">30</span>, <span class="dv">36</span>),</span>
+<span id="cb104-5"><a href="r-语言数据分析.html#cb104-5" tabindex="-1"></a>  <span class="at">Event =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb104-6"><a href="r-语言数据分析.html#cb104-6" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">70</span>, <span class="dv">55</span>, <span class="dv">50</span>, <span class="dv">62</span>, <span class="dv">68</span>, <span class="dv">58</span>, <span class="dv">64</span>, <span class="dv">61</span>),</span>
+<span id="cb104-7"><a href="r-语言数据分析.html#cb104-7" tabindex="-1"></a>  <span class="at">Gender =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>),</span>
+<span id="cb104-8"><a href="r-语言数据分析.html#cb104-8" tabindex="-1"></a>  <span class="at">Treatment =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>)</span>
+<span id="cb104-9"><a href="r-语言数据分析.html#cb104-9" tabindex="-1"></a>)</span></code></pre></div>
+<p>这里，Time表示事件发生时间，Event表示是否发生事件（1表示事件发生，0表示事件未发生），Age表示年龄，Gender表示性别，Treatment表示治疗方案。</p>
+<p>接下来，你可以使用Kaplan-Meier曲线来估计整体生存概率以及不同因素下的生存概率：</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="r-语言数据分析.html#cb105-1" tabindex="-1"></a><span class="co"># 创建生存对象</span></span>
+<span id="cb105-2"><a href="r-语言数据分析.html#cb105-2" tabindex="-1"></a>survival_data <span class="ot">&lt;-</span> <span class="fu">with</span>(data, <span class="fu">Surv</span>(Time, Event))</span>
+<span id="cb105-3"><a href="r-语言数据分析.html#cb105-3" tabindex="-1"></a></span>
+<span id="cb105-4"><a href="r-语言数据分析.html#cb105-4" tabindex="-1"></a><span class="co"># Kaplan-Meier曲线</span></span>
+<span id="cb105-5"><a href="r-语言数据分析.html#cb105-5" tabindex="-1"></a>km_curve <span class="ot">&lt;-</span> <span class="fu">survfit</span>(survival_data <span class="sc">~</span> <span class="dv">1</span>)</span>
+<span id="cb105-6"><a href="r-语言数据分析.html#cb105-6" tabindex="-1"></a><span class="fu">plot</span>(km_curve, <span class="at">xlab =</span> <span class="st">&quot;Time&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Survival Probability&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Kaplan-Meier Curve&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p>要比较不同因素下的生存情况，可以使用Log-rank检验：</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="r-语言数据分析.html#cb106-1" tabindex="-1"></a><span class="co"># 按性别比较生存曲线</span></span>
+<span id="cb106-2"><a href="r-语言数据分析.html#cb106-2" tabindex="-1"></a>gender_km <span class="ot">&lt;-</span> <span class="fu">survfit</span>(survival_data <span class="sc">~</span> Gender,<span class="at">data=</span>data)</span>
+<span id="cb106-3"><a href="r-语言数据分析.html#cb106-3" tabindex="-1"></a><span class="fu">summary</span>(gender_km)</span></code></pre></div>
+<pre><code>## Call: survfit(formula = survival_data ~ Gender, data = data)
+## 
+##                 Gender=Female 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##    10      5       1      0.8   0.179       0.5161            1
+##    12      4       1      0.6   0.219       0.2933            1
+##    24      2       1      0.3   0.239       0.0631            1
+## 
+##                 Gender=Male 
+##  time n.risk n.event survival std.err lower 95% CI upper 95% CI
+##     5      5       1      0.8   0.179        0.516            1
+##    15      4       1      0.6   0.219        0.293            1
+##    30      1       1      0.0     NaN           NA           NA</code></pre>
+<p>其他生存分析的方法还包括:</p>
+<p>Cox 比例风险模型,Cox比例风险模型用于估计各种因素对生存时间的影响。</p>
+<pre><code># 创建Cox模型
+cox_model &lt;- coxph(Surv(time, event) ~ age + treatment, data = data)
+
+# 查看Cox模型结果
+summary(cox_model)
+</code></pre>
+<p>生存回归分析,生存回归分析用于研究生存时间与一个或多个因素之间的关系。</p>
+<pre><code># 创建生存回归模型
+surv_reg_model &lt;- survreg(Surv(time, event) ~ age + gender, data = data)
+
+# 查看生存回归模型结果
+summary(surv_reg_model)
+</code></pre>
+</div>
+<div id="多重比较校正" class="section level3 hasAnchor" number="3.4.5">
+<h3><span class="header-section-number">3.4.5</span> 多重比较校正<a href="r-语言数据分析.html#多重比较校正" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>多重比较校正是在进行多组数据的假设检验时，通过一定的方法来控制错误发现率，以减少误报的可能性。在R语言中，你可以使用不同的方法进行多重比较校正，如Bonferroni校正、Holm校正、Benjamini-Hochberg校正等。</p>
+<p>多重比较校正用于纠正多次进行假设检验时可能导致的错误发现率增加的问题。常见的多重比较校正方法包括：</p>
+<ol style="list-style-type: decimal">
+<li><p>Bonferroni校正：最保守的方法，通过将显著性水平除以比较的次数来控制错误发现率。</p></li>
+<li><p>Holm校正：根据排序后的p值进行校正，逐渐降低显著性水平。</p></li>
+<li><p>Benjamini-Hochberg校正：控制假阳性发现的概率，常用于大规模多重比较。</p></li>
+<li><p>Tukey方法：用于比较多个组之间的差异，控制整体显著性水平。</p></li>
+</ol>
+<p>假设你有一个数据集，包括多个组的数据，你想要比较这些组之间的差异并应用Tukey多重比较校正。</p>
+<p>首先，加载multcomp和multcompView包：</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="r-语言数据分析.html#cb110-1" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span></code></pre></div>
+<pre><code>## Loading required package: mvtnorm</code></pre>
+<pre><code>## Loading required package: TH.data</code></pre>
+<pre><code>## Loading required package: MASS</code></pre>
+<pre><code>## 
+## Attaching package: &#39;TH.data&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     geyser</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="r-语言数据分析.html#cb116-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb116-2"><a href="r-语言数据分析.html#cb116-2" tabindex="-1"></a>  <span class="at">Group =</span> <span class="fu">rep</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">each =</span> <span class="dv">10</span>),</span>
+<span id="cb116-3"><a href="r-语言数据分析.html#cb116-3" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">rnorm</span>(<span class="dv">30</span>)</span>
+<span id="cb116-4"><a href="r-语言数据分析.html#cb116-4" tabindex="-1"></a>)</span></code></pre></div>
+<p>然后，执行方差分析（ANOVA）来比较组之间的差异：</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="r-语言数据分析.html#cb117-1" tabindex="-1"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Value <span class="sc">~</span> Group, <span class="at">data =</span> data)</span></code></pre></div>
+<p>接下来，使用Tukey多重比较校正：</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="r-语言数据分析.html#cb118-1" tabindex="-1"></a>tukey_results <span class="ot">&lt;-</span> <span class="fu">glht</span>(anova_model )</span>
+<span id="cb118-2"><a href="r-语言数据分析.html#cb118-2" tabindex="-1"></a><span class="fu">summary</span>(tukey_results)</span></code></pre></div>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Fit: aov(formula = Value ~ Group, data = data)
+## 
+## Linear Hypotheses:
+##                  Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) == 0 -0.06124    0.33708  -0.182    0.994
+## Groupb == 0       0.24486    0.47670   0.514    0.896
+## Groupc == 0      -0.07424    0.47670  -0.156    0.996
+## (Adjusted p values reported -- single-step method)</code></pre>
+<p>Tukey方法将比较各个组之间的差异，并提供校正后的p值，以确定哪些组之间存在显著差异。</p>
+</div>
+<div id="功效分析" class="section level3 hasAnchor" number="3.4.6">
+<h3><span class="header-section-number">3.4.6</span> 功效分析<a href="r-语言数据分析.html#功效分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在统计学中，功效分析（Power Analysis）是一种用于确定研究具有一定样本量和统计显著水平时，是否有足够的能力来检测到真实效应的统计方法。功效分析可以帮助研究者决定需要多大的样本量以确保实验或研究能够得出有意义的结论。在R中，你可以使用不同的包来执行功效分析，如pwr、pROC、pwr2等。</p>
+<p>功效分析的基本步骤：</p>
+<ol style="list-style-type: decimal">
+<li><p>确定研究设计的关键参数，包括所需的统计显著水平（通常为0.05）、所期望的效应大小（通常使用效应量指标如Cohen’s d或Odds Ratio）、所期望的功效（通常为0.80）。</p></li>
+<li><p>选择适当的功效分析方法和包，根据研究设计和参数进行分析。</p></li>
+<li><p>计算所需的样本量或执行统计检验以估计实际的功效。</p></li>
+</ol>
+<p>功效分析的示例（使用pwr包）：</p>
+<p>假设你正在进行一个两组独立样本t检验的研究，你想要确定所需的样本量以检测到指定的效应大小和统计显著水平。</p>
+<p>首先，安装并加载pwr包：</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="r-语言数据分析.html#cb120-1" tabindex="-1"></a><span class="co"># install.packages(&quot;pwr&quot;)</span></span>
+<span id="cb120-2"><a href="r-语言数据分析.html#cb120-2" tabindex="-1"></a><span class="fu">library</span>(pwr)</span></code></pre></div>
+<p>然后，执行功效分析来计算所需的样本量：</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="r-语言数据分析.html#cb121-1" tabindex="-1"></a><span class="co"># 设置参数</span></span>
+<span id="cb121-2"><a href="r-语言数据分析.html#cb121-2" tabindex="-1"></a>effect_size <span class="ot">&lt;-</span> <span class="fl">0.5</span>  <span class="co"># 期望的效应大小 (Cohen&#39;s d)</span></span>
+<span id="cb121-3"><a href="r-语言数据分析.html#cb121-3" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>      <span class="co"># 统计显著水平</span></span>
+<span id="cb121-4"><a href="r-语言数据分析.html#cb121-4" tabindex="-1"></a>power <span class="ot">&lt;-</span> <span class="fl">0.80</span>      <span class="co"># 期望的功效</span></span>
+<span id="cb121-5"><a href="r-语言数据分析.html#cb121-5" tabindex="-1"></a></span>
+<span id="cb121-6"><a href="r-语言数据分析.html#cb121-6" tabindex="-1"></a><span class="co"># 计算所需的样本量</span></span>
+<span id="cb121-7"><a href="r-语言数据分析.html#cb121-7" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> effect_size, <span class="at">sig.level =</span> alpha, <span class="at">power =</span> power)</span>
+<span id="cb121-8"><a href="r-语言数据分析.html#cb121-8" tabindex="-1"></a>n</span></code></pre></div>
+<pre><code>## 
+##      Two-sample t test power calculation 
+## 
+##               n = 63.76561
+##               d = 0.5
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group</code></pre>
+<p>在这个示例中，我们假设期望的效应大小为0.5，统计显著水平为0.05，期望的功效为0.80。根据这些参数，计算出所需的样本量。</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r语言与数据科学-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-常用包总结.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-cross-refs.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

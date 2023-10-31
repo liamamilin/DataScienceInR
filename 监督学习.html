@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 监督学习 | Data Science in R</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 监督学习 | Data Science in R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 监督学习 | Data Science in R" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-常用包总结.html"/>
+<link rel="next" href="无监督学习与自然语言.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science In R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#r语言与数据科学"><i class="fa fa-check"></i><b>1.1</b> R语言与数据科学</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#作者其他书籍"><i class="fa fa-check"></i><b>1.2</b> 作者其他书籍</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html"><i class="fa fa-check"></i><b>2</b> R语言与数据科学</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学简介"><i class="fa fa-check"></i><b>2.1</b> 数据科学简介</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的关键元素"><i class="fa fa-check"></i><b>2.1.1</b> 数据科学的关键元素：</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的应用领域"><i class="fa fa-check"></i><b>2.1.2</b> 数据科学的应用领域：</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学工具和编程语言"><i class="fa fa-check"></i><b>2.1.3</b> 数据科学工具和编程语言：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言的重要性"><i class="fa fa-check"></i><b>2.2</b> R语言的重要性</a></li>
+<li class="chapter" data-level="2.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r和rstudio的安装"><i class="fa fa-check"></i><b>2.3</b> R和RStudio的安装</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤一安装r语言"><i class="fa fa-check"></i><b>2.3.1</b> 步骤一：安装R语言</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤二安装rstudio"><i class="fa fa-check"></i><b>2.3.2</b> 步骤二：安装RStudio</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤三配置rstudio"><i class="fa fa-check"></i><b>2.3.3</b> 步骤三：配置RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包管理"><i class="fa fa-check"></i><b>2.4</b> 包管理</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#安装r包"><i class="fa fa-check"></i><b>2.4.1</b> 安装R包：</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#加载r包"><i class="fa fa-check"></i><b>2.4.2</b> 加载R包：</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#查看已安装的包"><i class="fa fa-check"></i><b>2.4.3</b> 查看已安装的包：</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#更新r包"><i class="fa fa-check"></i><b>2.4.4</b> 更新R包：</a></li>
+<li class="chapter" data-level="2.4.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#移除r包"><i class="fa fa-check"></i><b>2.4.5</b> 移除R包：</a></li>
+<li class="chapter" data-level="2.4.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包的搜索路径"><i class="fa fa-check"></i><b>2.4.6</b> 包的搜索路径：</a></li>
+<li class="chapter" data-level="2.4.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#版本控制"><i class="fa fa-check"></i><b>2.4.7</b> 版本控制：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言基本语法"><i class="fa fa-check"></i><b>2.5</b> R语言基本语法</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#变量与数据类型"><i class="fa fa-check"></i><b>2.5.1</b> 变量与数据类型</a></li>
+<li class="chapter" data-level="2.5.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据结构"><i class="fa fa-check"></i><b>2.5.2</b> 数据结构</a></li>
+<li class="chapter" data-level="2.5.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#控制结构"><i class="fa fa-check"></i><b>2.5.3</b> 控制结构</a></li>
+<li class="chapter" data-level="2.5.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#子集选取"><i class="fa fa-check"></i><b>2.5.4</b> 子集选取</a></li>
+<li class="chapter" data-level="2.5.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言面向对象系统"><i class="fa fa-check"></i><b>2.5.5</b> R语言面向对象系统</a></li>
+<li class="chapter" data-level="2.5.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#防御式编程和异常处理"><i class="fa fa-check"></i><b>2.5.6</b> 防御式编程和异常处理</a></li>
+<li class="chapter" data-level="2.5.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#函数式编程"><i class="fa fa-check"></i><b>2.5.7</b> 函数式编程</a></li>
+<li class="chapter" data-level="2.5.8" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#泛函"><i class="fa fa-check"></i><b>2.5.8</b> 泛函</a></li>
+<li class="chapter" data-level="2.5.9" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言函数运算符"><i class="fa fa-check"></i><b>2.5.9</b> R语言函数运算符</a></li>
+<li class="chapter" data-level="2.5.10" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言非标准计算"><i class="fa fa-check"></i><b>2.5.10</b> R语言非标准计算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r包开发"><i class="fa fa-check"></i><b>2.6</b> R包开发</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html"><i class="fa fa-check"></i><b>3</b> R 语言数据分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导入和导出"><i class="fa fa-check"></i><b>3.1</b> 数据导入和导出</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据读取"><i class="fa fa-check"></i><b>3.1.1</b> 数据读取</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导出"><i class="fa fa-check"></i><b>3.1.2</b> 数据导出</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据处理"><i class="fa fa-check"></i><b>3.2</b> R 语言数据处理</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#缺失值处理"><i class="fa fa-check"></i><b>3.2.1</b> 缺失值处理</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r异常值处理"><i class="fa fa-check"></i><b>3.2.2</b> R异常值处理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r探索性数据分析"><i class="fa fa-check"></i><b>3.3</b> R探索性数据分析</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#autoeda"><i class="fa fa-check"></i><b>3.3.1</b> AutoEDA</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据可视化"><i class="fa fa-check"></i><b>3.3.2</b> R 语言数据可视化</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r语言统计推断"><i class="fa fa-check"></i><b>3.4</b> R语言统计推断</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#方差分析"><i class="fa fa-check"></i><b>3.4.1</b> 方差分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#非参数检验"><i class="fa fa-check"></i><b>3.4.2</b> 非参数检验</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#回归"><i class="fa fa-check"></i><b>3.4.3</b> 回归</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#生存分析"><i class="fa fa-check"></i><b>3.4.4</b> 生存分析</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#多重比较校正"><i class="fa fa-check"></i><b>3.4.5</b> 多重比较校正</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#功效分析"><i class="fa fa-check"></i><b>3.4.6</b> 功效分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-常用包总结.html"><a href="r-常用包总结.html"><i class="fa fa-check"></i><b>4</b> R 常用包总结</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#dplyr-包"><i class="fa fa-check"></i><b>4.1</b> dplyr 包</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数"><i class="fa fa-check"></i><b>4.1.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#案例"><i class="fa fa-check"></i><b>4.1.2</b> 案例</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#tidyr-包"><i class="fa fa-check"></i><b>4.2</b> tidyr 包</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-1"><i class="fa fa-check"></i><b>4.2.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.2.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子"><i class="fa fa-check"></i><b>4.2.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="r-常用包总结.html"><a href="r-常用包总结.html#stringr"><i class="fa fa-check"></i><b>4.3</b> stringr</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-2"><i class="fa fa-check"></i><b>4.3.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子-1"><i class="fa fa-check"></i><b>4.3.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r-常用包总结.html"><a href="r-常用包总结.html#lubridate"><i class="fa fa-check"></i><b>4.4</b> lubridate</a></li>
+<li class="chapter" data-level="4.5" data-path="r-常用包总结.html"><a href="r-常用包总结.html#purrr"><i class="fa fa-check"></i><b>4.5</b> purrr</a></li>
+<li class="chapter" data-level="4.6" data-path="r-常用包总结.html"><a href="r-常用包总结.html#forcats"><i class="fa fa-check"></i><b>4.6</b> forcats</a></li>
+<li class="chapter" data-level="4.7" data-path="r-常用包总结.html"><a href="r-常用包总结.html#httr"><i class="fa fa-check"></i><b>4.7</b> httr</a></li>
+<li class="chapter" data-level="4.8" data-path="r-常用包总结.html"><a href="r-常用包总结.html#rlang"><i class="fa fa-check"></i><b>4.8</b> rlang</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="监督学习.html"><a href="监督学习.html"><i class="fa fa-check"></i><b>5</b> 监督学习</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="监督学习.html"><a href="监督学习.html#决策树"><i class="fa fa-check"></i><b>5.1</b> 决策树</a></li>
+<li class="chapter" data-level="5.2" data-path="监督学习.html"><a href="监督学习.html#随机森林"><i class="fa fa-check"></i><b>5.2</b> 随机森林</a></li>
+<li class="chapter" data-level="5.3" data-path="监督学习.html"><a href="监督学习.html#xgboost"><i class="fa fa-check"></i><b>5.3</b> Xgboost</a></li>
+<li class="chapter" data-level="5.4" data-path="监督学习.html"><a href="监督学习.html#特征选择"><i class="fa fa-check"></i><b>5.4</b> 特征选择</a></li>
+<li class="chapter" data-level="5.5" data-path="监督学习.html"><a href="监督学习.html#深度学习"><i class="fa fa-check"></i><b>5.5</b> 深度学习</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html"><i class="fa fa-check"></i><b>6</b> 无监督学习与自然语言</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#k-均值聚类"><i class="fa fa-check"></i><b>6.1</b> K 均值聚类</a></li>
+<li class="chapter" data-level="6.2" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#层次聚类"><i class="fa fa-check"></i><b>6.2</b> 层次聚类</a></li>
+<li class="chapter" data-level="6.3" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#dbscan"><i class="fa fa-check"></i><b>6.3</b> DBSCAN</a></li>
+<li class="chapter" data-level="6.4" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#自然语言处理"><i class="fa fa-check"></i><b>6.4</b> 自然语言处理</a></li>
+<li class="chapter" data-level="6.5" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#时间序列"><i class="fa fa-check"></i><b>6.5</b> 时间序列</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="流程挖掘.html"><a href="流程挖掘.html"><i class="fa fa-check"></i><b>7</b> 流程挖掘</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="流程挖掘.html"><a href="流程挖掘.html#流程发现"><i class="fa fa-check"></i><b>7.1</b> 流程发现</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html"><i class="fa fa-check"></i><b>8</b> 可解释机器学习与因果推断</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#可解释机器学习"><i class="fa fa-check"></i><b>8.1</b> 可解释机器学习</a></li>
+<li class="chapter" data-level="8.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断"><i class="fa fa-check"></i><b>8.2</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断起源"><i class="fa fa-check"></i><b>8.2.1</b> 因果推断起源</a></li>
+<li class="chapter" data-level="8.2.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断介绍"><i class="fa fa-check"></i><b>8.2.2</b> 因果推断介绍</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="监督学习" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> 监督学习<a href="监督学习.html#监督学习" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>参考:
+1. <a href="https://rpubs.com/liam/mlr3Tutorial" class="uri">https://rpubs.com/liam/mlr3Tutorial</a> mlr3教程</p>
+<p>有监督学习是机器学习的一个主要分支，它涉及从标记的数据中学习模型，以预测或分类新的数据点。以下是有监督学习的概述：</p>
+<ol style="list-style-type: decimal">
+<li><p>标记数据：有监督学习依赖于标记的训练数据。这些数据包括特征（输入）和相应的标签（输出）。特征是描述数据点的属性，标签是我们要预测或分类的目标。</p></li>
+<li><p>目标：在有监督学习中，我们的目标是使用训练数据构建一个模型，以便在未知数据上进行准确的预测或分类。这个目标可以是回归（连续值预测）或分类（离散类别标签）。</p></li>
+<li><p>模型构建：有监督学习中的模型构建是学习算法的过程，它通过分析训练数据来建立模型。常见的有监督学习算法包括线性回归、决策树、支持向量机、神经网络、朴素贝叶斯、随机森林等。</p></li>
+<li><p>特征工程：在有监督学习中，特征工程是一个重要的环节，它包括选择合适的特征、进行特征预处理、处理缺失值和异常值等。良好的特征工程可以显著影响模型性能。</p></li>
+<li><p>训练和测试：训练数据集用于训练模型，测试数据集用于评估模型性能。通常，训练数据集占总数据的大部分，而测试数据集用于模型性能的验证。</p></li>
+<li><p>评估指标：有监督学习使用各种评估指标来衡量模型的性能，如均方误差（Mean Squared Error）和准确度（Accuracy）。这些指标帮助我们了解模型的预测能力和泛化性。</p></li>
+<li><p>泛化：有监督学习的主要目标是构建能够泛化到未见过的数据的模型。泛化能力是模型的一个关键属性，它衡量了模型在新数据上的预测效果。</p></li>
+<li><p>超参数调优：许多有监督学习算法具有超参数，它们需要根据交叉验证等技巧进行调优，以获得最佳性能。</p></li>
+<li><p>应用领域：有监督学习在各种领域中都有广泛的应用，包括自然语言处理、图像识别、金融风险分析、医疗诊断等。</p></li>
+</ol>
+<p>总的来说，有监督学习是一种强大的机器学习方法，适用于许多现实世界的问题。通过构建模型并使用标记的数据进行训练，我们可以实现精确的预测和分类。</p>
+<div id="决策树" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> 决策树<a href="监督学习.html#决策树" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>决策树（Decision Tree）是一种常用的机器学习算法，用于分类和回归问题。在R语言中，你可以使用rpart包来构建决策树模型，以及caret包来进行交叉验证和网格搜索以优化模型的超参数。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="监督学习.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(rpart)</span>
+<span id="cb1-2"><a href="监督学习.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(caret)</span></code></pre></div>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<p>我们将使用鸢尾花数据集，目标是预测鸢尾花的种类。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="监督学习.html#cb4-1" tabindex="-1"></a><span class="co"># 加载鸢尾花数据集</span></span>
+<span id="cb4-2"><a href="监督学习.html#cb4-2" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb4-3"><a href="监督学习.html#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="监督学习.html#cb4-4" tabindex="-1"></a><span class="co"># 创建训练数据和测试数据</span></span>
+<span id="cb4-5"><a href="监督学习.html#cb4-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># 设置随机种子以确保结果可复现</span></span>
+<span id="cb4-6"><a href="监督学习.html#cb4-6" tabindex="-1"></a>trainIndex <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(iris<span class="sc">$</span>Species, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-7"><a href="监督学习.html#cb4-7" tabindex="-1"></a>trainData <span class="ot">&lt;-</span> iris[trainIndex, ]</span>
+<span id="cb4-8"><a href="监督学习.html#cb4-8" tabindex="-1"></a>testData <span class="ot">&lt;-</span> iris[<span class="sc">-</span>trainIndex, ]</span>
+<span id="cb4-9"><a href="监督学习.html#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="监督学习.html#cb4-10" tabindex="-1"></a><span class="co"># 构建决策树模型</span></span>
+<span id="cb4-11"><a href="监督学习.html#cb4-11" tabindex="-1"></a>tree_model <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Species <span class="sc">~</span> ., <span class="at">data =</span> trainData, <span class="at">method =</span> <span class="st">&quot;class&quot;</span>)</span></code></pre></div>
+<p>交叉验证</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="监督学习.html#cb5-1" tabindex="-1"></a><span class="co"># 创建交叉验证控制</span></span>
+<span id="cb5-2"><a href="监督学习.html#cb5-2" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>)</span>
+<span id="cb5-3"><a href="监督学习.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="监督学习.html#cb5-4" tabindex="-1"></a><span class="co"># 进行交叉验证</span></span>
+<span id="cb5-5"><a href="监督学习.html#cb5-5" tabindex="-1"></a>cv_results <span class="ot">&lt;-</span> <span class="fu">train</span>(Species <span class="sc">~</span> ., <span class="at">data =</span> trainData, <span class="at">method =</span> <span class="st">&quot;rpart&quot;</span>, <span class="at">trControl =</span> ctrl)</span>
+<span id="cb5-6"><a href="监督学习.html#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="监督学习.html#cb5-7" tabindex="-1"></a><span class="co"># 查看交叉验证结果</span></span>
+<span id="cb5-8"><a href="监督学习.html#cb5-8" tabindex="-1"></a><span class="fu">print</span>(cv_results)</span></code></pre></div>
+<pre><code>## CART 
+## 
+## 105 samples
+##   4 predictor
+##   3 classes: &#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold) 
+## Summary of sample sizes: 94, 95, 95, 94, 94, 96, ... 
+## Resampling results across tuning parameters:
+## 
+##   cp         Accuracy   Kappa    
+##   0.0000000  0.9531313  0.9290247
+##   0.4571429  0.7145455  0.5831868
+##   0.5000000  0.3857576  0.1285714
+## 
+## Accuracy was used to select the optimal model using the largest value.
+## The final value used for the model was cp = 0.</code></pre>
+<p>网格调参</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="监督学习.html#cb7-1" tabindex="-1"></a><span class="co"># 创建参数网格</span></span>
+<span id="cb7-2"><a href="监督学习.html#cb7-2" tabindex="-1"></a>param_grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">cp =</span> <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="at">by =</span> <span class="fl">0.01</span>))</span>
+<span id="cb7-3"><a href="监督学习.html#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="监督学习.html#cb7-4" tabindex="-1"></a><span class="co"># 使用网格搜索来寻找最佳参数</span></span>
+<span id="cb7-5"><a href="监督学习.html#cb7-5" tabindex="-1"></a>tune_results <span class="ot">&lt;-</span> <span class="fu">train</span>(Species <span class="sc">~</span> ., <span class="at">data =</span> trainData, <span class="at">method =</span> <span class="st">&quot;rpart&quot;</span>, <span class="at">trControl =</span> ctrl, <span class="at">tuneGrid =</span> param_grid)</span>
+<span id="cb7-6"><a href="监督学习.html#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="监督学习.html#cb7-7" tabindex="-1"></a><span class="co"># 查看最佳参数</span></span>
+<span id="cb7-8"><a href="监督学习.html#cb7-8" tabindex="-1"></a>best_tree <span class="ot">&lt;-</span> <span class="fu">prune</span>(cv_results<span class="sc">$</span>finalModel, <span class="at">cp =</span> tune_results<span class="sc">$</span>bestTune<span class="sc">$</span>cp)</span>
+<span id="cb7-9"><a href="监督学习.html#cb7-9" tabindex="-1"></a><span class="fu">print</span>(best_tree)</span></code></pre></div>
+<pre><code>## n= 105 
+## 
+## node), split, n, loss, yval, (yprob)
+##       * denotes terminal node
+## 
+## 1) root 105 70 setosa (0.33333333 0.33333333 0.33333333)  
+##   2) Petal.Length&lt; 2.6 35  0 setosa (1.00000000 0.00000000 0.00000000) *
+##   3) Petal.Length&gt;=2.6 70 35 versicolor (0.00000000 0.50000000 0.50000000)  
+##     6) Petal.Width&lt; 1.65 36  2 versicolor (0.00000000 0.94444444 0.05555556) *
+##     7) Petal.Width&gt;=1.65 34  1 virginica (0.00000000 0.02941176 0.97058824) *</code></pre>
+</div>
+<div id="随机森林" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> 随机森林<a href="监督学习.html#随机森林" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>随机森林（Random Forest）是一种强大的集成机器学习算法，它基于决策树构建，并通过随机选择数据和特征进行集成，以提高模型的性能和泛化能力。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="监督学习.html#cb9-1" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span>
+<span id="cb9-2"><a href="监督学习.html#cb9-2" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb9-3"><a href="监督学习.html#cb9-3" tabindex="-1"></a><span class="co"># 加载鸢尾花数据集</span></span>
+<span id="cb9-4"><a href="监督学习.html#cb9-4" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb9-5"><a href="监督学习.html#cb9-5" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="监督学习.html#cb9-6" tabindex="-1"></a><span class="co"># 创建训练数据和测试数据</span></span>
+<span id="cb9-7"><a href="监督学习.html#cb9-7" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># 设置随机种子以确保结果可复现</span></span>
+<span id="cb9-8"><a href="监督学习.html#cb9-8" tabindex="-1"></a>trainIndex <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(iris<span class="sc">$</span>Species, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-9"><a href="监督学习.html#cb9-9" tabindex="-1"></a>trainData <span class="ot">&lt;-</span> iris[trainIndex, ]</span>
+<span id="cb9-10"><a href="监督学习.html#cb9-10" tabindex="-1"></a>testData <span class="ot">&lt;-</span> iris[<span class="sc">-</span>trainIndex, ]</span>
+<span id="cb9-11"><a href="监督学习.html#cb9-11" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="监督学习.html#cb9-12" tabindex="-1"></a><span class="co"># 构建随机森林模型</span></span>
+<span id="cb9-13"><a href="监督学习.html#cb9-13" tabindex="-1"></a>rf_model <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Species <span class="sc">~</span> ., <span class="at">data =</span> trainData)</span></code></pre></div>
+<p>使用caret包进行交叉验证来评估模型性能：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="监督学习.html#cb10-1" tabindex="-1"></a><span class="co"># 创建交叉验证控制</span></span>
+<span id="cb10-2"><a href="监督学习.html#cb10-2" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>)</span>
+<span id="cb10-3"><a href="监督学习.html#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="监督学习.html#cb10-4" tabindex="-1"></a><span class="co"># 进行交叉验证</span></span>
+<span id="cb10-5"><a href="监督学习.html#cb10-5" tabindex="-1"></a>cv_results <span class="ot">&lt;-</span> <span class="fu">train</span>(Species <span class="sc">~</span> ., <span class="at">data =</span> trainData, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">trControl =</span> ctrl)</span>
+<span id="cb10-6"><a href="监督学习.html#cb10-6" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="监督学习.html#cb10-7" tabindex="-1"></a><span class="co"># 查看交叉验证结果</span></span>
+<span id="cb10-8"><a href="监督学习.html#cb10-8" tabindex="-1"></a><span class="fu">print</span>(cv_results)</span></code></pre></div>
+<pre><code>## Random Forest 
+## 
+## 105 samples
+##   4 predictor
+##   3 classes: &#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold) 
+## Summary of sample sizes: 94, 95, 94, 93, 95, 94, ... 
+## Resampling results across tuning parameters:
+## 
+##   mtry  Accuracy   Kappa    
+##   2     0.9460606  0.9182893
+##   3     0.9460606  0.9182893
+##   4     0.9460606  0.9182893
+## 
+## Accuracy was used to select the optimal model using the largest value.
+## The final value used for the model was mtry = 2.</code></pre>
+<p>在这个示例中，我们将尝试不同的树的数量来调整模型。你可以根据需要尝试不同的参数。</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="监督学习.html#cb12-1" tabindex="-1"></a><span class="co"># 创建参数网格</span></span>
+<span id="cb12-2"><a href="监督学习.html#cb12-2" tabindex="-1"></a>param_grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">mtry =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span>
+<span id="cb12-3"><a href="监督学习.html#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="监督学习.html#cb12-4" tabindex="-1"></a><span class="co"># 使用网格搜索来寻找最佳参数</span></span>
+<span id="cb12-5"><a href="监督学习.html#cb12-5" tabindex="-1"></a>tune_results <span class="ot">&lt;-</span> <span class="fu">train</span>(Species <span class="sc">~</span> ., <span class="at">data =</span> trainData, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">trControl =</span> ctrl, <span class="at">tuneGrid =</span> param_grid)</span>
+<span id="cb12-6"><a href="监督学习.html#cb12-6" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="监督学习.html#cb12-7" tabindex="-1"></a><span class="co"># 查看最佳参数</span></span>
+<span id="cb12-8"><a href="监督学习.html#cb12-8" tabindex="-1"></a>best_mtry <span class="ot">&lt;-</span> tune_results<span class="sc">$</span>bestTune<span class="sc">$</span>mtry</span>
+<span id="cb12-9"><a href="监督学习.html#cb12-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Best mtry:&quot;</span>, best_mtry))</span></code></pre></div>
+<pre><code>## [1] &quot;Best mtry: 2&quot;</code></pre>
+</div>
+<div id="xgboost" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Xgboost<a href="监督学习.html#xgboost" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>XGBoost（eXtreme Gradient Boosting）是一种梯度提升树（Gradient Boosting Trees）算法，它在机器学习竞赛中非常受欢迎，并且在各种任务中取得了出色的性能。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="监督学习.html#cb14-1" tabindex="-1"></a><span class="co"># 安装并加载所需的包</span></span>
+<span id="cb14-2"><a href="监督学习.html#cb14-2" tabindex="-1"></a><span class="co"># install.packages(&quot;xgboost&quot;)</span></span>
+<span id="cb14-3"><a href="监督学习.html#cb14-3" tabindex="-1"></a><span class="co"># install.packages(&quot;caret&quot;)</span></span>
+<span id="cb14-4"><a href="监督学习.html#cb14-4" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="监督学习.html#cb14-5" tabindex="-1"></a><span class="fu">library</span>(xgboost)</span>
+<span id="cb14-6"><a href="监督学习.html#cb14-6" tabindex="-1"></a> </span>
+<span id="cb14-7"><a href="监督学习.html#cb14-7" tabindex="-1"></a> </span>
+<span id="cb14-8"><a href="监督学习.html#cb14-8" tabindex="-1"></a><span class="fu">data</span>(agaricus.train, <span class="at">package=</span><span class="st">&#39;xgboost&#39;</span>)</span>
+<span id="cb14-9"><a href="监督学习.html#cb14-9" tabindex="-1"></a><span class="fu">data</span>(agaricus.test, <span class="at">package=</span><span class="st">&#39;xgboost&#39;</span>)</span>
+<span id="cb14-10"><a href="监督学习.html#cb14-10" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="监督学习.html#cb14-11" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="监督学习.html#cb14-12" tabindex="-1"></a>dtrain <span class="ot">&lt;-</span> <span class="fu">with</span>(agaricus.train, <span class="fu">xgb.DMatrix</span>(data, <span class="at">label =</span> label))</span>
+<span id="cb14-13"><a href="监督学习.html#cb14-13" tabindex="-1"></a>dtest <span class="ot">&lt;-</span> <span class="fu">with</span>(agaricus.test, <span class="fu">xgb.DMatrix</span>(data, <span class="at">label =</span> label))</span>
+<span id="cb14-14"><a href="监督学习.html#cb14-14" tabindex="-1"></a>watchlist <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">train =</span> dtrain, <span class="at">eval =</span> dtest)</span>
+<span id="cb14-15"><a href="监督学习.html#cb14-15" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="监督学习.html#cb14-16" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="监督学习.html#cb14-17" tabindex="-1"></a>param <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">max_depth =</span> <span class="dv">2</span>, <span class="at">eta =</span> <span class="dv">1</span>, <span class="at">verbose =</span> <span class="dv">0</span>, <span class="at">nthread =</span> <span class="dv">2</span>,</span>
+<span id="cb14-18"><a href="监督学习.html#cb14-18" tabindex="-1"></a>              <span class="at">objective =</span> <span class="st">&quot;binary:logistic&quot;</span>, <span class="at">eval_metric =</span> <span class="st">&quot;auc&quot;</span>)</span>
+<span id="cb14-19"><a href="监督学习.html#cb14-19" tabindex="-1"></a>bst <span class="ot">&lt;-</span> <span class="fu">xgb.train</span>(param, dtrain, <span class="at">nrounds =</span> <span class="dv">2</span>, watchlist)</span></code></pre></div>
+<pre><code>## [23:51:59] WARNING: amalgamation/../src/learner.cc:627: 
+## Parameters: { &quot;verbose&quot; } might not be used.
+## 
+##   This could be a false alarm, with some parameters getting used by language bindings but
+##   then being mistakenly passed down to XGBoost core, or some parameter actually being used
+##   but getting flagged wrongly here. Please open an issue if you find any such cases.
+## 
+## 
+## [1]  train-auc:0.958228  eval-auc:0.960373 
+## [2]  train-auc:0.981413  eval-auc:0.979930</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="监督学习.html#cb16-1" tabindex="-1"></a>bst</span></code></pre></div>
+<pre><code>## ##### xgb.Booster
+## raw: 5.7 Kb 
+## call:
+##   xgb.train(params = param, data = dtrain, nrounds = 2, watchlist = watchlist)
+## params (as set within xgb.train):
+##   max_depth = &quot;2&quot;, eta = &quot;1&quot;, verbose = &quot;0&quot;, nthread = &quot;2&quot;, objective = &quot;binary:logistic&quot;, eval_metric = &quot;auc&quot;, validate_parameters = &quot;TRUE&quot;
+## xgb.attributes:
+##   niter
+## callbacks:
+##   cb.print.evaluation(period = print_every_n)
+##   cb.evaluation.log()
+## # of features: 126 
+## niter: 2
+## nfeatures : 126 
+## evaluation_log:
+##  iter train_auc  eval_auc
+##     1 0.9582280 0.9603733
+##     2 0.9814132 0.9799301</code></pre>
+<p>使用caret包进行交叉验证来评估模型性能：</p>
+<pre><code># 创建交叉验证控制
+ctrl &lt;- trainControl(method = &quot;cv&quot;, number = 10)
+
+# 进行交叉验证
+cv_results &lt;- train(Species ~ ., data = trainData, method = &quot;xgbTree&quot;, trControl = ctrl)
+
+# 查看交叉验证结果
+print(cv_results)
+</code></pre>
+<p>尝试不同的迭代次数和树的深度来调整模型。你可以根据需要尝试不同的参数。</p>
+<pre><code># 创建参数网格
+param_grid &lt;- expand.grid(nrounds = c(100, 200, 300),
+                          max_depth = c(3, 4, 5),
+                          eta=rnorm(3),
+   gamma=rnorm(3),colsample_bytree=rnorm(3),min_child_weight=rnorm(3),subsample=rnorm(3))
+
+# 使用网格搜索来寻找最佳参数
+tune_results &lt;- train(Species ~ ., data = trainData, method = &quot;xgbTree&quot;, trControl = ctrl, tuneGrid = param_grid)
+
+# 查看最佳参数
+tune_results
+</code></pre>
+</div>
+<div id="特征选择" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> 特征选择<a href="监督学习.html#特征选择" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>参考资料:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://rpubs.com/liam/FSinR" class="uri">https://rpubs.com/liam/FSinR</a></li>
+<li><a href="https://rpubs.com/liam/vip" class="uri">https://rpubs.com/liam/vip</a> 变量重要性</li>
+</ol>
+<p>在R语言中，有许多用于特征选择的方法，每种方法都有其适用的情境。</p>
+<ol style="list-style-type: decimal">
+<li>过滤法（Filter Methods）：过滤法通过对特征进行预处理，然后选择与目标变量具有高相关性的特征。</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="监督学习.html#cb20-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb20-2"><a href="监督学习.html#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="监督学习.html#cb20-3" tabindex="-1"></a><span class="co"># 生成示例数据集（这里使用iris数据集）</span></span>
+<span id="cb20-4"><a href="监督学习.html#cb20-4" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb20-5"><a href="监督学习.html#cb20-5" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="监督学习.html#cb20-6" tabindex="-1"></a><span class="co"># 将数据集划分为特征（X）和目标变量（y）</span></span>
+<span id="cb20-7"><a href="监督学习.html#cb20-7" tabindex="-1"></a>X <span class="ot">&lt;-</span> iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb20-8"><a href="监督学习.html#cb20-8" tabindex="-1"></a>y <span class="ot">&lt;-</span> iris<span class="sc">$</span>Species</span></code></pre></div>
+<p>接下来，你可以使用过滤法来选择最相关的特征。在这个示例中，我们将使用方差分析（ANOVA）来计算特征与目标变量之间的关系，并选择具有显著差异的特征。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="监督学习.html#cb21-1" tabindex="-1"></a><span class="co"># 进行ANOVA分析</span></span>
+<span id="cb21-2"><a href="监督学习.html#cb21-2" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">sapply</span>(X, <span class="cf">function</span>(x) {</span>
+<span id="cb21-3"><a href="监督学习.html#cb21-3" tabindex="-1"></a>   <span class="fu">print</span>(<span class="fu">summary</span>(<span class="fu">aov</span>(x <span class="sc">~</span> y))[[<span class="dv">1</span>]][[<span class="dv">5</span>]][<span class="dv">1</span>])</span>
+<span id="cb21-4"><a href="监督学习.html#cb21-4" tabindex="-1"></a>})</span></code></pre></div>
+<pre><code>## [1] 1.669669e-31
+## [1] 4.492017e-17
+## [1] 2.856777e-91
+## [1] 4.169446e-85</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="监督学习.html#cb23-1" tabindex="-1"></a><span class="co"># 设置显著性水平</span></span>
+<span id="cb23-2"><a href="监督学习.html#cb23-2" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb23-3"><a href="监督学习.html#cb23-3" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="监督学习.html#cb23-4" tabindex="-1"></a><span class="co"># 选择显著性水平低于alpha的特征</span></span>
+<span id="cb23-5"><a href="监督学习.html#cb23-5" tabindex="-1"></a>selected_features <span class="ot">&lt;-</span> <span class="fu">names</span>(anova_result[anova_result <span class="sc">&lt;</span> alpha])</span>
+<span id="cb23-6"><a href="监督学习.html#cb23-6" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="监督学习.html#cb23-7" tabindex="-1"></a><span class="co"># 输出所选特征</span></span>
+<span id="cb23-8"><a href="监督学习.html#cb23-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;选择的特征：&quot;</span>, selected_features, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 选择的特征： Sepal.Length Sepal.Width Petal.Length Petal.Width</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>包装法（Wrapper Methods）：包装法使用特征子集来训练模型，然后选择效果最好的子集。</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="监督学习.html#cb25-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb25-2"><a href="监督学习.html#cb25-2" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb25-3"><a href="监督学习.html#cb25-3" tabindex="-1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">rfeControl</span>(<span class="at">functions =</span> rfFuncs, <span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>)</span>
+<span id="cb25-4"><a href="监督学习.html#cb25-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">rfe</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris<span class="sc">$</span>Species, <span class="at">sizes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">rfeControl =</span> ctrl)</span>
+<span id="cb25-5"><a href="监督学习.html#cb25-5" tabindex="-1"></a>selected_features <span class="ot">&lt;-</span> result<span class="sc">$</span>optVariables</span>
+<span id="cb25-6"><a href="监督学习.html#cb25-6" tabindex="-1"></a>selected_features</span></code></pre></div>
+<pre><code>## [1] &quot;Petal.Width&quot;  &quot;Petal.Length&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>嵌入法（Embedded Methods）：嵌入法将特征选择作为模型训练的一部分，如正则化。</li>
+</ol>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="监督学习.html#cb27-1" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span></code></pre></div>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## Loaded glmnet 4.1-6</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="监督学习.html#cb30-1" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb30-2"><a href="监督学习.html#cb30-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb30-3"><a href="监督学习.html#cb30-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(iris<span class="sc">$</span>Species) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb30-4"><a href="监督学习.html#cb30-4" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">family =</span> <span class="st">&quot;multinomial&quot;</span>)</span>
+<span id="cb30-5"><a href="监督学习.html#cb30-5" tabindex="-1"></a>selected_features <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">s =</span> fit<span class="sc">$</span>lambda.min, <span class="at">type =</span> <span class="st">&quot;nonzero&quot;</span>)</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>特征重要性（Feature Importance）：某些模型（如随机森林、XGBoost）提供了特征重要性评估，可以根据这些评估选择重要的特征。</li>
+</ol>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="监督学习.html#cb31-1" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span>
+<span id="cb31-2"><a href="监督学习.html#cb31-2" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb31-3"><a href="监督学习.html#cb31-3" tabindex="-1"></a>rf_model <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris<span class="sc">$</span>Species)</span>
+<span id="cb31-4"><a href="监督学习.html#cb31-4" tabindex="-1"></a>importance <span class="ot">&lt;-</span> <span class="fu">importance</span>(rf_model)</span>
+<span id="cb31-5"><a href="监督学习.html#cb31-5" tabindex="-1"></a>selected_features <span class="ot">&lt;-</span> <span class="fu">rownames</span>(importance)[importance <span class="sc">&gt;</span> <span class="fl">0.1</span>]</span>
+<span id="cb31-6"><a href="监督学习.html#cb31-6" tabindex="-1"></a>selected_features</span></code></pre></div>
+<pre><code>## [1] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Petal.Length&quot; &quot;Petal.Width&quot;</code></pre>
+</div>
+<div id="深度学习" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> 深度学习<a href="监督学习.html#深度学习" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>参考 :</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://rpubs.com/liam/DLWR" class="uri">https://rpubs.com/liam/DLWR</a></li>
+<li><a href="https://rpubs.com/liam/deeplearningR2" class="uri">https://rpubs.com/liam/deeplearningR2</a></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-常用包总结.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="无监督学习与自然语言.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-citations.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

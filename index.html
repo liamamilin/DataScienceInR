@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Data Science in R</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Data Science in R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Data Science in R" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="r语言与数据科学-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science In R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 简介</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#r语言与数据科学"><i class="fa fa-check"></i><b>1.1</b> R语言与数据科学</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#作者其他书籍"><i class="fa fa-check"></i><b>1.2</b> 作者其他书籍</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html"><i class="fa fa-check"></i><b>2</b> R语言与数据科学</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学简介"><i class="fa fa-check"></i><b>2.1</b> 数据科学简介</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的关键元素"><i class="fa fa-check"></i><b>2.1.1</b> 数据科学的关键元素：</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的应用领域"><i class="fa fa-check"></i><b>2.1.2</b> 数据科学的应用领域：</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学工具和编程语言"><i class="fa fa-check"></i><b>2.1.3</b> 数据科学工具和编程语言：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言的重要性"><i class="fa fa-check"></i><b>2.2</b> R语言的重要性</a></li>
+<li class="chapter" data-level="2.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r和rstudio的安装"><i class="fa fa-check"></i><b>2.3</b> R和RStudio的安装</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤一安装r语言"><i class="fa fa-check"></i><b>2.3.1</b> 步骤一：安装R语言</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤二安装rstudio"><i class="fa fa-check"></i><b>2.3.2</b> 步骤二：安装RStudio</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤三配置rstudio"><i class="fa fa-check"></i><b>2.3.3</b> 步骤三：配置RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包管理"><i class="fa fa-check"></i><b>2.4</b> 包管理</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#安装r包"><i class="fa fa-check"></i><b>2.4.1</b> 安装R包：</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#加载r包"><i class="fa fa-check"></i><b>2.4.2</b> 加载R包：</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#查看已安装的包"><i class="fa fa-check"></i><b>2.4.3</b> 查看已安装的包：</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#更新r包"><i class="fa fa-check"></i><b>2.4.4</b> 更新R包：</a></li>
+<li class="chapter" data-level="2.4.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#移除r包"><i class="fa fa-check"></i><b>2.4.5</b> 移除R包：</a></li>
+<li class="chapter" data-level="2.4.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包的搜索路径"><i class="fa fa-check"></i><b>2.4.6</b> 包的搜索路径：</a></li>
+<li class="chapter" data-level="2.4.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#版本控制"><i class="fa fa-check"></i><b>2.4.7</b> 版本控制：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言基本语法"><i class="fa fa-check"></i><b>2.5</b> R语言基本语法</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#变量与数据类型"><i class="fa fa-check"></i><b>2.5.1</b> 变量与数据类型</a></li>
+<li class="chapter" data-level="2.5.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据结构"><i class="fa fa-check"></i><b>2.5.2</b> 数据结构</a></li>
+<li class="chapter" data-level="2.5.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#控制结构"><i class="fa fa-check"></i><b>2.5.3</b> 控制结构</a></li>
+<li class="chapter" data-level="2.5.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#子集选取"><i class="fa fa-check"></i><b>2.5.4</b> 子集选取</a></li>
+<li class="chapter" data-level="2.5.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言面向对象系统"><i class="fa fa-check"></i><b>2.5.5</b> R语言面向对象系统</a></li>
+<li class="chapter" data-level="2.5.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#防御式编程和异常处理"><i class="fa fa-check"></i><b>2.5.6</b> 防御式编程和异常处理</a></li>
+<li class="chapter" data-level="2.5.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#函数式编程"><i class="fa fa-check"></i><b>2.5.7</b> 函数式编程</a></li>
+<li class="chapter" data-level="2.5.8" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#泛函"><i class="fa fa-check"></i><b>2.5.8</b> 泛函</a></li>
+<li class="chapter" data-level="2.5.9" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言函数运算符"><i class="fa fa-check"></i><b>2.5.9</b> R语言函数运算符</a></li>
+<li class="chapter" data-level="2.5.10" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言非标准计算"><i class="fa fa-check"></i><b>2.5.10</b> R语言非标准计算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r包开发"><i class="fa fa-check"></i><b>2.6</b> R包开发</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html"><i class="fa fa-check"></i><b>3</b> R 语言数据分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导入和导出"><i class="fa fa-check"></i><b>3.1</b> 数据导入和导出</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据读取"><i class="fa fa-check"></i><b>3.1.1</b> 数据读取</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导出"><i class="fa fa-check"></i><b>3.1.2</b> 数据导出</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据处理"><i class="fa fa-check"></i><b>3.2</b> R 语言数据处理</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#缺失值处理"><i class="fa fa-check"></i><b>3.2.1</b> 缺失值处理</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r异常值处理"><i class="fa fa-check"></i><b>3.2.2</b> R异常值处理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r探索性数据分析"><i class="fa fa-check"></i><b>3.3</b> R探索性数据分析</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#autoeda"><i class="fa fa-check"></i><b>3.3.1</b> AutoEDA</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据可视化"><i class="fa fa-check"></i><b>3.3.2</b> R 语言数据可视化</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r语言统计推断"><i class="fa fa-check"></i><b>3.4</b> R语言统计推断</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#方差分析"><i class="fa fa-check"></i><b>3.4.1</b> 方差分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#非参数检验"><i class="fa fa-check"></i><b>3.4.2</b> 非参数检验</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#回归"><i class="fa fa-check"></i><b>3.4.3</b> 回归</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#生存分析"><i class="fa fa-check"></i><b>3.4.4</b> 生存分析</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#多重比较校正"><i class="fa fa-check"></i><b>3.4.5</b> 多重比较校正</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#功效分析"><i class="fa fa-check"></i><b>3.4.6</b> 功效分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-常用包总结.html"><a href="r-常用包总结.html"><i class="fa fa-check"></i><b>4</b> R 常用包总结</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#dplyr-包"><i class="fa fa-check"></i><b>4.1</b> dplyr 包</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数"><i class="fa fa-check"></i><b>4.1.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#案例"><i class="fa fa-check"></i><b>4.1.2</b> 案例</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#tidyr-包"><i class="fa fa-check"></i><b>4.2</b> tidyr 包</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-1"><i class="fa fa-check"></i><b>4.2.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.2.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子"><i class="fa fa-check"></i><b>4.2.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="r-常用包总结.html"><a href="r-常用包总结.html#stringr"><i class="fa fa-check"></i><b>4.3</b> stringr</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-2"><i class="fa fa-check"></i><b>4.3.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子-1"><i class="fa fa-check"></i><b>4.3.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r-常用包总结.html"><a href="r-常用包总结.html#lubridate"><i class="fa fa-check"></i><b>4.4</b> lubridate</a></li>
+<li class="chapter" data-level="4.5" data-path="r-常用包总结.html"><a href="r-常用包总结.html#purrr"><i class="fa fa-check"></i><b>4.5</b> purrr</a></li>
+<li class="chapter" data-level="4.6" data-path="r-常用包总结.html"><a href="r-常用包总结.html#forcats"><i class="fa fa-check"></i><b>4.6</b> forcats</a></li>
+<li class="chapter" data-level="4.7" data-path="r-常用包总结.html"><a href="r-常用包总结.html#httr"><i class="fa fa-check"></i><b>4.7</b> httr</a></li>
+<li class="chapter" data-level="4.8" data-path="r-常用包总结.html"><a href="r-常用包总结.html#rlang"><i class="fa fa-check"></i><b>4.8</b> rlang</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="监督学习.html"><a href="监督学习.html"><i class="fa fa-check"></i><b>5</b> 监督学习</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="监督学习.html"><a href="监督学习.html#决策树"><i class="fa fa-check"></i><b>5.1</b> 决策树</a></li>
+<li class="chapter" data-level="5.2" data-path="监督学习.html"><a href="监督学习.html#随机森林"><i class="fa fa-check"></i><b>5.2</b> 随机森林</a></li>
+<li class="chapter" data-level="5.3" data-path="监督学习.html"><a href="监督学习.html#xgboost"><i class="fa fa-check"></i><b>5.3</b> Xgboost</a></li>
+<li class="chapter" data-level="5.4" data-path="监督学习.html"><a href="监督学习.html#特征选择"><i class="fa fa-check"></i><b>5.4</b> 特征选择</a></li>
+<li class="chapter" data-level="5.5" data-path="监督学习.html"><a href="监督学习.html#深度学习"><i class="fa fa-check"></i><b>5.5</b> 深度学习</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html"><i class="fa fa-check"></i><b>6</b> 无监督学习与自然语言</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#k-均值聚类"><i class="fa fa-check"></i><b>6.1</b> K 均值聚类</a></li>
+<li class="chapter" data-level="6.2" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#层次聚类"><i class="fa fa-check"></i><b>6.2</b> 层次聚类</a></li>
+<li class="chapter" data-level="6.3" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#dbscan"><i class="fa fa-check"></i><b>6.3</b> DBSCAN</a></li>
+<li class="chapter" data-level="6.4" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#自然语言处理"><i class="fa fa-check"></i><b>6.4</b> 自然语言处理</a></li>
+<li class="chapter" data-level="6.5" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#时间序列"><i class="fa fa-check"></i><b>6.5</b> 时间序列</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="流程挖掘.html"><a href="流程挖掘.html"><i class="fa fa-check"></i><b>7</b> 流程挖掘</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="流程挖掘.html"><a href="流程挖掘.html#流程发现"><i class="fa fa-check"></i><b>7.1</b> 流程发现</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html"><i class="fa fa-check"></i><b>8</b> 可解释机器学习与因果推断</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#可解释机器学习"><i class="fa fa-check"></i><b>8.1</b> 可解释机器学习</a></li>
+<li class="chapter" data-level="8.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断"><i class="fa fa-check"></i><b>8.2</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断起源"><i class="fa fa-check"></i><b>8.2.1</b> 因果推断起源</a></li>
+<li class="chapter" data-level="8.2.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断介绍"><i class="fa fa-check"></i><b>8.2.2</b> 因果推断介绍</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Data Science in R</h1>
+<p class="author"><em>米霖</em></p>
+<p class="date"><em>2023</em></p>
+</div>
+<div id="简介" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> 简介<a href="index.html#简介" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="r语言与数据科学" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> R语言与数据科学<a href="index.html#r语言与数据科学" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R语言是一种广泛用于数据科学的编程语言，它为数据分析、统计建模、机器学习和数据可视化提供了丰富的工具和库。数据科学是一门跨学科领域，利用统计学、计算机科学和领域专业知识，从数据中提取见解、构建预测模型，并解决实际问题。R语言为数据科学家提供了强大的分析能力，使他们能够处理和理解数据，发现模式，做出数据驱动的决策，推动科研、商业和社会创新。数据科学领域中的任务包括数据清洗、特征工程、建模、评估、可视化和解释结果，而R语言是这一过程中的关键工具之一。</p>
+</div>
+<div id="作者其他书籍" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> 作者其他书籍<a href="index.html#作者其他书籍" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>米霖.(2020). 深入浅出R语言数据分析,中国:清华大学出版社 –url:<a href="http://www.tup.com.cn/bookscenter/book_08573301.html" class="uri">http://www.tup.com.cn/bookscenter/book_08573301.html</a></li>
+<li>米霖.(2021). R语言数据可视化实战 .中国:机械工业出版社 – url:<a href="https://www.hzmedia.com.cn/books11121329" class="uri">https://www.hzmedia.com.cn/books11121329</a></li>
+<li>R语言数据分析案例. -电子版下载链接为: <a href="https://bit.ly/3sz0Iet" class="uri">https://bit.ly/3sz0Iet</a></li>
+<li>Python 数据科学 . -链接为: <a href="https://liamamilin.github.io/PythonDatascience/" class="uri">https://liamamilin.github.io/PythonDatascience/</a></li>
+</ol>
+<p><img src="https://pica.zhimg.com/80/v2-75a7993462d793466a62e7e53f588e31_1440w.jpeg" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="r语言与数据科学-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

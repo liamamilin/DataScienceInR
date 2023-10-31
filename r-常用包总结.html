@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 R 常用包总结 | Data Science in R</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 R 常用包总结 | Data Science in R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 R 常用包总结 | Data Science in R" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-语言数据分析.html"/>
+<link rel="next" href="监督学习.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science In R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#r语言与数据科学"><i class="fa fa-check"></i><b>1.1</b> R语言与数据科学</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#作者其他书籍"><i class="fa fa-check"></i><b>1.2</b> 作者其他书籍</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html"><i class="fa fa-check"></i><b>2</b> R语言与数据科学</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学简介"><i class="fa fa-check"></i><b>2.1</b> 数据科学简介</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的关键元素"><i class="fa fa-check"></i><b>2.1.1</b> 数据科学的关键元素：</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的应用领域"><i class="fa fa-check"></i><b>2.1.2</b> 数据科学的应用领域：</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学工具和编程语言"><i class="fa fa-check"></i><b>2.1.3</b> 数据科学工具和编程语言：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言的重要性"><i class="fa fa-check"></i><b>2.2</b> R语言的重要性</a></li>
+<li class="chapter" data-level="2.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r和rstudio的安装"><i class="fa fa-check"></i><b>2.3</b> R和RStudio的安装</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤一安装r语言"><i class="fa fa-check"></i><b>2.3.1</b> 步骤一：安装R语言</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤二安装rstudio"><i class="fa fa-check"></i><b>2.3.2</b> 步骤二：安装RStudio</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤三配置rstudio"><i class="fa fa-check"></i><b>2.3.3</b> 步骤三：配置RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包管理"><i class="fa fa-check"></i><b>2.4</b> 包管理</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#安装r包"><i class="fa fa-check"></i><b>2.4.1</b> 安装R包：</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#加载r包"><i class="fa fa-check"></i><b>2.4.2</b> 加载R包：</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#查看已安装的包"><i class="fa fa-check"></i><b>2.4.3</b> 查看已安装的包：</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#更新r包"><i class="fa fa-check"></i><b>2.4.4</b> 更新R包：</a></li>
+<li class="chapter" data-level="2.4.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#移除r包"><i class="fa fa-check"></i><b>2.4.5</b> 移除R包：</a></li>
+<li class="chapter" data-level="2.4.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包的搜索路径"><i class="fa fa-check"></i><b>2.4.6</b> 包的搜索路径：</a></li>
+<li class="chapter" data-level="2.4.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#版本控制"><i class="fa fa-check"></i><b>2.4.7</b> 版本控制：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言基本语法"><i class="fa fa-check"></i><b>2.5</b> R语言基本语法</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#变量与数据类型"><i class="fa fa-check"></i><b>2.5.1</b> 变量与数据类型</a></li>
+<li class="chapter" data-level="2.5.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据结构"><i class="fa fa-check"></i><b>2.5.2</b> 数据结构</a></li>
+<li class="chapter" data-level="2.5.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#控制结构"><i class="fa fa-check"></i><b>2.5.3</b> 控制结构</a></li>
+<li class="chapter" data-level="2.5.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#子集选取"><i class="fa fa-check"></i><b>2.5.4</b> 子集选取</a></li>
+<li class="chapter" data-level="2.5.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言面向对象系统"><i class="fa fa-check"></i><b>2.5.5</b> R语言面向对象系统</a></li>
+<li class="chapter" data-level="2.5.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#防御式编程和异常处理"><i class="fa fa-check"></i><b>2.5.6</b> 防御式编程和异常处理</a></li>
+<li class="chapter" data-level="2.5.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#函数式编程"><i class="fa fa-check"></i><b>2.5.7</b> 函数式编程</a></li>
+<li class="chapter" data-level="2.5.8" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#泛函"><i class="fa fa-check"></i><b>2.5.8</b> 泛函</a></li>
+<li class="chapter" data-level="2.5.9" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言函数运算符"><i class="fa fa-check"></i><b>2.5.9</b> R语言函数运算符</a></li>
+<li class="chapter" data-level="2.5.10" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言非标准计算"><i class="fa fa-check"></i><b>2.5.10</b> R语言非标准计算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r包开发"><i class="fa fa-check"></i><b>2.6</b> R包开发</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html"><i class="fa fa-check"></i><b>3</b> R 语言数据分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导入和导出"><i class="fa fa-check"></i><b>3.1</b> 数据导入和导出</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据读取"><i class="fa fa-check"></i><b>3.1.1</b> 数据读取</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导出"><i class="fa fa-check"></i><b>3.1.2</b> 数据导出</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据处理"><i class="fa fa-check"></i><b>3.2</b> R 语言数据处理</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#缺失值处理"><i class="fa fa-check"></i><b>3.2.1</b> 缺失值处理</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r异常值处理"><i class="fa fa-check"></i><b>3.2.2</b> R异常值处理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r探索性数据分析"><i class="fa fa-check"></i><b>3.3</b> R探索性数据分析</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#autoeda"><i class="fa fa-check"></i><b>3.3.1</b> AutoEDA</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据可视化"><i class="fa fa-check"></i><b>3.3.2</b> R 语言数据可视化</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r语言统计推断"><i class="fa fa-check"></i><b>3.4</b> R语言统计推断</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#方差分析"><i class="fa fa-check"></i><b>3.4.1</b> 方差分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#非参数检验"><i class="fa fa-check"></i><b>3.4.2</b> 非参数检验</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#回归"><i class="fa fa-check"></i><b>3.4.3</b> 回归</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#生存分析"><i class="fa fa-check"></i><b>3.4.4</b> 生存分析</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#多重比较校正"><i class="fa fa-check"></i><b>3.4.5</b> 多重比较校正</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#功效分析"><i class="fa fa-check"></i><b>3.4.6</b> 功效分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-常用包总结.html"><a href="r-常用包总结.html"><i class="fa fa-check"></i><b>4</b> R 常用包总结</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#dplyr-包"><i class="fa fa-check"></i><b>4.1</b> dplyr 包</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数"><i class="fa fa-check"></i><b>4.1.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#案例"><i class="fa fa-check"></i><b>4.1.2</b> 案例</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#tidyr-包"><i class="fa fa-check"></i><b>4.2</b> tidyr 包</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-1"><i class="fa fa-check"></i><b>4.2.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.2.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子"><i class="fa fa-check"></i><b>4.2.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="r-常用包总结.html"><a href="r-常用包总结.html#stringr"><i class="fa fa-check"></i><b>4.3</b> stringr</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-2"><i class="fa fa-check"></i><b>4.3.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子-1"><i class="fa fa-check"></i><b>4.3.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r-常用包总结.html"><a href="r-常用包总结.html#lubridate"><i class="fa fa-check"></i><b>4.4</b> lubridate</a></li>
+<li class="chapter" data-level="4.5" data-path="r-常用包总结.html"><a href="r-常用包总结.html#purrr"><i class="fa fa-check"></i><b>4.5</b> purrr</a></li>
+<li class="chapter" data-level="4.6" data-path="r-常用包总结.html"><a href="r-常用包总结.html#forcats"><i class="fa fa-check"></i><b>4.6</b> forcats</a></li>
+<li class="chapter" data-level="4.7" data-path="r-常用包总结.html"><a href="r-常用包总结.html#httr"><i class="fa fa-check"></i><b>4.7</b> httr</a></li>
+<li class="chapter" data-level="4.8" data-path="r-常用包总结.html"><a href="r-常用包总结.html#rlang"><i class="fa fa-check"></i><b>4.8</b> rlang</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="监督学习.html"><a href="监督学习.html"><i class="fa fa-check"></i><b>5</b> 监督学习</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="监督学习.html"><a href="监督学习.html#决策树"><i class="fa fa-check"></i><b>5.1</b> 决策树</a></li>
+<li class="chapter" data-level="5.2" data-path="监督学习.html"><a href="监督学习.html#随机森林"><i class="fa fa-check"></i><b>5.2</b> 随机森林</a></li>
+<li class="chapter" data-level="5.3" data-path="监督学习.html"><a href="监督学习.html#xgboost"><i class="fa fa-check"></i><b>5.3</b> Xgboost</a></li>
+<li class="chapter" data-level="5.4" data-path="监督学习.html"><a href="监督学习.html#特征选择"><i class="fa fa-check"></i><b>5.4</b> 特征选择</a></li>
+<li class="chapter" data-level="5.5" data-path="监督学习.html"><a href="监督学习.html#深度学习"><i class="fa fa-check"></i><b>5.5</b> 深度学习</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html"><i class="fa fa-check"></i><b>6</b> 无监督学习与自然语言</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#k-均值聚类"><i class="fa fa-check"></i><b>6.1</b> K 均值聚类</a></li>
+<li class="chapter" data-level="6.2" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#层次聚类"><i class="fa fa-check"></i><b>6.2</b> 层次聚类</a></li>
+<li class="chapter" data-level="6.3" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#dbscan"><i class="fa fa-check"></i><b>6.3</b> DBSCAN</a></li>
+<li class="chapter" data-level="6.4" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#自然语言处理"><i class="fa fa-check"></i><b>6.4</b> 自然语言处理</a></li>
+<li class="chapter" data-level="6.5" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#时间序列"><i class="fa fa-check"></i><b>6.5</b> 时间序列</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="流程挖掘.html"><a href="流程挖掘.html"><i class="fa fa-check"></i><b>7</b> 流程挖掘</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="流程挖掘.html"><a href="流程挖掘.html#流程发现"><i class="fa fa-check"></i><b>7.1</b> 流程发现</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html"><i class="fa fa-check"></i><b>8</b> 可解释机器学习与因果推断</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#可解释机器学习"><i class="fa fa-check"></i><b>8.1</b> 可解释机器学习</a></li>
+<li class="chapter" data-level="8.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断"><i class="fa fa-check"></i><b>8.2</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断起源"><i class="fa fa-check"></i><b>8.2.1</b> 因果推断起源</a></li>
+<li class="chapter" data-level="8.2.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断介绍"><i class="fa fa-check"></i><b>8.2.2</b> 因果推断介绍</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-常用包总结" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> R 常用包总结<a href="r-常用包总结.html#r-常用包总结" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="dplyr-包" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> dplyr 包<a href="r-常用包总结.html#dplyr-包" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>dplyr 包是R语言中用于数据操作和数据变换的重要包，它提供了一组简单而一致的函数，用于对数据框进行筛选、变换、汇总和可视化等操作。以下是对dplyr包的全面总结，包括其主要函数和示例用法</p>
+<div id="主要函数" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> 主要函数：<a href="r-常用包总结.html#主要函数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>dplyr包提供了一系列主要函数，用于数据操作和变换。</p>
+<ol style="list-style-type: decimal">
+<li>filter()：用于筛选行，根据指定条件保留符合条件的观测值。</li>
+</ol>
+<pre><code>filtered_data &lt;- filter(data_frame, condition)
+</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>select()：用于选择列，从数据框中选择指定的列。</li>
+</ol>
+<pre><code>selected_data &lt;- select(data_frame, column1, column2)
+</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>mutate()：用于创建新列或修改现有列。</li>
+</ol>
+<pre><code>mutated_data &lt;- mutate(data_frame, new_column = expression)
+</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>arrange()：用于对数据按照指定列的值进行排序。</li>
+</ol>
+<pre><code>sorted_data &lt;- arrange(data_frame, column_to_sort)
+</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>summarize()：用于对数据进行汇总，计算统计量。</li>
+</ol>
+<pre><code>summary_stats &lt;- summarize(data_frame, stat = aggregation_function(column))
+</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>group_by()：用于分组数据，为后续汇总操作创建组。</li>
+</ol>
+<pre><code>grouped_data &lt;- group_by(data_frame, group_column)
+</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>join()：用于连接多个数据框。</li>
+</ol>
+<pre><code>merged_data &lt;- left_join(data_frame1, data_frame2, by = &quot;key_column&quot;)
+</code></pre>
+</div>
+<div id="案例" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> 案例<a href="r-常用包总结.html#案例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>下面来看一个简答的例子</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="r-常用包总结.html#cb8-1" tabindex="-1"></a><span class="co"># 加载dplyr包</span></span>
+<span id="cb8-2"><a href="r-常用包总结.html#cb8-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r-常用包总结.html#cb12-1" tabindex="-1"></a><span class="co"># 创建示例数据框</span></span>
+<span id="cb12-2"><a href="r-常用包总结.html#cb12-2" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-3"><a href="r-常用包总结.html#cb12-3" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb12-4"><a href="r-常用包总结.html#cb12-4" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>, <span class="st">&quot;David&quot;</span>, <span class="st">&quot;Eve&quot;</span>),</span>
+<span id="cb12-5"><a href="r-常用包总结.html#cb12-5" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>, <span class="dv">28</span>, <span class="dv">32</span>)</span>
+<span id="cb12-6"><a href="r-常用包总结.html#cb12-6" tabindex="-1"></a>)</span>
+<span id="cb12-7"><a href="r-常用包总结.html#cb12-7" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="r-常用包总结.html#cb12-8" tabindex="-1"></a><span class="co"># 1. 筛选年龄大于25的观测值</span></span>
+<span id="cb12-9"><a href="r-常用包总结.html#cb12-9" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="fu">filter</span>(data_frame, Age <span class="sc">&gt;</span> <span class="dv">25</span>)</span>
+<span id="cb12-10"><a href="r-常用包总结.html#cb12-10" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="r-常用包总结.html#cb12-11" tabindex="-1"></a><span class="co"># 2. 选择ID和Name列</span></span>
+<span id="cb12-12"><a href="r-常用包总结.html#cb12-12" tabindex="-1"></a>selected_data <span class="ot">&lt;-</span> <span class="fu">select</span>(data_frame, ID, Name)</span>
+<span id="cb12-13"><a href="r-常用包总结.html#cb12-13" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="r-常用包总结.html#cb12-14" tabindex="-1"></a><span class="co"># 3. 创建一个新列Age_Group，根据Age列的值分类</span></span>
+<span id="cb12-15"><a href="r-常用包总结.html#cb12-15" tabindex="-1"></a>mutated_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(data_frame, <span class="at">Age_Group =</span> <span class="fu">ifelse</span>(Age <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="st">&quot;Old&quot;</span>, <span class="st">&quot;Young&quot;</span>))</span>
+<span id="cb12-16"><a href="r-常用包总结.html#cb12-16" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="r-常用包总结.html#cb12-17" tabindex="-1"></a><span class="co"># 4. 按照Age列进行升序排序</span></span>
+<span id="cb12-18"><a href="r-常用包总结.html#cb12-18" tabindex="-1"></a>sorted_data <span class="ot">&lt;-</span> <span class="fu">arrange</span>(data_frame, Age)</span>
+<span id="cb12-19"><a href="r-常用包总结.html#cb12-19" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="r-常用包总结.html#cb12-20" tabindex="-1"></a><span class="co"># 5. 汇总年龄的均值和标准差</span></span>
+<span id="cb12-21"><a href="r-常用包总结.html#cb12-21" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> <span class="fu">summarize</span>(data_frame, <span class="at">Mean_Age =</span> <span class="fu">mean</span>(Age), <span class="at">SD_Age =</span> <span class="fu">sd</span>(Age))</span>
+<span id="cb12-22"><a href="r-常用包总结.html#cb12-22" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="r-常用包总结.html#cb12-23" tabindex="-1"></a><span class="co"># 6. 根据Age_Group列分组</span></span>
+<span id="cb12-24"><a href="r-常用包总结.html#cb12-24" tabindex="-1"></a>grouped_data <span class="ot">&lt;-</span> <span class="fu">group_by</span>(data_frame, Name)</span>
+<span id="cb12-25"><a href="r-常用包总结.html#cb12-25" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="r-常用包总结.html#cb12-26" tabindex="-1"></a><span class="co"># 7. 连接两个数据框</span></span>
+<span id="cb12-27"><a href="r-常用包总结.html#cb12-27" tabindex="-1"></a>data_frame2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">Score =</span> <span class="fu">c</span>(<span class="dv">85</span>, <span class="dv">92</span>, <span class="dv">78</span>, <span class="dv">88</span>, <span class="dv">95</span>))</span>
+<span id="cb12-28"><a href="r-常用包总结.html#cb12-28" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(data_frame, data_frame2, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="tidyr-包" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> tidyr 包<a href="r-常用包总结.html#tidyr-包" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>tidyr 包是R语言中用于数据重塑和整理的重要包，它提供了一组函数，用于将数据从宽格式转换为长格式，或者从长格式转换为宽格式。</p>
+<div id="主要函数-1" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> 主要函数：<a href="r-常用包总结.html#主要函数-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>gather()：用于将宽格式数据转换为长格式。</li>
+</ol>
+<pre><code>gathered_data &lt;- gather(data_frame, key = &quot;new_key&quot;, value = &quot;new_value&quot;, columns_to_gather)
+</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>spread()：用于将长格式数据转换为宽格式。</li>
+</ol>
+<pre><code>spread_data &lt;- spread(data_frame, key = &quot;new_key&quot;, value = &quot;new_value&quot;)
+</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>separate()：用于将一个列拆分为多个列。</li>
+</ol>
+<pre><code>separated_data &lt;- separate(data_frame, col = &quot;column_to_split&quot;, into = c(&quot;new_col1&quot;, &quot;new_col2&quot;), sep = &quot;separator&quot;)
+</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>unite()：用于将多个列合并为一个列。</li>
+</ol>
+<pre><code>united_data &lt;- unite(data_frame, col = &quot;new_column&quot;, cols_to_unite, sep = &quot;separator&quot;)
+</code></pre>
+</div>
+<div id="例子" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> 例子<a href="r-常用包总结.html#例子" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>下面是使用tidyr包进行数据整理和重塑的示例：</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="r-常用包总结.html#cb17-1" tabindex="-1"></a><span class="co"># 加载tidyr包</span></span>
+<span id="cb17-2"><a href="r-常用包总结.html#cb17-2" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb17-3"><a href="r-常用包总结.html#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="r-常用包总结.html#cb17-4" tabindex="-1"></a><span class="co"># 创建示例数据框</span></span>
+<span id="cb17-5"><a href="r-常用包总结.html#cb17-5" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-6"><a href="r-常用包总结.html#cb17-6" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb17-7"><a href="r-常用包总结.html#cb17-7" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>),</span>
+<span id="cb17-8"><a href="r-常用包总结.html#cb17-8" tabindex="-1"></a>  <span class="at">Test1_Score =</span> <span class="fu">c</span>(<span class="dv">95</span>, <span class="dv">88</span>, <span class="dv">92</span>),</span>
+<span id="cb17-9"><a href="r-常用包总结.html#cb17-9" tabindex="-1"></a>  <span class="at">Test2_Score =</span> <span class="fu">c</span>(<span class="dv">87</span>, <span class="dv">91</span>, <span class="dv">84</span>)</span>
+<span id="cb17-10"><a href="r-常用包总结.html#cb17-10" tabindex="-1"></a>)</span>
+<span id="cb17-11"><a href="r-常用包总结.html#cb17-11" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="r-常用包总结.html#cb17-12" tabindex="-1"></a><span class="co"># 1. 将宽格式数据转换为长格式</span></span>
+<span id="cb17-13"><a href="r-常用包总结.html#cb17-13" tabindex="-1"></a>long_data <span class="ot">&lt;-</span> <span class="fu">gather</span>(data_frame, <span class="at">key =</span> <span class="st">&quot;Test&quot;</span>, <span class="at">value =</span> <span class="st">&quot;Score&quot;</span>, Test1_Score, Test2_Score)</span>
+<span id="cb17-14"><a href="r-常用包总结.html#cb17-14" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="r-常用包总结.html#cb17-15" tabindex="-1"></a><span class="co"># 2. 将长格式数据转换为宽格式</span></span>
+<span id="cb17-16"><a href="r-常用包总结.html#cb17-16" tabindex="-1"></a>wide_data <span class="ot">&lt;-</span> <span class="fu">spread</span>(long_data, <span class="at">key =</span> <span class="st">&quot;Test&quot;</span>, <span class="at">value =</span> <span class="st">&quot;Score&quot;</span>)</span>
+<span id="cb17-17"><a href="r-常用包总结.html#cb17-17" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="r-常用包总结.html#cb17-18" tabindex="-1"></a><span class="co"># 创建示例数据框</span></span>
+<span id="cb17-19"><a href="r-常用包总结.html#cb17-19" tabindex="-1"></a>data_frame2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-20"><a href="r-常用包总结.html#cb17-20" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb17-21"><a href="r-常用包总结.html#cb17-21" tabindex="-1"></a>  <span class="at">FullName =</span> <span class="fu">c</span>(<span class="st">&quot;Alice Johnson&quot;</span>, <span class="st">&quot;Bob Smith&quot;</span>, <span class="st">&quot;Charlie Brown&quot;</span>),</span>
+<span id="cb17-22"><a href="r-常用包总结.html#cb17-22" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>)</span>
+<span id="cb17-23"><a href="r-常用包总结.html#cb17-23" tabindex="-1"></a>)</span>
+<span id="cb17-24"><a href="r-常用包总结.html#cb17-24" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="r-常用包总结.html#cb17-25" tabindex="-1"></a><span class="co"># 3. 将FullName列拆分为First_Name和Last_Name列</span></span>
+<span id="cb17-26"><a href="r-常用包总结.html#cb17-26" tabindex="-1"></a>split_data <span class="ot">&lt;-</span> <span class="fu">separate</span>(data_frame2, <span class="at">col =</span> FullName, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;First_Name&quot;</span>, <span class="st">&quot;Last_Name&quot;</span>), <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb17-27"><a href="r-常用包总结.html#cb17-27" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="r-常用包总结.html#cb17-28" tabindex="-1"></a><span class="co"># 4. 将First_Name和Last_Name列合并为FullName列</span></span>
+<span id="cb17-29"><a href="r-常用包总结.html#cb17-29" tabindex="-1"></a>united_data <span class="ot">&lt;-</span> <span class="fu">unite</span>(split_data, <span class="at">col =</span> <span class="st">&quot;FullName&quot;</span>, First_Name, Last_Name, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="stringr" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> stringr<a href="r-常用包总结.html#stringr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>stringr 包是R语言中用于字符串处理的包，它提供了一组简单而一致的函数，用于对字符串进行操作、提取信息和进行模式匹配等操作。</p>
+<div id="主要函数-2" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> 主要函数：<a href="r-常用包总结.html#主要函数-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>str_length()：用于计算字符串的长度。</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="r-常用包总结.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb18-2"><a href="r-常用包总结.html#cb18-2" tabindex="-1"></a>string_length <span class="ot">&lt;-</span> <span class="fu">str_length</span>(<span class="st">&quot;Hello, world!&quot;</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>str_c()：用于连接多个字符串。</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="r-常用包总结.html#cb19-1" tabindex="-1"></a>concatenated_string <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;, &quot;</span>, <span class="st">&quot;world!&quot;</span>)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>str_sub()：用于截取字符串的子串。</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="r-常用包总结.html#cb20-1" tabindex="-1"></a>substring <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(<span class="st">&quot;Hello, world!&quot;</span>, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">5</span>)</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>str_replace()：用于替换字符串中的指定子串。</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="r-常用包总结.html#cb21-1" tabindex="-1"></a>replaced_string <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(<span class="st">&quot;Hello, world!&quot;</span>, <span class="st">&quot;world&quot;</span>, <span class="st">&quot;there&quot;</span>)</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>str_detect()：用于检测字符串中是否包含特定模式</li>
+</ol>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r-常用包总结.html#cb22-1" tabindex="-1"></a>contains_pattern <span class="ot">&lt;-</span> <span class="fu">str_detect</span>(<span class="st">&quot;Hello, world!&quot;</span>, <span class="st">&quot;world&quot;</span>)</span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>str_split()：用于将字符串分割为子字符串</li>
+</ol>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="r-常用包总结.html#cb23-1" tabindex="-1"></a>split_strings <span class="ot">&lt;-</span> <span class="fu">str_split</span>(<span class="st">&quot;apple,banana,cherry&quot;</span>, <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+</div>
+<div id="例子-1" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> 例子<a href="r-常用包总结.html#例子-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="r-常用包总结.html#cb24-1" tabindex="-1"></a><span class="co"># 加载stringr包</span></span>
+<span id="cb24-2"><a href="r-常用包总结.html#cb24-2" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb24-3"><a href="r-常用包总结.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="r-常用包总结.html#cb24-4" tabindex="-1"></a><span class="co"># 1. 计算字符串长度</span></span>
+<span id="cb24-5"><a href="r-常用包总结.html#cb24-5" tabindex="-1"></a>string_length <span class="ot">&lt;-</span> <span class="fu">str_length</span>(<span class="st">&quot;Hello, world!&quot;</span>)</span>
+<span id="cb24-6"><a href="r-常用包总结.html#cb24-6" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="r-常用包总结.html#cb24-7" tabindex="-1"></a><span class="co"># 2. 连接多个字符串</span></span>
+<span id="cb24-8"><a href="r-常用包总结.html#cb24-8" tabindex="-1"></a>concatenated_string <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;, &quot;</span>, <span class="st">&quot;world!&quot;</span>)</span>
+<span id="cb24-9"><a href="r-常用包总结.html#cb24-9" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="r-常用包总结.html#cb24-10" tabindex="-1"></a><span class="co"># 3. 截取字符串的子串</span></span>
+<span id="cb24-11"><a href="r-常用包总结.html#cb24-11" tabindex="-1"></a>substring <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(<span class="st">&quot;Hello, world!&quot;</span>, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">5</span>)</span>
+<span id="cb24-12"><a href="r-常用包总结.html#cb24-12" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="r-常用包总结.html#cb24-13" tabindex="-1"></a><span class="co"># 4. 替换字符串中的子串</span></span>
+<span id="cb24-14"><a href="r-常用包总结.html#cb24-14" tabindex="-1"></a>replaced_string <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(<span class="st">&quot;Hello, world!&quot;</span>, <span class="st">&quot;world&quot;</span>, <span class="st">&quot;there&quot;</span>)</span>
+<span id="cb24-15"><a href="r-常用包总结.html#cb24-15" tabindex="-1"></a></span>
+<span id="cb24-16"><a href="r-常用包总结.html#cb24-16" tabindex="-1"></a><span class="co"># 5. 检测字符串中是否包含特定模式</span></span>
+<span id="cb24-17"><a href="r-常用包总结.html#cb24-17" tabindex="-1"></a>contains_pattern <span class="ot">&lt;-</span> <span class="fu">str_detect</span>(<span class="st">&quot;Hello, world!&quot;</span>, <span class="st">&quot;world&quot;</span>)</span>
+<span id="cb24-18"><a href="r-常用包总结.html#cb24-18" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="r-常用包总结.html#cb24-19" tabindex="-1"></a><span class="co"># 6. 将字符串分割为子字符串</span></span>
+<span id="cb24-20"><a href="r-常用包总结.html#cb24-20" tabindex="-1"></a>split_strings <span class="ot">&lt;-</span> <span class="fu">str_split</span>(<span class="st">&quot;apple,banana,cherry&quot;</span>, <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="lubridate" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> lubridate<a href="r-常用包总结.html#lubridate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>lubridate 包是R语言中用于日期和时间处理的包，它提供了一组函数，用于解析、操作、格式化和计算日期时间数据。</p>
+<p>lubridate包提供了一系列主要函数，用于日期和时间处理。</p>
+<ol style="list-style-type: decimal">
+<li>日期解析函数：</li>
+</ol>
+<ul>
+<li>ymd()：解析年-月-日格式的日期。</li>
+<li>mdy()：解析月-日-年格式的日期。</li>
+<li>dmy()：解析日-月-年格式的日期。</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>日期时间提取函数：</li>
+</ol>
+<ul>
+<li>year()：提取日期的年份。</li>
+<li>month()：提取日期的月份。</li>
+<li>day()：提取日期的日份。</li>
+<li>hour()：提取时间的小时。</li>
+<li>minute()：提取时间的分钟。</li>
+<li>second()：提取时间的秒数。</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>日期时间格式化函数：</li>
+</ol>
+<ul>
+<li>format()：将日期时间格式化为指定的字符串格式。</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>日期时间运算函数：</li>
+</ol>
+<ul>
+<li>duration()：创建时间间隔。</li>
+<li>interval()：创建时间区间。</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="r-常用包总结.html#cb25-1" tabindex="-1"></a><span class="co"># 加载lubridate包</span></span>
+<span id="cb25-2"><a href="r-常用包总结.html#cb25-2" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+<pre><code>## Loading required package: timechange</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="r-常用包总结.html#cb29-1" tabindex="-1"></a><span class="co"># 创建日期对象</span></span>
+<span id="cb29-2"><a href="r-常用包总结.html#cb29-2" tabindex="-1"></a>date_obj <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">&quot;2023-10-30&quot;</span>)</span>
+<span id="cb29-3"><a href="r-常用包总结.html#cb29-3" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="r-常用包总结.html#cb29-4" tabindex="-1"></a><span class="co"># 1. 提取日期的年份、月份和日份</span></span>
+<span id="cb29-5"><a href="r-常用包总结.html#cb29-5" tabindex="-1"></a>year_value <span class="ot">&lt;-</span> <span class="fu">year</span>(date_obj)</span>
+<span id="cb29-6"><a href="r-常用包总结.html#cb29-6" tabindex="-1"></a>month_value <span class="ot">&lt;-</span> <span class="fu">month</span>(date_obj)</span>
+<span id="cb29-7"><a href="r-常用包总结.html#cb29-7" tabindex="-1"></a>day_value <span class="ot">&lt;-</span> <span class="fu">day</span>(date_obj)</span>
+<span id="cb29-8"><a href="r-常用包总结.html#cb29-8" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="r-常用包总结.html#cb29-9" tabindex="-1"></a><span class="co"># 2. 格式化日期时间为指定格式</span></span>
+<span id="cb29-10"><a href="r-常用包总结.html#cb29-10" tabindex="-1"></a>formatted_date <span class="ot">&lt;-</span> <span class="fu">format</span>(date_obj, <span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
+<span id="cb29-11"><a href="r-常用包总结.html#cb29-11" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="r-常用包总结.html#cb29-12" tabindex="-1"></a><span class="co"># 创建日期时间对象</span></span>
+<span id="cb29-13"><a href="r-常用包总结.html#cb29-13" tabindex="-1"></a>datetime_obj <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2023-10-30 12:34:56&quot;</span>)</span>
+<span id="cb29-14"><a href="r-常用包总结.html#cb29-14" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="r-常用包总结.html#cb29-15" tabindex="-1"></a><span class="co"># 3. 提取时间的小时、分钟和秒数</span></span>
+<span id="cb29-16"><a href="r-常用包总结.html#cb29-16" tabindex="-1"></a>hour_value <span class="ot">&lt;-</span> <span class="fu">hour</span>(datetime_obj)</span>
+<span id="cb29-17"><a href="r-常用包总结.html#cb29-17" tabindex="-1"></a>minute_value <span class="ot">&lt;-</span> <span class="fu">minute</span>(datetime_obj)</span>
+<span id="cb29-18"><a href="r-常用包总结.html#cb29-18" tabindex="-1"></a>second_value <span class="ot">&lt;-</span> <span class="fu">second</span>(datetime_obj)</span>
+<span id="cb29-19"><a href="r-常用包总结.html#cb29-19" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="r-常用包总结.html#cb29-20" tabindex="-1"></a><span class="co"># 4. 创建时间间隔</span></span>
+<span id="cb29-21"><a href="r-常用包总结.html#cb29-21" tabindex="-1"></a>time_interval <span class="ot">&lt;-</span> <span class="fu">duration</span>(<span class="at">hours =</span> <span class="dv">2</span>, <span class="at">minutes =</span> <span class="dv">30</span>)</span>
+<span id="cb29-22"><a href="r-常用包总结.html#cb29-22" tabindex="-1"></a></span>
+<span id="cb29-23"><a href="r-常用包总结.html#cb29-23" tabindex="-1"></a><span class="co"># 5. 创建时间区间</span></span>
+<span id="cb29-24"><a href="r-常用包总结.html#cb29-24" tabindex="-1"></a>time_interval <span class="ot">&lt;-</span> <span class="fu">interval</span>(<span class="at">start =</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2023-10-30 12:00:00&quot;</span>), <span class="at">end =</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2023-10-30 14:30:00&quot;</span>))</span></code></pre></div>
+<p>lubridate包提供了方便的函数，用于处理日期和时间数据，使日期解析、提取和计算等操作更加简单和高效。这些函数对于数据分析和时间序列分析非常有用。</p>
+</div>
+<div id="purrr" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> purrr<a href="r-常用包总结.html#purrr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>purrr 包是R语言中用于函数式编程的包，它提供了一组功能强大的工具，用于处理数据、应用函数、映射、过滤和简化编程任务。</p>
+<p>purrr包提供了一系列主要函数，用于函数式编程和数据操作。</p>
+<ol style="list-style-type: decimal">
+<li><p>map()：用于将函数应用于列表、向量或数据框的每个元素，并返回结果列表。</p></li>
+<li><p>map2()：用于同时遍历两个列表并将函数应用于对应元素。</p></li>
+<li><p>map_df()：类似于map()，但返回一个数据框。</p></li>
+<li><p>map_dbl()：类似于map()，但返回一个双精度向量。</p></li>
+<li><p>map_int()：类似于map()，但返回一个整数向量。</p></li>
+<li><p>map_lgl()：类似于map()，但返回一个逻辑向量。</p></li>
+<li><p>map_chr()：类似于map()，但返回一个字符向量。</p></li>
+<li><p>map_if()：根据条件筛选要应用函数的元素。</p></li>
+</ol>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="r-常用包总结.html#cb30-1" tabindex="-1"></a><span class="co"># 加载purrr包</span></span>
+<span id="cb30-2"><a href="r-常用包总结.html#cb30-2" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb30-3"><a href="r-常用包总结.html#cb30-3" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="r-常用包总结.html#cb30-4" tabindex="-1"></a><span class="co"># 创建一个数字列表</span></span>
+<span id="cb30-5"><a href="r-常用包总结.html#cb30-5" tabindex="-1"></a>numbers_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb30-6"><a href="r-常用包总结.html#cb30-6" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="r-常用包总结.html#cb30-7" tabindex="-1"></a><span class="co"># 1. 使用map函数将每个元素加倍</span></span>
+<span id="cb30-8"><a href="r-常用包总结.html#cb30-8" tabindex="-1"></a>doubled_numbers <span class="ot">&lt;-</span> <span class="fu">map</span>(numbers_list, <span class="sc">~</span> .x <span class="sc">*</span> <span class="dv">2</span>)</span>
+<span id="cb30-9"><a href="r-常用包总结.html#cb30-9" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="r-常用包总结.html#cb30-10" tabindex="-1"></a><span class="co"># 2. 使用map2函数将两个列表对应元素相加</span></span>
+<span id="cb30-11"><a href="r-常用包总结.html#cb30-11" tabindex="-1"></a>list1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb30-12"><a href="r-常用包总结.html#cb30-12" tabindex="-1"></a>list2 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb30-13"><a href="r-常用包总结.html#cb30-13" tabindex="-1"></a>summed_list <span class="ot">&lt;-</span> <span class="fu">map2</span>(list1, list2, <span class="sc">~</span> .x <span class="sc">+</span> .y)</span>
+<span id="cb30-14"><a href="r-常用包总结.html#cb30-14" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="r-常用包总结.html#cb30-15" tabindex="-1"></a><span class="co"># 3. 使用map_df函数将每个元素的平方转换为数据框</span></span>
+<span id="cb30-16"><a href="r-常用包总结.html#cb30-16" tabindex="-1"></a>squared_numbers <span class="ot">&lt;-</span> <span class="fu">map_df</span>(numbers_list, <span class="sc">~</span> <span class="fu">data.frame</span>(<span class="at">Square =</span> .x<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb30-17"><a href="r-常用包总结.html#cb30-17" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="r-常用包总结.html#cb30-18" tabindex="-1"></a><span class="co"># 4. 使用map_dbl函数计算每个元素的平均值</span></span>
+<span id="cb30-19"><a href="r-常用包总结.html#cb30-19" tabindex="-1"></a>average_value <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(numbers_list, <span class="sc">~</span> <span class="fu">mean</span>(.x))</span>
+<span id="cb30-20"><a href="r-常用包总结.html#cb30-20" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="r-常用包总结.html#cb30-21" tabindex="-1"></a><span class="co"># 5. 使用map_lgl函数检查每个元素是否大于3</span></span>
+<span id="cb30-22"><a href="r-常用包总结.html#cb30-22" tabindex="-1"></a>greater_than_3 <span class="ot">&lt;-</span> <span class="fu">map_lgl</span>(numbers_list, <span class="sc">~</span> .x <span class="sc">&gt;</span> <span class="dv">3</span>)</span>
+<span id="cb30-23"><a href="r-常用包总结.html#cb30-23" tabindex="-1"></a></span>
+<span id="cb30-24"><a href="r-常用包总结.html#cb30-24" tabindex="-1"></a><span class="co"># 6. 使用map_chr函数将每个数字转换为字符串</span></span>
+<span id="cb30-25"><a href="r-常用包总结.html#cb30-25" tabindex="-1"></a>string_numbers <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(numbers_list, <span class="sc">~</span> <span class="fu">as.character</span>(.x))</span></code></pre></div>
+</div>
+<div id="forcats" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> forcats<a href="r-常用包总结.html#forcats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>forcats 包是Tidyverse生态系统中的一个包，用于因子变量的处理和操作。它提供了一组函数，用于重新编码、排序、筛选和操作因子变量。</p>
+<p>forcats包提供了一系列主要函数，用于因子变量的处理。</p>
+<ol style="list-style-type: decimal">
+<li><p>fct_reorder()：重新编码因子变量的水平，以便按照指定的顺序进行排序。</p></li>
+<li><p>fct_infreq()：将因子变量的水平按照出现频率进行排序，将最常出现的水平排在前面。</p></li>
+<li><p>fct_relevel()：重新排列因子变量的水平，可以根据新的顺序进行排列。</p></li>
+<li><p>fct_rev()：反转因子变量的水平顺序。</p></li>
+<li><p>fct_drop()：删除不使用的因子水平。</p></li>
+<li><p>fct_expand()：扩展因子变量，添加缺失的水平。</p></li>
+<li><p>fct_count()：计算每个因子水平的频数。</p></li>
+</ol>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="r-常用包总结.html#cb31-1" tabindex="-1"></a><span class="co"># 加载forcats包</span></span>
+<span id="cb31-2"><a href="r-常用包总结.html#cb31-2" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb31-3"><a href="r-常用包总结.html#cb31-3" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="r-常用包总结.html#cb31-4" tabindex="-1"></a><span class="co"># 创建数据框</span></span>
+<span id="cb31-5"><a href="r-常用包总结.html#cb31-5" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Gender =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Male&quot;</span>))</span>
+<span id="cb31-6"><a href="r-常用包总结.html#cb31-6" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="r-常用包总结.html#cb31-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb31-8"><a href="r-常用包总结.html#cb31-8" tabindex="-1"></a>  <span class="at">City =</span> <span class="fu">c</span>(<span class="st">&quot;New York&quot;</span>, <span class="st">&quot;Los Angeles&quot;</span>, <span class="st">&quot;Chicago&quot;</span>, <span class="st">&quot;Houston&quot;</span>, <span class="st">&quot;Phoenix&quot;</span>),</span>
+<span id="cb31-9"><a href="r-常用包总结.html#cb31-9" tabindex="-1"></a>  <span class="at">Population =</span> <span class="fu">c</span>(<span class="dv">8537673</span>, <span class="dv">39776830</span>, <span class="dv">2705994</span>, <span class="dv">2320268</span>, <span class="dv">1680992</span>)</span>
+<span id="cb31-10"><a href="r-常用包总结.html#cb31-10" tabindex="-1"></a>)</span>
+<span id="cb31-11"><a href="r-常用包总结.html#cb31-11" tabindex="-1"></a><span class="co"># 1. 重新编码因子变量的水平以按照字母顺序排序</span></span>
+<span id="cb31-12"><a href="r-常用包总结.html#cb31-12" tabindex="-1"></a>df<span class="sc">$</span>City <span class="ot">&lt;-</span> <span class="fu">fct_reorder</span>(df<span class="sc">$</span>City, df<span class="sc">$</span>Population)</span>
+<span id="cb31-13"><a href="r-常用包总结.html#cb31-13" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="r-常用包总结.html#cb31-14" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="r-常用包总结.html#cb31-15" tabindex="-1"></a><span class="co"># 2. 将因子水平按照出现频率排序</span></span>
+<span id="cb31-16"><a href="r-常用包总结.html#cb31-16" tabindex="-1"></a>data<span class="sc">$</span>Gender <span class="ot">&lt;-</span> <span class="fu">fct_infreq</span>(data<span class="sc">$</span>Gender)</span>
+<span id="cb31-17"><a href="r-常用包总结.html#cb31-17" tabindex="-1"></a></span>
+<span id="cb31-18"><a href="r-常用包总结.html#cb31-18" tabindex="-1"></a><span class="co"># 3. 重新排列因子水平的顺序</span></span>
+<span id="cb31-19"><a href="r-常用包总结.html#cb31-19" tabindex="-1"></a>data<span class="sc">$</span>Gender <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(data<span class="sc">$</span>Gender, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>)</span>
+<span id="cb31-20"><a href="r-常用包总结.html#cb31-20" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="r-常用包总结.html#cb31-21" tabindex="-1"></a><span class="co"># 4. 反转因子水平的顺序</span></span>
+<span id="cb31-22"><a href="r-常用包总结.html#cb31-22" tabindex="-1"></a>data<span class="sc">$</span>Gender <span class="ot">&lt;-</span> <span class="fu">fct_rev</span>(data<span class="sc">$</span>Gender)</span>
+<span id="cb31-23"><a href="r-常用包总结.html#cb31-23" tabindex="-1"></a></span>
+<span id="cb31-24"><a href="r-常用包总结.html#cb31-24" tabindex="-1"></a><span class="co"># 5. 删除不使用的因子水平</span></span>
+<span id="cb31-25"><a href="r-常用包总结.html#cb31-25" tabindex="-1"></a>data<span class="sc">$</span>Gender <span class="ot">&lt;-</span> <span class="fu">fct_drop</span>(data<span class="sc">$</span>Gender)</span>
+<span id="cb31-26"><a href="r-常用包总结.html#cb31-26" tabindex="-1"></a></span>
+<span id="cb31-27"><a href="r-常用包总结.html#cb31-27" tabindex="-1"></a><span class="co"># 6. 扩展因子变量，添加缺失的水平</span></span>
+<span id="cb31-28"><a href="r-常用包总结.html#cb31-28" tabindex="-1"></a>data<span class="sc">$</span>Gender <span class="ot">&lt;-</span> <span class="fu">fct_expand</span>(data<span class="sc">$</span>Gender, <span class="st">&quot;Unknown&quot;</span>)</span>
+<span id="cb31-29"><a href="r-常用包总结.html#cb31-29" tabindex="-1"></a></span>
+<span id="cb31-30"><a href="r-常用包总结.html#cb31-30" tabindex="-1"></a><span class="co"># 7. 计算每个因子水平的频数</span></span>
+<span id="cb31-31"><a href="r-常用包总结.html#cb31-31" tabindex="-1"></a>level_counts <span class="ot">&lt;-</span> <span class="fu">fct_count</span>(data<span class="sc">$</span>Gender)</span></code></pre></div>
+</div>
+<div id="httr" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> httr<a href="r-常用包总结.html#httr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>httr 包是R语言中用于进行HTTP请求的包，它提供了一种方便的方式来与Web服务和API进行交互。</p>
+<p>httr包提供了一系列主要函数，用于发起HTTP请求和处理响应。</p>
+<ol style="list-style-type: decimal">
+<li><p>GET()：发起GET请求，获取数据。</p></li>
+<li><p>POST()：发起POST请求，提交数据。</p></li>
+<li><p>PUT()：发起PUT请求，更新数据。</p></li>
+<li><p>DELETE()：发起DELETE请求，删除数据。</p></li>
+<li><p>content()：从HTTP响应中提取内容。</p></li>
+<li><p>status_code()：获取HTTP响应的状态代码。</p></li>
+<li><p>headers()：获取HTTP响应的标头。</p></li>
+<li><p>add_headers()：添加自定义标头到HTTP请求。</p></li>
+</ol>
+<pre><code># 加载httr包
+library(httr)
+
+# 1. 发起GET请求
+response &lt;- GET(&quot;https://jsonplaceholder.typicode.com/posts/1&quot;)
+
+# 2. 获取HTTP响应的内容
+post_data &lt;- content(response, &quot;text&quot;)
+
+# 3. 获取HTTP响应的状态代码
+status &lt;- status_code(response)
+
+# 4. 添加自定义标头到HTTP请求
+custom_headers &lt;- add_headers(Authorization = &quot;Bearer YourToken&quot;)
+custom_response &lt;- GET(&quot;https://api.example.com/data&quot;, custom_headers)
+
+# 5. 发起POST请求，提交JSON数据
+json_data &lt;- &#39;{&quot;name&quot;: &quot;John&quot;, &quot;age&quot;: 30}&#39;
+post_response &lt;- POST(&quot;https://api.example.com/users&quot;, body = json_data, encode = &quot;json&quot;)
+
+# 6. 发起PUT请求，更新数据
+update_data &lt;- &#39;{&quot;name&quot;: &quot;John Smith&quot;}&#39;
+put_response &lt;- PUT(&quot;https://api.example.com/users/1&quot;, body = update_data, encode = &quot;json&quot;)
+
+# 7. 发起DELETE请求，删除数据
+delete_response &lt;- DELETE(&quot;https://api.example.com/users/1&quot;)
+</code></pre>
+</div>
+<div id="rlang" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> rlang<a href="r-常用包总结.html#rlang" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>rlang包提供了一系列主要函数，用于操作表达式和执行高级编程任务。</p>
+<ol style="list-style-type: decimal">
+<li>enexpr()：将参数转换为表达式。</li>
+<li>enquo()：将参数转换为quosure，可用于捕捉函数参数。</li>
+<li>quo_name()：提取quosure的名称。</li>
+<li>eval_tidy()：以一种干净的方式执行表达式。</li>
+<li>quo()：创建quosure对象。</li>
+<li>expr()：创建表达式对象。</li>
+<li>call2()：构建函数调用表达式。</li>
+<li>new_function()：创建自定义函数。</li>
+<li>dots_list()：创建参数列表。</li>
+<li>lang()：构建自定义语言。</li>
+</ol>
+<p>这个包对于高级R编程比较重要, 关于这个包更多内容参考:<a href="https://rpubs.com/liam/rlang" class="uri">https://rpubs.com/liam/rlang</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-语言数据分析.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="监督学习.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-parts.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

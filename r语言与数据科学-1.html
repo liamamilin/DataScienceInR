@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 R语言与数据科学 | Data Science in R</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 R语言与数据科学 | Data Science in R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 R语言与数据科学 | Data Science in R" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="r-语言数据分析.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science In R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#r语言与数据科学"><i class="fa fa-check"></i><b>1.1</b> R语言与数据科学</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#作者其他书籍"><i class="fa fa-check"></i><b>1.2</b> 作者其他书籍</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html"><i class="fa fa-check"></i><b>2</b> R语言与数据科学</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学简介"><i class="fa fa-check"></i><b>2.1</b> 数据科学简介</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的关键元素"><i class="fa fa-check"></i><b>2.1.1</b> 数据科学的关键元素：</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学的应用领域"><i class="fa fa-check"></i><b>2.1.2</b> 数据科学的应用领域：</a></li>
+<li class="chapter" data-level="2.1.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据科学工具和编程语言"><i class="fa fa-check"></i><b>2.1.3</b> 数据科学工具和编程语言：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言的重要性"><i class="fa fa-check"></i><b>2.2</b> R语言的重要性</a></li>
+<li class="chapter" data-level="2.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r和rstudio的安装"><i class="fa fa-check"></i><b>2.3</b> R和RStudio的安装</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤一安装r语言"><i class="fa fa-check"></i><b>2.3.1</b> 步骤一：安装R语言</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤二安装rstudio"><i class="fa fa-check"></i><b>2.3.2</b> 步骤二：安装RStudio</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#步骤三配置rstudio"><i class="fa fa-check"></i><b>2.3.3</b> 步骤三：配置RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包管理"><i class="fa fa-check"></i><b>2.4</b> 包管理</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#安装r包"><i class="fa fa-check"></i><b>2.4.1</b> 安装R包：</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#加载r包"><i class="fa fa-check"></i><b>2.4.2</b> 加载R包：</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#查看已安装的包"><i class="fa fa-check"></i><b>2.4.3</b> 查看已安装的包：</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#更新r包"><i class="fa fa-check"></i><b>2.4.4</b> 更新R包：</a></li>
+<li class="chapter" data-level="2.4.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#移除r包"><i class="fa fa-check"></i><b>2.4.5</b> 移除R包：</a></li>
+<li class="chapter" data-level="2.4.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#包的搜索路径"><i class="fa fa-check"></i><b>2.4.6</b> 包的搜索路径：</a></li>
+<li class="chapter" data-level="2.4.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#版本控制"><i class="fa fa-check"></i><b>2.4.7</b> 版本控制：</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言基本语法"><i class="fa fa-check"></i><b>2.5</b> R语言基本语法</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#变量与数据类型"><i class="fa fa-check"></i><b>2.5.1</b> 变量与数据类型</a></li>
+<li class="chapter" data-level="2.5.2" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#数据结构"><i class="fa fa-check"></i><b>2.5.2</b> 数据结构</a></li>
+<li class="chapter" data-level="2.5.3" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#控制结构"><i class="fa fa-check"></i><b>2.5.3</b> 控制结构</a></li>
+<li class="chapter" data-level="2.5.4" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#子集选取"><i class="fa fa-check"></i><b>2.5.4</b> 子集选取</a></li>
+<li class="chapter" data-level="2.5.5" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言面向对象系统"><i class="fa fa-check"></i><b>2.5.5</b> R语言面向对象系统</a></li>
+<li class="chapter" data-level="2.5.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#防御式编程和异常处理"><i class="fa fa-check"></i><b>2.5.6</b> 防御式编程和异常处理</a></li>
+<li class="chapter" data-level="2.5.7" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#函数式编程"><i class="fa fa-check"></i><b>2.5.7</b> 函数式编程</a></li>
+<li class="chapter" data-level="2.5.8" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#泛函"><i class="fa fa-check"></i><b>2.5.8</b> 泛函</a></li>
+<li class="chapter" data-level="2.5.9" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言函数运算符"><i class="fa fa-check"></i><b>2.5.9</b> R语言函数运算符</a></li>
+<li class="chapter" data-level="2.5.10" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r语言非标准计算"><i class="fa fa-check"></i><b>2.5.10</b> R语言非标准计算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r语言与数据科学-1.html"><a href="r语言与数据科学-1.html#r包开发"><i class="fa fa-check"></i><b>2.6</b> R包开发</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html"><i class="fa fa-check"></i><b>3</b> R 语言数据分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导入和导出"><i class="fa fa-check"></i><b>3.1</b> 数据导入和导出</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据读取"><i class="fa fa-check"></i><b>3.1.1</b> 数据读取</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#数据导出"><i class="fa fa-check"></i><b>3.1.2</b> 数据导出</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据处理"><i class="fa fa-check"></i><b>3.2</b> R 语言数据处理</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#缺失值处理"><i class="fa fa-check"></i><b>3.2.1</b> 缺失值处理</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r异常值处理"><i class="fa fa-check"></i><b>3.2.2</b> R异常值处理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r探索性数据分析"><i class="fa fa-check"></i><b>3.3</b> R探索性数据分析</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#autoeda"><i class="fa fa-check"></i><b>3.3.1</b> AutoEDA</a></li>
+<li class="chapter" data-level="3.3.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r-语言数据可视化"><i class="fa fa-check"></i><b>3.3.2</b> R 语言数据可视化</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#r语言统计推断"><i class="fa fa-check"></i><b>3.4</b> R语言统计推断</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#方差分析"><i class="fa fa-check"></i><b>3.4.1</b> 方差分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#非参数检验"><i class="fa fa-check"></i><b>3.4.2</b> 非参数检验</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#回归"><i class="fa fa-check"></i><b>3.4.3</b> 回归</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#生存分析"><i class="fa fa-check"></i><b>3.4.4</b> 生存分析</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#多重比较校正"><i class="fa fa-check"></i><b>3.4.5</b> 多重比较校正</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r-语言数据分析.html"><a href="r-语言数据分析.html#功效分析"><i class="fa fa-check"></i><b>3.4.6</b> 功效分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-常用包总结.html"><a href="r-常用包总结.html"><i class="fa fa-check"></i><b>4</b> R 常用包总结</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#dplyr-包"><i class="fa fa-check"></i><b>4.1</b> dplyr 包</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数"><i class="fa fa-check"></i><b>4.1.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#案例"><i class="fa fa-check"></i><b>4.1.2</b> 案例</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#tidyr-包"><i class="fa fa-check"></i><b>4.2</b> tidyr 包</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-1"><i class="fa fa-check"></i><b>4.2.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.2.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子"><i class="fa fa-check"></i><b>4.2.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="r-常用包总结.html"><a href="r-常用包总结.html#stringr"><i class="fa fa-check"></i><b>4.3</b> stringr</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r-常用包总结.html"><a href="r-常用包总结.html#主要函数-2"><i class="fa fa-check"></i><b>4.3.1</b> 主要函数：</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r-常用包总结.html"><a href="r-常用包总结.html#例子-1"><i class="fa fa-check"></i><b>4.3.2</b> 例子</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r-常用包总结.html"><a href="r-常用包总结.html#lubridate"><i class="fa fa-check"></i><b>4.4</b> lubridate</a></li>
+<li class="chapter" data-level="4.5" data-path="r-常用包总结.html"><a href="r-常用包总结.html#purrr"><i class="fa fa-check"></i><b>4.5</b> purrr</a></li>
+<li class="chapter" data-level="4.6" data-path="r-常用包总结.html"><a href="r-常用包总结.html#forcats"><i class="fa fa-check"></i><b>4.6</b> forcats</a></li>
+<li class="chapter" data-level="4.7" data-path="r-常用包总结.html"><a href="r-常用包总结.html#httr"><i class="fa fa-check"></i><b>4.7</b> httr</a></li>
+<li class="chapter" data-level="4.8" data-path="r-常用包总结.html"><a href="r-常用包总结.html#rlang"><i class="fa fa-check"></i><b>4.8</b> rlang</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="监督学习.html"><a href="监督学习.html"><i class="fa fa-check"></i><b>5</b> 监督学习</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="监督学习.html"><a href="监督学习.html#决策树"><i class="fa fa-check"></i><b>5.1</b> 决策树</a></li>
+<li class="chapter" data-level="5.2" data-path="监督学习.html"><a href="监督学习.html#随机森林"><i class="fa fa-check"></i><b>5.2</b> 随机森林</a></li>
+<li class="chapter" data-level="5.3" data-path="监督学习.html"><a href="监督学习.html#xgboost"><i class="fa fa-check"></i><b>5.3</b> Xgboost</a></li>
+<li class="chapter" data-level="5.4" data-path="监督学习.html"><a href="监督学习.html#特征选择"><i class="fa fa-check"></i><b>5.4</b> 特征选择</a></li>
+<li class="chapter" data-level="5.5" data-path="监督学习.html"><a href="监督学习.html#深度学习"><i class="fa fa-check"></i><b>5.5</b> 深度学习</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html"><i class="fa fa-check"></i><b>6</b> 无监督学习与自然语言</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#k-均值聚类"><i class="fa fa-check"></i><b>6.1</b> K 均值聚类</a></li>
+<li class="chapter" data-level="6.2" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#层次聚类"><i class="fa fa-check"></i><b>6.2</b> 层次聚类</a></li>
+<li class="chapter" data-level="6.3" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#dbscan"><i class="fa fa-check"></i><b>6.3</b> DBSCAN</a></li>
+<li class="chapter" data-level="6.4" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#自然语言处理"><i class="fa fa-check"></i><b>6.4</b> 自然语言处理</a></li>
+<li class="chapter" data-level="6.5" data-path="无监督学习与自然语言.html"><a href="无监督学习与自然语言.html#时间序列"><i class="fa fa-check"></i><b>6.5</b> 时间序列</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="流程挖掘.html"><a href="流程挖掘.html"><i class="fa fa-check"></i><b>7</b> 流程挖掘</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="流程挖掘.html"><a href="流程挖掘.html#流程发现"><i class="fa fa-check"></i><b>7.1</b> 流程发现</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html"><i class="fa fa-check"></i><b>8</b> 可解释机器学习与因果推断</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#可解释机器学习"><i class="fa fa-check"></i><b>8.1</b> 可解释机器学习</a></li>
+<li class="chapter" data-level="8.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断"><i class="fa fa-check"></i><b>8.2</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断起源"><i class="fa fa-check"></i><b>8.2.1</b> 因果推断起源</a></li>
+<li class="chapter" data-level="8.2.2" data-path="可解释机器学习与因果推断.html"><a href="可解释机器学习与因果推断.html#因果推断介绍"><i class="fa fa-check"></i><b>8.2.2</b> 因果推断介绍</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r语言与数据科学-1" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> R语言与数据科学<a href="r语言与数据科学-1.html#r语言与数据科学-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="数据科学简介" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> 数据科学简介<a href="r语言与数据科学-1.html#数据科学简介" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>数据科学是一门多领域的交叉学科，旨在通过数据分析和信息提取来解决复杂的问题和取得洞察。它结合了统计学、计算机科学、领域知识和数据可视化等多个领域的技术和方法。以下是数据科学的简介：</p>
+<div id="数据科学的关键元素" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> 数据科学的关键元素：<a href="r语言与数据科学-1.html#数据科学的关键元素" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>数据收集： 数据科学的过程从数据的收集开始。数据可以是结构化的（例如数据库中的表格数据）或非结构化的（例如文本、图像或音频数据）。</p></li>
+<li><p>数据清洗： 数据经常包含缺失值、异常值或噪声。数据科学家需要清洗数据，确保数据质量，以便进行分析。</p></li>
+<li><p>数据分析： 数据分析是数据科学的核心任务。它包括统计分析、机器学习、深度学习等技术，用于提取有关数据集的见解。</p></li>
+<li><p>数据可视化： 数据可视化是将数据转化为可理解的图形和图表的过程。它有助于传达数据的信息和模式。</p></li>
+<li><p>模型建立： 数据科学家通常使用统计模型、机器学习模型和深度学习模型来进行预测和分类任务。这些模型帮助提取数据中的模式和关联。</p></li>
+<li><p>解释结果： 数据科学家需要解释他们的分析结果，以便非技术人员也能理解并做出决策。</p></li>
+</ol>
+</div>
+<div id="数据科学的应用领域" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> 数据科学的应用领域：<a href="r语言与数据科学-1.html#数据科学的应用领域" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>数据科学在各个领域都有广泛的应用，包括但不限于以下领域：</p>
+<ol style="list-style-type: decimal">
+<li><p>商业分析： 帮助企业分析销售、市场趋势、客户需求等，以做出战略决策。</p></li>
+<li><p>医疗保健： 使用数据科学来进行疾病预测、医疗成本管理、药物发现等。</p></li>
+<li><p>金融： 用于风险管理、欺诈检测、股票市场分析等。</p></li>
+<li><p>社交媒体： 分析用户行为、社交网络关系、推荐系统等。</p></li>
+<li><p>自然科学： 在物理学、生物学、地球科学等领域进行数据分析和模拟。</p></li>
+<li><p>政府和公共政策： 数据科学在政府和公共政策领域有助于决策制定、城市规划、环境保护等。</p></li>
+</ol>
+</div>
+<div id="数据科学工具和编程语言" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> 数据科学工具和编程语言：<a href="r语言与数据科学-1.html#数据科学工具和编程语言" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>数据科学家使用各种工具和编程语言，包括但不限于：</p>
+<ol style="list-style-type: decimal">
+<li>R语言： 用于统计分析和数据可视化的强大编程语言。</li>
+<li>Python： 通用编程语言，具有丰富的数据科学库，如NumPy、Pandas、Scikit-Learn和TensorFlow。</li>
+<li>SQL： 用于管理和查询数据库。</li>
+<li>统计工具： 如SPSS、SAS等用于统计分析。</li>
+</ol>
+<p>数据科学是一个快速发展的领域，它在各个行业中都有重要应用。通过深入了解数据科学的原理和工具，人们能够更好地理解和利用数据来做出决策、解决问题并取得洞察。</p>
+</div>
+</div>
+<div id="r语言的重要性" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> R语言的重要性<a href="r语言与数据科学-1.html#r语言的重要性" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R语言在数据科学和统计分析领域具有重要性，因为它提供了一种强大的工具来处理、分析和可视化数据。以下是R语言的重要性：</p>
+<ol style="list-style-type: decimal">
+<li><p>统计分析和数据建模： R语言是一个统计计算和数据分析的首选工具。它提供了丰富的统计函数和包，用于执行各种统计测试、线性回归、非线性建模、时间序列分析等。</p></li>
+<li><p>数据可视化： R语言拥有强大的数据可视化功能，通过包如ggplot2，它可以生成高质量、定制化的图表和图形，有助于更好地理解数据和模型的结果。</p></li>
+<li><p>数据处理和清洗： R语言具有广泛的数据处理功能，可以帮助用户处理和清洗数据，包括缺失值处理、异常值检测、数据变换等。</p></li>
+<li><p>数据挖掘和机器学习： R语言拥有多个数据挖掘和机器学习包，如caret、randomForest、xgboost等，可以用于构建预测模型、分类、聚类、特征选择等任务。</p></li>
+<li><p>开源社区支持： R语言拥有庞大的开源社区，用户可以从社区中获取丰富的包和资源，解决各种数据分析问题。</p></li>
+<li><p>可扩展性： 用户可以根据需要编写自定义函数和包，扩展R的功能，适应特定的任务和行业需求。</p></li>
+<li><p>跨平台兼容性： R语言可以在各种操作系统上运行，包括Windows、macOS和Linux，因此适用于各种工作环境。</p></li>
+<li><p>数据科学教育： R语言广泛用于统计学和数据科学教育，许多大学和研究机构使用R来教授数据分析和统计学课程。</p></li>
+<li><p>数据报告和交互性： R语言支持R Markdown，允许用户创建交互性报告，将分析结果、可视化和解释集成在一起，方便分享和沟通。</p></li>
+<li><p>强大的图形界面： RStudio是R语言的集成开发环境（IDE），提供了便捷的代码编写、数据可视化和报告生成功能，使R的使用更加便捷。</p></li>
+</ol>
+<p>总的来说，R语言是数据科学和统计分析领域的核心工具之一，它提供了丰富的功能和资源，使数据科学家和分析师能够更好地理解数据、建立模型和推断结果。因此，R语言在学术、研究、商业和社会领域中都扮演着重要的角色。</p>
+</div>
+<div id="r和rstudio的安装" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> R和RStudio的安装<a href="r语言与数据科学-1.html#r和rstudio的安装" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>安装R语言和RStudio是使用R语言进行数据分析的第一步。以下是安装R语言和RStudio的步骤：</p>
+<div id="步骤一安装r语言" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> 步骤一：安装R语言<a href="r语言与数据科学-1.html#步骤一安装r语言" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>下载R语言： 访问R官方网站（<a href="https://cran.r-project.org/mirrors.html）选择一个镜像站点，然后根据你的操作系统选择适当的安装程序。根据你的操作系统（Windows、macOS、Linux" class="uri">https://cran.r-project.org/mirrors.html）选择一个镜像站点，然后根据你的操作系统选择适当的安装程序。根据你的操作系统（Windows、macOS、Linux</a>），下载相应的安装程序。</p></li>
+<li><p>安装R语言： 执行下载的安装程序，按照安装向导的步骤进行操作。通常情况下，你可以接受默认选项完成安装。</p></li>
+<li><p>验证安装： 安装完成后，你可以打开终端或命令提示符，输入以下命令来验证R语言是否正确安装：</p></li>
+</ol>
+<pre><code>R --version
+</code></pre>
+<p>如果安装成功，你将看到R的版本信息。</p>
+</div>
+<div id="步骤二安装rstudio" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> 步骤二：安装RStudio<a href="r语言与数据科学-1.html#步骤二安装rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>下载RStudio： 访问RStudio的官方网站（<a href="https://www.rstudio.com/products/rstudio/download/）下载适用于你的操作系统的RStudio安装程序" class="uri">https://www.rstudio.com/products/rstudio/download/）下载适用于你的操作系统的RStudio安装程序</a>。</p></li>
+<li><p>安装RStudio： 执行下载的RStudio安装程序，按照安装向导的步骤进行操作。同样，通常情况下，你可以接受默认选项完成安装。</p></li>
+<li><p>打开RStudio： 安装完成后，你可以在计算机上找到RStudio的图标，双击它以打开RStudio。</p></li>
+</ol>
+</div>
+<div id="步骤三配置rstudio" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> 步骤三：配置RStudio<a href="r语言与数据科学-1.html#步骤三配置rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>打开RStudio后，你可以配置RStudio的外观和行为，包括编辑器主题、字体大小等。你还可以设置R的工作目录和包安装位置。</p></li>
+<li><p>在RStudio中，你可以在左上角的控制台窗口中输入R代码并执行它。在右下角的环境窗口中，你可以查看数据、变量和包的信息。你可以创建新的R脚本或R Markdown文档来编写和运行代码。</p></li>
+</ol>
+<p>安装R语言和RStudio后，你就可以开始使用R语言进行数据分析、统计建模和数据可视化了。你可以在RStudio中编写R代码，并将其保存为脚本或报告，以便进行数据科学项目。如果你需要使用特定的R包，可以在RStudio中使用install.packages()函数来安装它们。</p>
+</div>
+</div>
+<div id="包管理" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> 包管理<a href="r语言与数据科学-1.html#包管理" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在R语言中，你可以使用包（packages）来扩展其功能，包含了各种函数、数据集和工具，用于特定的任务和分析。以下是关于R语言包管理的重要信息：</p>
+<div id="安装r包" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> 安装R包：<a href="r语言与数据科学-1.html#安装r包" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>你可以使用install.packages()函数来安装R包。例如，要安装名为”ggplot2”的包，可以执行以下命令：</p>
+<pre><code>install.packages(&quot;ggplot2&quot;)
+</code></pre>
+<p>这将从CRAN（Comprehensive R Archive Network）下载并安装包。你可以根据需要安装多个包，只需将它们的名称放在install.packages()函数的括号中，用逗号分隔。</p>
+</div>
+<div id="加载r包" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> 加载R包：<a href="r语言与数据科学-1.html#加载r包" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>一旦包被安装，你可以使用library()函数来加载它们，以便在R中使用包中的函数和数据集。例如：</p>
+<pre><code>library(ggplot2)
+</code></pre>
+</div>
+<div id="查看已安装的包" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> 查看已安装的包：<a href="r语言与数据科学-1.html#查看已安装的包" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>要查看已经安装的包，可以使用以下命令：</p>
+<pre><code>installed.packages()
+</code></pre>
+<p>这将列出你系统中已安装的所有包的信息。</p>
+</div>
+<div id="更新r包" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> 更新R包：<a href="r语言与数据科学-1.html#更新r包" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R包经常会更新，以修复错误或增加新功能。你可以使用update.packages()函数来更新已安装的包。例如：</p>
+<pre><code>update.packages()
+</code></pre>
+</div>
+<div id="移除r包" class="section level3 hasAnchor" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> 移除R包：<a href="r语言与数据科学-1.html#移除r包" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>如果你不再需要某个包，可以使用remove.packages()函数来卸载它。例如：</p>
+<pre><code>remove.packages(&quot;ggplot2&quot;)
+</code></pre>
+</div>
+<div id="包的搜索路径" class="section level3 hasAnchor" number="2.4.6">
+<h3><span class="header-section-number">2.4.6</span> 包的搜索路径：<a href="r语言与数据科学-1.html#包的搜索路径" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R包通常存储在特定的文件夹中，当你加载一个包时，R会从包的搜索路径中找到它。你可以使用以下命令查看包的搜索路径：</p>
+<pre><code>.libPaths()
+</code></pre>
+</div>
+<div id="版本控制" class="section level3 hasAnchor" number="2.4.7">
+<h3><span class="header-section-number">2.4.7</span> 版本控制：<a href="r语言与数据科学-1.html#版本控制" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在某些情况下，你可能需要安装和使用特定版本的包。你可以使用install.packages()函数的version参数来指定要安装的包的特定版本。例如：</p>
+<pre><code>install.packages(&quot;ggplot2&quot;, version = &quot;3.3.0&quot;)
+</code></pre>
+<p>这些是R语言包管理的基本操作。包管理是R语言中的一个重要方面，它使你能够轻松扩展R的功能，并访问大量的数据分析工具和函数。</p>
+</div>
+</div>
+<div id="r语言基本语法" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> R语言基本语法<a href="r语言与数据科学-1.html#r语言基本语法" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>可以参考我的另外一篇文章: <a href="https://rpubs.com/liam/SimpleAndAdvanceR" class="uri">https://rpubs.com/liam/SimpleAndAdvanceR</a></p>
+<div id="变量与数据类型" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> 变量与数据类型<a href="r语言与数据科学-1.html#变量与数据类型" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>赋值： 使用 &lt;- 或 = 来将值赋给变量，例如：x &lt;- 5。</p></li>
+<li><p>数据类型： R支持多种数据类型，包括数值型、字符型、逻辑型、因子、日期等。</p></li>
+<li><p>变量命名： 变量名区分大小写，应该以字母或点号开头，不包含空格。例如：my_variable。</p></li>
+<li><p>注释： 使用 # 进行注释，注释的内容不会被执行。</p></li>
+</ol>
+</div>
+<div id="数据结构" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> 数据结构<a href="r语言与数据科学-1.html#数据结构" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>向量（Vector）： 向量是最基本的数据结构，可以包含相同类型的元素。例如：c(1, 2, 3)。</p></li>
+<li><p>列表（List）： 列表可以包含不同数据类型的元素。例如：list(1, “apple”, TRUE)。</p></li>
+<li><p>矩阵（Matrix）： 矩阵是具有行和列的二维数据结构。例如：matrix(1:6, nrow=2)。</p></li>
+<li><p>数据框（Data Frame）： 数据框类似于数据库表格，可以包含不同类型的数据。例如：data.frame(name=c(“Alice”, “Bob”), age=c(25, 30))。</p></li>
+<li><p>因子（Factor）： 因子用于表示分类数据，有固定的级别。例如：factor(c(“low”, “medium”, “high”))。</p></li>
+<li><p>数组（Array）： 数组是多维的数据结构，可以包含相同类型的元素。</p></li>
+<li><p>因子（Factor）： 因子用于表示分类数据，有固定的级别。例如：factor(c(“low”, “medium”, “high”))。</p></li>
+<li><p>数据框（Data Frame）： 数据框类似于数据库表格，可以包含不同类型的数据。例如：data.frame(name=c(“Alice”, “Bob”), age=c(25, 30))。</p></li>
+<li><p>因子（Factor）： 因子用于表示分类数据，有固定的级别。例如：factor(c(“low”, “medium”, “high”))。：</p></li>
+</ol>
+</div>
+<div id="控制结构" class="section level3 hasAnchor" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> 控制结构<a href="r语言与数据科学-1.html#控制结构" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>条件语句： 使用 if、else if 和 else 来执行条件分支操作</li>
+</ol>
+<pre><code>if (condition) {
+  # 代码块
+} else {
+  # 代码块
+}
+</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>循环： 使用 for 循环、while 循环或 repeat 循环来控制重复操作。</li>
+</ol>
+<pre><code>for (i in 1:10) {
+  # 代码块
+}
+</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>函数： 使用 function 来创建自定义函数，以便将一系列操作封装为一个可重复使用的代码块。</li>
+</ol>
+<pre><code>my_function &lt;- function(parameter) {
+  # 代码块
+}
+</code></pre>
+</div>
+<div id="子集选取" class="section level3 hasAnchor" number="2.5.4">
+<h3><span class="header-section-number">2.5.4</span> 子集选取<a href="r语言与数据科学-1.html#子集选取" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在R语言中，你可以使用子集操作符和函数来从数据框、向量和其他数据结构中选择特定的子集。以下是一些常见的子集选区方法：</p>
+<div id="使用-子集操作符" class="section level4 hasAnchor" number="2.5.4.1">
+<h4><span class="header-section-number">2.5.4.1</span> 使用 [ ] 子集操作符：<a href="r语言与数据科学-1.html#使用-子集操作符" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>从向量中选择元素：</li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r语言与数据科学-1.html#cb12-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb12-2"><a href="r语言与数据科学-1.html#cb12-2" tabindex="-1"></a>subset <span class="ot">&lt;-</span> x[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]  <span class="co"># 选择索引2到4的元素</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>从数据框中选择列：</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r语言与数据科学-1.html#cb13-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>), <span class="at">age=</span><span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>))</span>
+<span id="cb13-2"><a href="r语言与数据科学-1.html#cb13-2" tabindex="-1"></a>subset <span class="ot">&lt;-</span> data<span class="sc">$</span>name  <span class="co"># 选择名为&quot;name&quot;的列</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>使用条件进行子集选区：</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="r语言与数据科学-1.html#cb14-1" tabindex="-1"></a>subset <span class="ot">&lt;-</span> x[x <span class="sc">&gt;</span> <span class="dv">2</span>]  <span class="co"># 选择大于2的元素</span></span></code></pre></div>
+</div>
+<div id="使用-运算符" class="section level4 hasAnchor" number="2.5.4.2">
+<h4><span class="header-section-number">2.5.4.2</span> 使用 $ 运算符：<a href="r语言与数据科学-1.html#使用-运算符" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>如果你有一个数据框，可以使用$运算符来选择特定列：</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="r语言与数据科学-1.html#cb15-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>), <span class="at">age=</span><span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>))</span>
+<span id="cb15-2"><a href="r语言与数据科学-1.html#cb15-2" tabindex="-1"></a>subset <span class="ot">&lt;-</span> data<span class="sc">$</span>name  <span class="co"># 选择名为&quot;name&quot;的列</span></span></code></pre></div>
+</div>
+<div id="用-subset-函数" class="section level4 hasAnchor" number="2.5.4.3">
+<h4><span class="header-section-number">2.5.4.3</span> 用 subset() 函数：<a href="r语言与数据科学-1.html#用-subset-函数" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>subset()函数允许你从数据框中选择满足条件的行。</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="r语言与数据科学-1.html#cb16-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>), <span class="at">age=</span><span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>))</span>
+<span id="cb16-2"><a href="r语言与数据科学-1.html#cb16-2" tabindex="-1"></a>subset <span class="ot">&lt;-</span> <span class="fu">subset</span>(data, age <span class="sc">&gt;</span> <span class="dv">25</span>)  <span class="co"># 选择年龄大于25的行</span></span></code></pre></div>
+</div>
+<div id="使用-subset-函数的选列" class="section level4 hasAnchor" number="2.5.4.4">
+<h4><span class="header-section-number">2.5.4.4</span> 使用 subset() 函数的选列<a href="r语言与数据科学-1.html#使用-subset-函数的选列" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>还可以使用subset()函数来选择特定列的行。在select参数中指定你想要的列名。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="r语言与数据科学-1.html#cb17-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name=</span><span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>), <span class="at">age=</span><span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>), <span class="at">score=</span><span class="fu">c</span>(<span class="dv">95</span>, <span class="dv">88</span>, <span class="dv">75</span>))</span>
+<span id="cb17-2"><a href="r语言与数据科学-1.html#cb17-2" tabindex="-1"></a>subset <span class="ot">&lt;-</span> <span class="fu">subset</span>(data, <span class="at">select=</span><span class="fu">c</span>(name, score))  <span class="co"># 选择&quot;name&quot;和&quot;score&quot;列</span></span></code></pre></div>
+</div>
+<div id="用逻辑条件进行子集选区" class="section level4 hasAnchor" number="2.5.4.5">
+<h4><span class="header-section-number">2.5.4.5</span> 用逻辑条件进行子集选区：<a href="r语言与数据科学-1.html#用逻辑条件进行子集选区" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>可以使用逻辑条件来选择满足条件的行或元素。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="r语言与数据科学-1.html#cb18-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb18-2"><a href="r语言与数据科学-1.html#cb18-2" tabindex="-1"></a>subset <span class="ot">&lt;-</span> x[x <span class="sc">&gt;</span> <span class="dv">2</span>]  <span class="co"># 选择大于2的元素</span></span></code></pre></div>
+</div>
+</div>
+<div id="r语言面向对象系统" class="section level3 hasAnchor" number="2.5.5">
+<h3><span class="header-section-number">2.5.5</span> R语言面向对象系统<a href="r语言与数据科学-1.html#r语言面向对象系统" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在R语言中，有多种面向对象系统，用于实现面向对象编程（OOP）。这些面向对象系统允许你创建和操作对象，封装数据和方法，提高代码的可维护性和可扩展性。以下是R语言中常见的面向对象系统：</p>
+<ol style="list-style-type: decimal">
+<li>S3 面向对象系统： S3是R中最早引入的面向对象系统之一，它允许你创建和使用简单的S3类对象。S3对象是基于标签的，没有强制的类定义，因此它们相对灵活，但也有一些限制。你可以使用class()函数来分配和检查S3对象的类，并使用不同的方法来处理不同的类。S3对象通常用于基本的数据类型，如向量和数据框。</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="r语言与数据科学-1.html#cb19-1" tabindex="-1"></a><span class="co"># 创建一个S3对象</span></span>
+<span id="cb19-2"><a href="r语言与数据科学-1.html#cb19-2" tabindex="-1"></a>my_object <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb19-3"><a href="r语言与数据科学-1.html#cb19-3" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="r语言与数据科学-1.html#cb19-4" tabindex="-1"></a><span class="co"># 分配类</span></span>
+<span id="cb19-5"><a href="r语言与数据科学-1.html#cb19-5" tabindex="-1"></a><span class="fu">class</span>(my_object) <span class="ot">&lt;-</span> <span class="st">&quot;my_class&quot;</span></span>
+<span id="cb19-6"><a href="r语言与数据科学-1.html#cb19-6" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="r语言与数据科学-1.html#cb19-7" tabindex="-1"></a><span class="co"># 创建一个S3方法</span></span>
+<span id="cb19-8"><a href="r语言与数据科学-1.html#cb19-8" tabindex="-1"></a>my_method <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb19-9"><a href="r语言与数据科学-1.html#cb19-9" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;This is a method for my_class:&quot;</span>, x))</span>
+<span id="cb19-10"><a href="r语言与数据科学-1.html#cb19-10" tabindex="-1"></a>}</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>S4 面向对象系统： S4是R中更强大和复杂的面向对象系统，它提供了明确的类定义和强类型检查。你可以使用setClass()来创建S4类，使用setMethod()来定义方法。S4类可以包含多个属性和方法，并且支持多重继承。S4系统通常用于更复杂的对象和框架，如统计模型。</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="r语言与数据科学-1.html#cb20-1" tabindex="-1"></a><span class="fu">setClass</span>(<span class="st">&quot;Person&quot;</span>,</span>
+<span id="cb20-2"><a href="r语言与数据科学-1.html#cb20-2" tabindex="-1"></a>          <span class="at">slots =</span> <span class="fu">c</span>(<span class="at">name =</span> <span class="st">&quot;character&quot;</span>, <span class="at">age =</span> <span class="st">&quot;numeric&quot;</span>))</span>
+<span id="cb20-3"><a href="r语言与数据科学-1.html#cb20-3" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="r语言与数据科学-1.html#cb20-4" tabindex="-1"></a><span class="fu">setMethod</span>(<span class="st">&quot;show&quot;</span>, <span class="st">&quot;Person&quot;</span>,</span>
+<span id="cb20-5"><a href="r语言与数据科学-1.html#cb20-5" tabindex="-1"></a>          <span class="cf">function</span>(object) {</span>
+<span id="cb20-6"><a href="r语言与数据科学-1.html#cb20-6" tabindex="-1"></a>            <span class="fu">cat</span>(<span class="st">&quot;Name:&quot;</span>, object<span class="sc">@</span>name, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb20-7"><a href="r语言与数据科学-1.html#cb20-7" tabindex="-1"></a>            <span class="fu">cat</span>(<span class="st">&quot;Age:&quot;</span>, object<span class="sc">@</span>age, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb20-8"><a href="r语言与数据科学-1.html#cb20-8" tabindex="-1"></a>          })</span>
+<span id="cb20-9"><a href="r语言与数据科学-1.html#cb20-9" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="r语言与数据科学-1.html#cb20-10" tabindex="-1"></a>person <span class="ot">&lt;-</span> <span class="fu">new</span>(<span class="st">&quot;Person&quot;</span>, <span class="at">name =</span> <span class="st">&quot;Alice&quot;</span>, <span class="at">age =</span> <span class="dv">30</span>)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>RC 面向对象系统： RC是一个轻量级的面向对象系统，它在R的核心语言中提供了面向对象编程的支持。与S3和S4相比，RC更简单，适用于小型项目。你可以使用R6包来创建RC对象，定义方法和属性。</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="r语言与数据科学-1.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(R6)</span>
+<span id="cb21-2"><a href="r语言与数据科学-1.html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="r语言与数据科学-1.html#cb21-3" tabindex="-1"></a><span class="co"># 创建RC对象</span></span>
+<span id="cb21-4"><a href="r语言与数据科学-1.html#cb21-4" tabindex="-1"></a>Person <span class="ot">&lt;-</span> <span class="fu">R6Class</span>(<span class="st">&quot;Person&quot;</span>,</span>
+<span id="cb21-5"><a href="r语言与数据科学-1.html#cb21-5" tabindex="-1"></a>                  <span class="at">public =</span> <span class="fu">list</span>(</span>
+<span id="cb21-6"><a href="r语言与数据科学-1.html#cb21-6" tabindex="-1"></a>                    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb21-7"><a href="r语言与数据科学-1.html#cb21-7" tabindex="-1"></a>                    <span class="at">age =</span> <span class="cn">NULL</span>,</span>
+<span id="cb21-8"><a href="r语言与数据科学-1.html#cb21-8" tabindex="-1"></a>                    <span class="at">initialize =</span> <span class="cf">function</span>(name, age) {</span>
+<span id="cb21-9"><a href="r语言与数据科学-1.html#cb21-9" tabindex="-1"></a>                      self<span class="sc">$</span>name <span class="ot">&lt;-</span> name</span>
+<span id="cb21-10"><a href="r语言与数据科学-1.html#cb21-10" tabindex="-1"></a>                      self<span class="sc">$</span>age <span class="ot">&lt;-</span> age</span>
+<span id="cb21-11"><a href="r语言与数据科学-1.html#cb21-11" tabindex="-1"></a>                    },</span>
+<span id="cb21-12"><a href="r语言与数据科学-1.html#cb21-12" tabindex="-1"></a>                    <span class="at">show =</span> <span class="cf">function</span>() {</span>
+<span id="cb21-13"><a href="r语言与数据科学-1.html#cb21-13" tabindex="-1"></a>                      <span class="fu">cat</span>(<span class="st">&quot;Name:&quot;</span>, self<span class="sc">$</span>name, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb21-14"><a href="r语言与数据科学-1.html#cb21-14" tabindex="-1"></a>                      <span class="fu">cat</span>(<span class="st">&quot;Age:&quot;</span>, self<span class="sc">$</span>age, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb21-15"><a href="r语言与数据科学-1.html#cb21-15" tabindex="-1"></a>                    }</span>
+<span id="cb21-16"><a href="r语言与数据科学-1.html#cb21-16" tabindex="-1"></a>                  ))</span>
+<span id="cb21-17"><a href="r语言与数据科学-1.html#cb21-17" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="r语言与数据科学-1.html#cb21-18" tabindex="-1"></a>person <span class="ot">&lt;-</span> Person<span class="sc">$</span><span class="fu">new</span>(<span class="at">name =</span> <span class="st">&quot;Bob&quot;</span>, <span class="at">age =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div id="s3-系统" class="section level4 hasAnchor" number="2.5.5.1">
+<h4><span class="header-section-number">2.5.5.1</span> S3 系统<a href="r语言与数据科学-1.html#s3-系统" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>S3（S-PLUS System 3）是R语言中最早引入的面向对象系统之一，它允许你创建和使用简单的S3类对象。S3对象是基于标签的，没有强制的类定义，因此它们相对灵活，但也有一些限制。</p>
+<p>S3 面向对象系统的特点：</p>
+<ol style="list-style-type: decimal">
+<li><p>基于标签的类： S3系统的类基于对象的标签，而不是明确的类定义。这使得类的创建和分配相对灵活，但也可能导致一些类型不一致的问题。</p></li>
+<li><p>类的定义： 类定义通常以字符向量的形式存在，并与对象关联。类定义通常以字符向量的形式存在，并通过class()函数分配给对象。</p></li>
+<li><p>方法的分发： S3系统使用通用函数来分发方法。通用函数根据对象的类来选择适当的方法。</p></li>
+<li><p>不强制类型检查： S3系统不强制对对象的数据类型进行严格的类型检查。这意味着你可以将不同类型的对象分配给相同的类，并且不会抛出错误。</p></li>
+</ol>
+<p>S3 面向对象系统的使用：</p>
+<ol style="list-style-type: decimal">
+<li>要创建一个S3对象，你可以使用R中的structure()函数或list()函数，并为对象添加一个类别（class）。类别通常是一个字符向量，用于标识对象的类别。例如：</li>
+</ol>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r语言与数据科学-1.html#cb22-1" tabindex="-1"></a><span class="co"># 创建S3对象</span></span>
+<span id="cb22-2"><a href="r语言与数据科学-1.html#cb22-2" tabindex="-1"></a>my_object <span class="ot">&lt;-</span> <span class="fu">structure</span>(<span class="fu">list</span>(<span class="at">name =</span> <span class="st">&quot;Alice&quot;</span>, <span class="at">age =</span> <span class="dv">30</span>), <span class="at">class =</span> <span class="st">&quot;person&quot;</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>类别定义,S3系统没有明确的类定义，类别（class）仅是一个字符标签，通常用来标识对象的类型。你可以使用class()函数来查看和分配对象的类别。</li>
+</ol>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="r语言与数据科学-1.html#cb23-1" tabindex="-1"></a><span class="co"># 分配类别</span></span>
+<span id="cb23-2"><a href="r语言与数据科学-1.html#cb23-2" tabindex="-1"></a><span class="fu">class</span>(my_object) <span class="ot">&lt;-</span> <span class="st">&quot;employee&quot;</span></span>
+<span id="cb23-3"><a href="r语言与数据科学-1.html#cb23-3" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="r语言与数据科学-1.html#cb23-4" tabindex="-1"></a><span class="co"># 查看类别</span></span>
+<span id="cb23-5"><a href="r语言与数据科学-1.html#cb23-5" tabindex="-1"></a><span class="fu">class</span>(my_object)</span></code></pre></div>
+<pre><code>## [1] &quot;employee&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>泛型函数和方法,S3系统中的函数通常是泛型函数，它们根据对象的类别来调用适当的方法。你可以使用generic.function()函数来定义泛型函数，并使用method.function()来为每个类别定义方法。例如，如果要定义print()方法：</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="r语言与数据科学-1.html#cb25-1" tabindex="-1"></a><span class="co"># 定义泛型函数</span></span>
+<span id="cb25-2"><a href="r语言与数据科学-1.html#cb25-2" tabindex="-1"></a>print <span class="ot">&lt;-</span> <span class="cf">function</span>(object, ...) {</span>
+<span id="cb25-3"><a href="r语言与数据科学-1.html#cb25-3" tabindex="-1"></a>  <span class="fu">UseMethod</span>(<span class="st">&quot;print&quot;</span>)</span>
+<span id="cb25-4"><a href="r语言与数据科学-1.html#cb25-4" tabindex="-1"></a>}</span>
+<span id="cb25-5"><a href="r语言与数据科学-1.html#cb25-5" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="r语言与数据科学-1.html#cb25-6" tabindex="-1"></a><span class="co"># 为不同的类别定义方法</span></span>
+<span id="cb25-7"><a href="r语言与数据科学-1.html#cb25-7" tabindex="-1"></a>print.employee <span class="ot">&lt;-</span> <span class="cf">function</span>(object, ...) {</span>
+<span id="cb25-8"><a href="r语言与数据科学-1.html#cb25-8" tabindex="-1"></a>  <span class="fu">paste</span>(<span class="st">&quot;Name is &quot;</span>,object<span class="sc">$</span>name , <span class="st">&quot;,age is &quot;</span>,object<span class="sc">$</span>age,<span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb25-9"><a href="r语言与数据科学-1.html#cb25-9" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="r语言与数据科学-1.html#cb25-10" tabindex="-1"></a>}</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>方法选择,S3系统使用方法选择来确定应该调用哪个方法。方法选择通常根据对象的类别（class）来确定。例如，当你调用print(my_object)时，S3系统会查找print()方法的适当实现，根据对象的类别来选择方法。</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="r语言与数据科学-1.html#cb26-1" tabindex="-1"></a><span class="fu">print</span>(my_object)</span></code></pre></div>
+<pre><code>## [1] &quot;Name is Alice,age is 30&quot;</code></pre>
+<p>S3系统具有较高的灵活性，因为它没有强制规定类别的结构或属性。这意味着你可以创建和操作多种类型的对象，但也可能导致潜在的不一致性和错误。因此，在使用S3系统时，你需要小心确保对象的类别和方法都被正确定义。</p>
+<p>S3面向对象系统是R语言中用于简单对象处理的一种灵活方式，适用于小型项目和快速原型开发。虽然它相对简单，但在R的许多数据包中仍然广泛使用，因此了解如何使用S3对象和方法是很有帮助的。</p>
+</div>
+<div id="s4-系统" class="section level4 hasAnchor" number="2.5.5.2">
+<h4><span class="header-section-number">2.5.5.2</span> S4 系统<a href="r语言与数据科学-1.html#s4-系统" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>S4（System 4）是R语言中一种更强大和复杂的面向对象系统，用于创建和管理对象。S4系统相对于S3系统更严格，它提供了明确的类定义、强类型检查和多重继承支持。以下是关于R中S4面向对象系统的总结：</p>
+<ol style="list-style-type: decimal">
+<li>创建S4类：</li>
+</ol>
+<p>要创建S4类，你可以使用setClass()函数，它定义了类的属性和方法。一个S4类通常包含以下内容：</p>
+<ul>
+<li>类名</li>
+<li>属性（slots）：类的成员变量</li>
+<li>方法（methods）：类的成员函数</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="r语言与数据科学-1.html#cb28-1" tabindex="-1"></a><span class="fu">setClass</span>(<span class="st">&quot;Person&quot;</span>,</span>
+<span id="cb28-2"><a href="r语言与数据科学-1.html#cb28-2" tabindex="-1"></a>         <span class="at">slots =</span> <span class="fu">c</span>(<span class="at">name =</span> <span class="st">&quot;character&quot;</span>, <span class="at">age =</span> <span class="st">&quot;numeric&quot;</span>))</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>创建S4对象：</li>
+</ol>
+<p>一旦定义了S4类，你可以使用new()函数来创建S4对象。</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="r语言与数据科学-1.html#cb29-1" tabindex="-1"></a>person <span class="ot">&lt;-</span> <span class="fu">new</span>(<span class="st">&quot;Person&quot;</span>, <span class="at">name =</span> <span class="st">&quot;Alice&quot;</span>, <span class="at">age =</span> <span class="dv">30</span>)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>泛型函数和方法：
+S4系统引入了泛型函数（Generic Functions），这些函数根据对象的类别来调用适当的方法。你可以使用setGeneric()函数来定义泛型函数，然后使用setMethod()函数为每个类别定义方法。例如，定义一个show()方法：</li>
+</ol>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="r语言与数据科学-1.html#cb30-1" tabindex="-1"></a><span class="fu">setGeneric</span>(<span class="st">&quot;show&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;show&quot;</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r语言与数据科学-1.html#cb32-1" tabindex="-1"></a><span class="fu">setMethod</span>(<span class="st">&quot;show&quot;</span>, <span class="st">&quot;Person&quot;</span>, <span class="cf">function</span>(object) {</span>
+<span id="cb32-2"><a href="r语言与数据科学-1.html#cb32-2" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Name:&quot;</span>, object<span class="sc">@</span>name, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb32-3"><a href="r语言与数据科学-1.html#cb32-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Age:&quot;</span>, object<span class="sc">@</span>age, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb32-4"><a href="r语言与数据科学-1.html#cb32-4" tabindex="-1"></a>})</span>
+<span id="cb32-5"><a href="r语言与数据科学-1.html#cb32-5" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="r语言与数据科学-1.html#cb32-6" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="r语言与数据科学-1.html#cb32-7" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="r语言与数据科学-1.html#cb32-8" tabindex="-1"></a><span class="fu">show</span>(person)</span></code></pre></div>
+<pre><code>## Name: Alice 
+## Age: 30</code></pre>
+</div>
+<div id="rc-面向对象系统" class="section level4 hasAnchor" number="2.5.5.3">
+<h4><span class="header-section-number">2.5.5.3</span> RC 面向对象系统<a href="r语言与数据科学-1.html#rc-面向对象系统" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>R6是R语言中的一种面向对象系统，它是基于R语言的面向对象编程的轻量级实现。R6系统引入了R6类，允许你创建具有属性和方法的对象，是面向对象编程的一种更简单、直观的方式。以下是关于R中R6面向对象系统的总结：</p>
+<ol style="list-style-type: decimal">
+<li>创建R6类：
+你可以使用R6Class()函数来创建R6类。在类的定义中，你可以指定类的属性、方法和构造函数。例如：</li>
+</ol>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="r语言与数据科学-1.html#cb34-1" tabindex="-1"></a><span class="fu">library</span>(R6)</span>
+<span id="cb34-2"><a href="r语言与数据科学-1.html#cb34-2" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="r语言与数据科学-1.html#cb34-3" tabindex="-1"></a>Person <span class="ot">&lt;-</span> <span class="fu">R6Class</span>(<span class="st">&quot;Person&quot;</span>,</span>
+<span id="cb34-4"><a href="r语言与数据科学-1.html#cb34-4" tabindex="-1"></a>  <span class="at">public =</span> <span class="fu">list</span>(</span>
+<span id="cb34-5"><a href="r语言与数据科学-1.html#cb34-5" tabindex="-1"></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb34-6"><a href="r语言与数据科学-1.html#cb34-6" tabindex="-1"></a>    <span class="at">age =</span> <span class="cn">NULL</span>,</span>
+<span id="cb34-7"><a href="r语言与数据科学-1.html#cb34-7" tabindex="-1"></a>    <span class="at">initialize =</span> <span class="cf">function</span>(name, age) {</span>
+<span id="cb34-8"><a href="r语言与数据科学-1.html#cb34-8" tabindex="-1"></a>      self<span class="sc">$</span>name <span class="ot">&lt;-</span> name</span>
+<span id="cb34-9"><a href="r语言与数据科学-1.html#cb34-9" tabindex="-1"></a>      self<span class="sc">$</span>age <span class="ot">&lt;-</span> age</span>
+<span id="cb34-10"><a href="r语言与数据科学-1.html#cb34-10" tabindex="-1"></a>    },</span>
+<span id="cb34-11"><a href="r语言与数据科学-1.html#cb34-11" tabindex="-1"></a>    <span class="at">show =</span> <span class="cf">function</span>() {</span>
+<span id="cb34-12"><a href="r语言与数据科学-1.html#cb34-12" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot;Name:&quot;</span>, self<span class="sc">$</span>name, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb34-13"><a href="r语言与数据科学-1.html#cb34-13" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot;Age:&quot;</span>, self<span class="sc">$</span>age, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb34-14"><a href="r语言与数据科学-1.html#cb34-14" tabindex="-1"></a>    }</span>
+<span id="cb34-15"><a href="r语言与数据科学-1.html#cb34-15" tabindex="-1"></a>  )</span>
+<span id="cb34-16"><a href="r语言与数据科学-1.html#cb34-16" tabindex="-1"></a>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>对象的创建：
+你可以使用$new()方法来创建类的实例，并传递属性的值。例如：</li>
+</ol>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="r语言与数据科学-1.html#cb35-1" tabindex="-1"></a>person <span class="ot">&lt;-</span> Person<span class="sc">$</span><span class="fu">new</span>(<span class="at">name =</span> <span class="st">&quot;Alice&quot;</span>, <span class="at">age =</span> <span class="dv">30</span>)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li><p>方法和属性：
+R6类可以包含属性和方法。属性是对象的状态或数据，可以使用self$来访问。方法是对象的行为，可以在类的定义中定义。</p></li>
+<li><p>继承：
+R6支持继承，你可以创建一个子类来继承父类的属性和方法。例如：</p></li>
+</ol>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="r语言与数据科学-1.html#cb36-1" tabindex="-1"></a>Employee <span class="ot">&lt;-</span> <span class="fu">R6Class</span>(<span class="st">&quot;Employee&quot;</span>,</span>
+<span id="cb36-2"><a href="r语言与数据科学-1.html#cb36-2" tabindex="-1"></a>  <span class="at">inherit =</span> Person,</span>
+<span id="cb36-3"><a href="r语言与数据科学-1.html#cb36-3" tabindex="-1"></a>  <span class="at">public =</span> <span class="fu">list</span>(</span>
+<span id="cb36-4"><a href="r语言与数据科学-1.html#cb36-4" tabindex="-1"></a>    <span class="at">salary =</span> <span class="cn">NULL</span>,</span>
+<span id="cb36-5"><a href="r语言与数据科学-1.html#cb36-5" tabindex="-1"></a>    <span class="at">initialize =</span> <span class="cf">function</span>(name, age, salary) {</span>
+<span id="cb36-6"><a href="r语言与数据科学-1.html#cb36-6" tabindex="-1"></a>      super<span class="sc">$</span><span class="fu">initialize</span>(name, age)</span>
+<span id="cb36-7"><a href="r语言与数据科学-1.html#cb36-7" tabindex="-1"></a>      self<span class="sc">$</span>salary <span class="ot">&lt;-</span> salary</span>
+<span id="cb36-8"><a href="r语言与数据科学-1.html#cb36-8" tabindex="-1"></a>    },</span>
+<span id="cb36-9"><a href="r语言与数据科学-1.html#cb36-9" tabindex="-1"></a>    <span class="at">show =</span> <span class="cf">function</span>() {</span>
+<span id="cb36-10"><a href="r语言与数据科学-1.html#cb36-10" tabindex="-1"></a>      super<span class="sc">$</span><span class="fu">show</span>()</span>
+<span id="cb36-11"><a href="r语言与数据科学-1.html#cb36-11" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">&quot;Salary:&quot;</span>, self<span class="sc">$</span>salary, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb36-12"><a href="r语言与数据科学-1.html#cb36-12" tabindex="-1"></a>    }</span>
+<span id="cb36-13"><a href="r语言与数据科学-1.html#cb36-13" tabindex="-1"></a>  )</span>
+<span id="cb36-14"><a href="r语言与数据科学-1.html#cb36-14" tabindex="-1"></a>)</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li><p>方法的重载：
+你可以在子类中重载父类的方法，以定制子类的行为。</p></li>
+<li><p>管理对象：
+R6对象的生命周期由R语言的垃圾收集器管理，当对象不再被引用时，它们会被自动回收。</p></li>
+</ol>
+<p>R6是一种简单而强大的面向对象系统，适用于小到中型的项目和任务。它提供了面向对象编程的核心概念，如封装、继承和多态性，同时不引入过多的复杂性。这使得R6在数据分析和快速原型开发中非常有用。</p>
+</div>
+</div>
+<div id="防御式编程和异常处理" class="section level3 hasAnchor" number="2.5.6">
+<h3><span class="header-section-number">2.5.6</span> 防御式编程和异常处理<a href="r语言与数据科学-1.html#防御式编程和异常处理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在R语言中，异常处理是防御式编程的一个重要方面，它可以帮助你处理和纠正程序执行中可能发生的错误和异常情况。以下是关于R语言中异常处理的总结：</p>
+<ol style="list-style-type: decimal">
+<li>tryCatch 函数：</li>
+</ol>
+<p>tryCatch函数是R中用于捕获和处理异常的主要工具。它的一般形式如下：</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r语言与数据科学-1.html#cb37-1" tabindex="-1"></a><span class="fu">tryCatch</span>({</span>
+<span id="cb37-2"><a href="r语言与数据科学-1.html#cb37-2" tabindex="-1"></a>  <span class="co"># 可能会引发异常的代码</span></span>
+<span id="cb37-3"><a href="r语言与数据科学-1.html#cb37-3" tabindex="-1"></a>}, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb37-4"><a href="r语言与数据科学-1.html#cb37-4" tabindex="-1"></a>  <span class="co"># 处理异常的代码</span></span>
+<span id="cb37-5"><a href="r语言与数据科学-1.html#cb37-5" tabindex="-1"></a>})</span></code></pre></div>
+<pre><code>## NULL</code></pre>
+<ul>
+<li>tryCatch块中包含可能引发异常的代码。</li>
+<li>error参数指定一个函数，用于处理异常。当异常发生时，控制流会跳转到error函数，其中可以进行异常处理操作。</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>异常类别：</li>
+</ol>
+<p>R中的异常通常分为以下几种类别：</p>
+<ul>
+<li><p>错误（Error）： 表示严重的异常情况，通常会导致程序终止。可以使用stop()函数来引发错误。</p></li>
+<li><p>警告（Warning）： 表示潜在的问题或异常情况，不会终止程序执行，但需要用户注意。可以使用warning()函数来发出警告。</p></li>
+<li><p>消息（Message）： 通常用于输出调试信息或其他提示性信息。可以使用message()函数来发送消息。</p></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>处理异常：
+在tryCatch块中，你可以根据不同的异常类别来处理异常。以下是一些异常处理的示例：</li>
+</ol>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r语言与数据科学-1.html#cb39-1" tabindex="-1"></a><span class="fu">tryCatch</span>({</span>
+<span id="cb39-2"><a href="r语言与数据科学-1.html#cb39-2" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">unsafe_operation</span>()  <span class="co"># 可能引发错误的操作</span></span>
+<span id="cb39-3"><a href="r语言与数据科学-1.html#cb39-3" tabindex="-1"></a>}, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb39-4"><a href="r语言与数据科学-1.html#cb39-4" tabindex="-1"></a>  <span class="co"># 处理错误</span></span>
+<span id="cb39-5"><a href="r语言与数据科学-1.html#cb39-5" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;An error occurred: &quot;</span>, <span class="fu">conditionMessage</span>(e), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb39-6"><a href="r语言与数据科学-1.html#cb39-6" tabindex="-1"></a>  <span class="co"># 进一步的错误处理操作</span></span>
+<span id="cb39-7"><a href="r语言与数据科学-1.html#cb39-7" tabindex="-1"></a>}, <span class="at">warning =</span> <span class="cf">function</span>(w) {</span>
+<span id="cb39-8"><a href="r语言与数据科学-1.html#cb39-8" tabindex="-1"></a>  <span class="co"># 处理警告</span></span>
+<span id="cb39-9"><a href="r语言与数据科学-1.html#cb39-9" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A warning occurred: &quot;</span>, <span class="fu">conditionMessage</span>(w), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb39-10"><a href="r语言与数据科学-1.html#cb39-10" tabindex="-1"></a>  <span class="co"># 继续执行</span></span>
+<span id="cb39-11"><a href="r语言与数据科学-1.html#cb39-11" tabindex="-1"></a>}, <span class="at">message =</span> <span class="cf">function</span>(msg) {</span>
+<span id="cb39-12"><a href="r语言与数据科学-1.html#cb39-12" tabindex="-1"></a>  <span class="co"># 处理消息</span></span>
+<span id="cb39-13"><a href="r语言与数据科学-1.html#cb39-13" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A message: &quot;</span>, <span class="fu">conditionMessage</span>(msg), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb39-14"><a href="r语言与数据科学-1.html#cb39-14" tabindex="-1"></a>  <span class="co"># 继续执行</span></span>
+<span id="cb39-15"><a href="r语言与数据科学-1.html#cb39-15" tabindex="-1"></a>})</span></code></pre></div>
+<pre><code>## An error occurred:  could not find function &quot;unsafe_operation&quot;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>自定义异常：
+你可以使用stop()函数来引发自定义错误，并在tryCatch中捕获和处理它们。这允许你定义和识别特定类型的异常。</li>
+</ol>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r语言与数据科学-1.html#cb41-1" tabindex="-1"></a>custom_error <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb41-2"><a href="r语言与数据科学-1.html#cb41-2" tabindex="-1"></a>  <span class="cf">if</span> (condition) {</span>
+<span id="cb41-3"><a href="r语言与数据科学-1.html#cb41-3" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;Custom error message&quot;</span>, <span class="at">call. =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb41-4"><a href="r语言与数据科学-1.html#cb41-4" tabindex="-1"></a>  }</span>
+<span id="cb41-5"><a href="r语言与数据科学-1.html#cb41-5" tabindex="-1"></a>  <span class="co"># 继续执行</span></span>
+<span id="cb41-6"><a href="r语言与数据科学-1.html#cb41-6" tabindex="-1"></a>}</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>忽略异常：</li>
+</ol>
+<p>有时，你可能想要忽略特定类型的异常，而不进行处理。你可以使用suppressWarnings()和suppressMessages()函数来忽略警告和消息。</p>
+<ol start="6" style="list-style-type: decimal">
+<li>异常处理最佳实践</li>
+</ol>
+<ul>
+<li>使用tryCatch来包装可能引发异常的代码块，以便捕获和处理异常。</li>
+<li>在处理异常时，提供有用的错误消息，以帮助调试和纠正问题。</li>
+<li>避免不必要的异常处理，只处理那些需要特殊处理的异常情况。</li>
+<li>了解R中不同异常类别的特性，以适当处理错误、警告和消息。</li>
+</ul>
+<p>总之，异常处理在R语言中是防御式编程的一个重要组成部分，它可以帮助你编写更健壮的代码，处理异常情况，并提高程序的可靠性。了解如何使用tryCatch和自定义异常是R编程的重要技能。</p>
+</div>
+<div id="函数式编程" class="section level3 hasAnchor" number="2.5.7">
+<h3><span class="header-section-number">2.5.7</span> 函数式编程<a href="r语言与数据科学-1.html#函数式编程" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R语言支持函数式编程范式，函数式编程强调将计算过程看作是函数的组合和转换，具有许多强大的特性和优势。以下是有关R语言函数式编程的总结：</p>
+<ol style="list-style-type: decimal">
+<li><p>函数是一等公民：
+在R中，函数是一等公民，这意味着你可以将函数分配给变量，将函数作为参数传递给其他函数，以及从函数中返回函数。这使得函数式编程在R中非常灵活。</p></li>
+<li><p>高阶函数：
+R支持高阶函数，这些函数可以接受其他函数作为参数，也可以返回函数作为结果。例如，apply()、lapply()和mapply()等函数可以接受自定义函数来处理数据。</p></li>
+<li><p>匿名函数：
+你可以在R中创建匿名函数（lambda函数），它们没有显式的名称，通常用于函数调用中。匿名函数可以通过function关键字定义。</p></li>
+</ol>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r语言与数据科学-1.html#cb42-1" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb42-2"><a href="r语言与数据科学-1.html#cb42-2" tabindex="-1"></a><span class="co"># 使用匿名函数</span></span>
+<span id="cb42-3"><a href="r语言与数据科学-1.html#cb42-3" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">1</span>), <span class="dv">1</span>, <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1]  1  4  9 16 25</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>不可变性：
+函数式编程强调不可变性，即一旦创建数据，它不能被修改，而是通过创建新的数据来实现变换。R中的数据框和向量是不可变的，这有助于减少副作用和提高代码可维护性。</p></li>
+<li><p>纯函数：
+纯函数是指在给定相同输入时，始终产生相同输出，并且没有副作用（不修改外部状态）。在R中，编写纯函数有助于代码的可测试性和理解性。</p></li>
+<li><p>映射和过滤：
+函数式编程经常涉及映射（将函数应用于每个元素）和过滤（从集合中选择满足特定条件的元素）。R中的函数如lapply()、sapply()和Filter()等用于实现这些操作。</p></li>
+<li><p>递归：
+递归是函数式编程的一部分，R中支持递归函数的定义和调用。递归是解决许多问题的强大工具。</p></li>
+<li><p>函数组合：
+函数式编程鼓励将小的函数组合成更复杂的函数，以构建功能更强大的管道或链。在R中，compose()函数可以用于函数组合。</p></li>
+<li><p>惰性计算：
+R支持惰性计算，这意味着表达式不会立即求值，而是在需要结果时才计算。这有助于提高性能和节省内存。</p></li>
+</ol>
+<p>总结：R语言提供了丰富的函数式编程工具，使得函数式编程在数据分析和统计建模任务中非常有用。函数式编程可以提高代码的可读性、可维护性和复用性，同时也有助于编写更安全的代码。了解如何使用函数式编程是R编程中的重要技能。</p>
+</div>
+<div id="泛函" class="section level3 hasAnchor" number="2.5.8">
+<h3><span class="header-section-number">2.5.8</span> 泛函<a href="r语言与数据科学-1.html#泛函" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在R语言中，泛函（functional）是一种强大的编程概念，它允许你以函数作为参数或返回值的方式操作函数和数据，从而实现更高级的数据处理和编程任务。以下是有关R语言中泛函的总结：</p>
+<ol style="list-style-type: decimal">
+<li>函数作为参数：
+R中的函数可以作为参数传递给其他函数，这是泛函编程的基础。例如，你可以使用lapply()函数将自定义函数应用于列表的每个元素。</li>
+</ol>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r语言与数据科学-1.html#cb44-1" tabindex="-1"></a><span class="co"># 自定义函数</span></span>
+<span id="cb44-2"><a href="r语言与数据科学-1.html#cb44-2" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb44-3"><a href="r语言与数据科学-1.html#cb44-3" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="r语言与数据科学-1.html#cb44-4" tabindex="-1"></a><span class="co"># 使用lapply将函数应用于列表的每个元素</span></span>
+<span id="cb44-5"><a href="r语言与数据科学-1.html#cb44-5" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb44-6"><a href="r语言与数据科学-1.html#cb44-6" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">lapply</span>(numbers, square)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>匿名函数：
+匿名函数（lambda函数）是一种无需显式定义名称的函数，通常用于函数调用中。你可以使用function关键字来创建匿名函数。</li>
+</ol>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r语言与数据科学-1.html#cb45-1" tabindex="-1"></a><span class="co"># 使用匿名函数</span></span>
+<span id="cb45-2"><a href="r语言与数据科学-1.html#cb45-2" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">1</span>), <span class="dv">1</span>, <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1]  1  4  9 16 25</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>高阶函数：
+R支持高阶函数，这些函数可以接受其他函数作为参数或返回函数作为结果。例如，apply()、lapply()和mapply()等函数可以接受自定义函数来处理数据。</li>
+</ol>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="r语言与数据科学-1.html#cb47-1" tabindex="-1"></a><span class="co"># 自定义函数</span></span>
+<span id="cb47-2"><a href="r语言与数据科学-1.html#cb47-2" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb47-3"><a href="r语言与数据科学-1.html#cb47-3" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="r语言与数据科学-1.html#cb47-4" tabindex="-1"></a><span class="co"># 使用高阶函数</span></span>
+<span id="cb47-5"><a href="r语言与数据科学-1.html#cb47-5" tabindex="-1"></a><span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">1</span>), <span class="dv">1</span>, square)</span></code></pre></div>
+<pre><code>## [1]  1  4  9 16 25</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>函数作为返回值：
+泛函编程还允许函数返回函数。这在一些情况下非常有用，特别是在创建函数工厂或构建管道时。</li>
+</ol>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="r语言与数据科学-1.html#cb49-1" tabindex="-1"></a><span class="co"># 函数工厂，返回加法函数</span></span>
+<span id="cb49-2"><a href="r语言与数据科学-1.html#cb49-2" tabindex="-1"></a>addition_factory <span class="ot">&lt;-</span> <span class="cf">function</span>(y) {</span>
+<span id="cb49-3"><a href="r语言与数据科学-1.html#cb49-3" tabindex="-1"></a>  <span class="fu">return</span>(<span class="cf">function</span>(x) x <span class="sc">+</span> y)</span>
+<span id="cb49-4"><a href="r语言与数据科学-1.html#cb49-4" tabindex="-1"></a>}</span>
+<span id="cb49-5"><a href="r语言与数据科学-1.html#cb49-5" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="r语言与数据科学-1.html#cb49-6" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="fu">addition_factory</span>(<span class="dv">2</span>)</span>
+<span id="cb49-7"><a href="r语言与数据科学-1.html#cb49-7" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">add_two</span>(<span class="dv">5</span>)  <span class="co"># 结果为7</span></span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>函数组合：
+函数组合是一种将多个函数组合成一个函数的方法，从而构建功能更强大的管道或链。R中的compose()函数可以用于函数组合。</li>
+</ol>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="r语言与数据科学-1.html#cb50-1" tabindex="-1"></a><span class="co"># 创建两个函数</span></span>
+<span id="cb50-2"><a href="r语言与数据科学-1.html#cb50-2" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb50-3"><a href="r语言与数据科学-1.html#cb50-3" tabindex="-1"></a>double <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span> <span class="sc">*</span> x</span>
+<span id="cb50-4"><a href="r语言与数据科学-1.html#cb50-4" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="r语言与数据科学-1.html#cb50-5" tabindex="-1"></a><span class="co"># 使用compose()函数进行函数组合</span></span>
+<span id="cb50-6"><a href="r语言与数据科学-1.html#cb50-6" tabindex="-1"></a>composed_function <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">compose</span>(square, double)</span>
+<span id="cb50-7"><a href="r语言与数据科学-1.html#cb50-7" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">composed_function</span>(<span class="dv">5</span>)  <span class="co"># 先平方再加倍，结果为50</span></span></code></pre></div>
+<p>总结：泛函编程是R语言的一个强大特性，它允许你以函数为中心的方式处理数据和任务。通过将函数作为参数传递、返回值和组合，你可以更加灵活地编写复杂的数据处理和分析代码。了解如何使用泛函编程是R编程中的重要技能。</p>
+<div id="泛函与函数式编程的区别" class="section level4 hasAnchor" number="2.5.8.1">
+<h4><span class="header-section-number">2.5.8.1</span> 泛函与函数式编程的区别<a href="r语言与数据科学-1.html#泛函与函数式编程的区别" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>“泛函”（functional programming）和”函数式编程”（functional programming）是相关但不完全相同的概念。它们都涉及使用函数来操作数据，但有一些微妙的区别。</p>
+<ol style="list-style-type: decimal">
+<li>函数式编程（Functional Programming）：
+函数式编程是一种编程范式，它强调使用纯函数（pure functions）来处理数据和避免可变状态。
+纯函数是指在给定相同的输入时，始终产生相同的输出，并且没有副作用，不会修改外部状态。
+函数式编程通常包括不可变性、高阶函数、递归、映射、过滤、抽象和组合等概念。
+函数式编程通常更加数学化，注重表达式和变换的组合，更注重解决问题的方式而不是过程。</li>
+<li>泛函（Functional）：
+“泛函”通常指的是一种编程风格或方法，它使用函数作为参数或返回值，以及处理函数和数据的方式。
+泛函编程强调将函数作为一等公民，可以将函数作为参数传递给其他函数，将函数作为返回值，从而实现更高级的数据处理和编程任务。
+泛函编程是一种编程范式，可以在不同编程语言中使用，而不限于函数式编程语言。</li>
+</ol>
+<p>函数式编程是一种更广泛的编程范式，它强调使用纯函数来处理数据，而”泛函”是一种编程风格，强调使用函数作为参数或返回值。函数式编程通常包括泛函编程的概念，但泛函编程不一定要求完全遵守函数式编程的原则。泛函编程可以在各种编程语言中使用，而函数式编程通常与特定的函数式编程语言相关。</p>
+</div>
+</div>
+<div id="r语言函数运算符" class="section level3 hasAnchor" number="2.5.9">
+<h3><span class="header-section-number">2.5.9</span> R语言函数运算符<a href="r语言与数据科学-1.html#r语言函数运算符" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R语言中的函数运算符（functional operators）是用于操作函数的工具，允许你对函数进行操作，组合函数以构建更复杂的功能，或者将函数应用于数据。</p>
+<ol style="list-style-type: decimal">
+<li>apply 系列：</li>
+</ol>
+<ul>
+<li>apply()：用于将函数应用于矩阵的行或列。</li>
+<li>lapply()：用于将函数应用于列表的每个元素。</li>
+<li>sapply()：用于将函数应用于列表的每个元素，并返回简化的结果。</li>
+<li>tapply()：用于将函数应用于分组数据的每个子组。</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r语言与数据科学-1.html#cb51-1" tabindex="-1"></a><span class="co"># 示例使用apply</span></span>
+<span id="cb51-2"><a href="r语言与数据科学-1.html#cb51-2" tabindex="-1"></a>matrix_data <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb51-3"><a href="r语言与数据科学-1.html#cb51-3" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">apply</span>(matrix_data, <span class="dv">1</span>, sum)  <span class="co"># 按行求和</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>do.call()：
+do.call()函数允许你将一个函数应用于参数列表。它将函数和参数分开，以便更灵活地操作。</li>
+</ol>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="r语言与数据科学-1.html#cb52-1" tabindex="-1"></a><span class="co"># 示例使用do.call</span></span>
+<span id="cb52-2"><a href="r语言与数据科学-1.html#cb52-2" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb52-3"><a href="r语言与数据科学-1.html#cb52-3" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">do.call</span>(paste, params)  <span class="co"># 等同于 paste(1, 2, 3)</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Reduce()：
+Reduce()函数用于对向量的元素进行累积操作，可以使用自定义的二元操作函数。</li>
+</ol>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="r语言与数据科学-1.html#cb53-1" tabindex="-1"></a><span class="co"># 示例使用Reduce</span></span>
+<span id="cb53-2"><a href="r语言与数据科学-1.html#cb53-2" tabindex="-1"></a>vector_data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb53-3"><a href="r语言与数据科学-1.html#cb53-3" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">Reduce</span>(<span class="cf">function</span>(x, y) x <span class="sc">*</span> y, vector_data)  <span class="co"># 计算累积乘积</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>mapply()：
+mapply()函数用于并行应用函数到多个参数列表中的对应元素。</li>
+</ol>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="r语言与数据科学-1.html#cb54-1" tabindex="-1"></a><span class="co"># 示例使用mapply</span></span>
+<span id="cb54-2"><a href="r语言与数据科学-1.html#cb54-2" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">mapply</span>(<span class="cf">function</span>(x, y) x <span class="sc">+</span> y, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>simplify2array()：
+simplify2array()函数用于将列表形式的函数结果转换为矩阵或数组，方便进一步处理。</li>
+</ol>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="r语言与数据科学-1.html#cb55-1" tabindex="-1"></a><span class="co"># 示例使用simplify2array</span></span>
+<span id="cb55-2"><a href="r语言与数据科学-1.html#cb55-2" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">simplify2array</span>(<span class="fu">lapply</span>(<span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>), <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>purrr 包：
+purrr包提供了一系列函数操作符，例如 map()、reduce()、filter() 等，用于更方便的函数操作和数据操作。</li>
+</ol>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="r语言与数据科学-1.html#cb56-1" tabindex="-1"></a><span class="co"># 示例使用purrr包中的map</span></span>
+<span id="cb56-2"><a href="r语言与数据科学-1.html#cb56-2" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb56-3"><a href="r语言与数据科学-1.html#cb56-3" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>), <span class="sc">~</span> .x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<p>R语言提供了多种函数运算符和工具，用于操作函数和数据，从而实现更高级的数据处理和编程任务。这些函数运算符有助于提高代码的可读性和可维护性，同时也提供了丰富的数据操作能力。选择合适的函数运算符取决于你的具体任务和编程风格。</p>
+</div>
+<div id="r语言非标准计算" class="section level3 hasAnchor" number="2.5.10">
+<h3><span class="header-section-number">2.5.10</span> R语言非标准计算<a href="r语言与数据科学-1.html#r语言非标准计算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R语言中的非标准计算通常涉及到以非传统方式处理数据和执行计算任务，这可以包括字符串操作、动态数据框列名、表达式求值和其他不常见的数据操作。以下是关于R语言非标准计算的总结：</p>
+<ol style="list-style-type: decimal">
+<li>字符串操作：
+在R中，字符串操作是非标准计算的一部分，它包括字符串分割、合并、替换、提取等操作。常用的函数包括strsplit()、paste()、gsub()、grepl()等。</li>
+</ol>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="r语言与数据科学-1.html#cb57-1" tabindex="-1"></a><span class="co"># 示例使用字符串操作</span></span>
+<span id="cb57-2"><a href="r语言与数据科学-1.html#cb57-2" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="st">&quot;Hello, World!&quot;</span></span>
+<span id="cb57-3"><a href="r语言与数据科学-1.html#cb57-3" tabindex="-1"></a>words <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(text, <span class="st">&quot;,&quot;</span>)[[<span class="dv">1</span>]]  <span class="co"># 字符串分割</span></span>
+<span id="cb57-4"><a href="r语言与数据科学-1.html#cb57-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">paste</span>(words, <span class="st">&quot;R&quot;</span>)  <span class="co"># 字符串合并</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>动态数据框列名：
+有时需要在运行时动态更改数据框的列名。这可以通过使用反引号（backticks）和names()函数来实现。</li>
+</ol>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="r语言与数据科学-1.html#cb58-1" tabindex="-1"></a><span class="co"># 示例使用动态列名</span></span>
+<span id="cb58-2"><a href="r语言与数据科学-1.html#cb58-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">A =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">B =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb58-3"><a href="r语言与数据科学-1.html#cb58-3" tabindex="-1"></a>new_column_name <span class="ot">&lt;-</span> <span class="st">&quot;NewColumn&quot;</span></span>
+<span id="cb58-4"><a href="r语言与数据科学-1.html#cb58-4" tabindex="-1"></a><span class="fu">names</span>(data)[<span class="dv">2</span>] <span class="ot">&lt;-</span> new_column_name  <span class="co"># 动态修改列名</span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>表达式求值：
+R语言允许在运行时动态构建和执行表达式。这可以通过eval()和parse()函数来实现。</li>
+</ol>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="r语言与数据科学-1.html#cb59-1" tabindex="-1"></a><span class="co"># 示例使用表达式求值</span></span>
+<span id="cb59-2"><a href="r语言与数据科学-1.html#cb59-2" tabindex="-1"></a>expression_string <span class="ot">&lt;-</span> <span class="st">&quot;2 + 2&quot;</span></span>
+<span id="cb59-3"><a href="r语言与数据科学-1.html#cb59-3" tabindex="-1"></a>parsed_expression <span class="ot">&lt;-</span> <span class="fu">parse</span>(<span class="at">text =</span> expression_string)</span>
+<span id="cb59-4"><a href="r语言与数据科学-1.html#cb59-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">eval</span>(parsed_expression)  <span class="co"># 求值</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>动态函数调用：
+你可以在运行时动态调用函数，这可以通过函数名字符串和do.call()函数来实现。</li>
+</ol>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="r语言与数据科学-1.html#cb60-1" tabindex="-1"></a><span class="co"># 示例使用动态函数调用</span></span>
+<span id="cb60-2"><a href="r语言与数据科学-1.html#cb60-2" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="st">&quot;sum&quot;</span></span>
+<span id="cb60-3"><a href="r语言与数据科学-1.html#cb60-3" tabindex="-1"></a>arguments <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb60-4"><a href="r语言与数据科学-1.html#cb60-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">do.call</span>(function_name, arguments)  <span class="co"># 动态调用函数</span></span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>软引用：
+R语言中的软引用是一种非标准计算方法，它允许你将对象的名称存储为字符串，然后在需要时使用get()函数检索对象。</li>
+</ol>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="r语言与数据科学-1.html#cb61-1" tabindex="-1"></a><span class="co"># 示例使用软引用</span></span>
+<span id="cb61-2"><a href="r语言与数据科学-1.html#cb61-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">42</span></span>
+<span id="cb61-3"><a href="r语言与数据科学-1.html#cb61-3" tabindex="-1"></a>x_name <span class="ot">&lt;-</span> <span class="st">&quot;x&quot;</span></span>
+<span id="cb61-4"><a href="r语言与数据科学-1.html#cb61-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">get</span>(x_name)  <span class="co"># 获取对象的值</span></span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>非标准评估：
+R中的非标准计算还涉及到非标准评估，即以不同的方式处理函数参数的计算。这通常需要使用substitute()和eval()函数。</li>
+</ol>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="r语言与数据科学-1.html#cb62-1" tabindex="-1"></a><span class="co"># 示例使用非标准评估</span></span>
+<span id="cb62-2"><a href="r语言与数据科学-1.html#cb62-2" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(expr) {</span>
+<span id="cb62-3"><a href="r语言与数据科学-1.html#cb62-3" tabindex="-1"></a>  expr <span class="ot">&lt;-</span> <span class="fu">substitute</span>(expr)  <span class="co"># 非标准评估</span></span>
+<span id="cb62-4"><a href="r语言与数据科学-1.html#cb62-4" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">eval</span>(expr)</span>
+<span id="cb62-5"><a href="r语言与数据科学-1.html#cb62-5" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb62-6"><a href="r语言与数据科学-1.html#cb62-6" tabindex="-1"></a>}</span></code></pre></div>
+<p>R语言提供了多种非标准计算的工具和技术，用于处理字符串、动态数据框列名、表达式求值、动态函数调用等操作。这些技术可以在需要时增加代码的灵活性和动态性，但也需要小心使用，以避免潜在的错误和安全问题。非标准计算通常在数据处理、元编程和动态报告生成等任务中非常有用。</p>
+</div>
+</div>
+<div id="r包开发" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> R包开发<a href="r语言与数据科学-1.html#r包开发" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>参考资料:</p>
+<p><a href="https://rpubs.com/liam/RpackagesDevelopment" class="uri">https://rpubs.com/liam/RpackagesDevelopment</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-语言数据分析.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
